@@ -130,6 +130,14 @@ h2.sec-title{font-size:23px;font-weight:700;letter-spacing:-.4px;margin-bottom:4
 .tabpanel.active{display:block;animation:fade .25s}
 @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
+/* ONE-WAY / RETURN TOGGLE */
+.ttoggle{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;font-size:13px}
+.ttlabel{font-weight:600;color:var(--muted)}
+.ttbtns{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--card)}
+.ttbtns button{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;padding:7px 14px;border:0;background:transparent;color:var(--ink);cursor:pointer;transition:.15s}
+.ttbtns button.active{background:var(--orange);color:#fff}
+.tthint{font-size:12px;color:var(--muted)}
+
 /* FLIGHT/ACCOM OPTION */
 .opt{padding:14px 16px;margin-bottom:10px}
 .opt-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
@@ -256,6 +264,7 @@ footer .mono{color:var(--orange)}
       <a href="#japan">Japan</a>
       <a href="#transport">Transport</a>
       <a href="#sim">SIM</a>
+      <a href="#currency">Currency</a>
       <a href="#money">Money</a>
       <a href="#food">Food</a>
       <a href="#emergency">Emergency</a>
@@ -279,7 +288,7 @@ footer .mono{color:var(--orange)}
       <div class="badge">📅 <b>Nov 1 – 30</b> · 30 days</div>
       <div class="badge">👥 <b>2</b> travellers</div>
       <div class="badge">💰 <b>&lt;$2,000</b> AUD pp</div>
-      <div class="badge carry">🎒 Carry-on + travel coat only</div>
+      <div class="badge carry">🎒 Backpack + travel coat · no paid baggage</div>
       <div class="badge">☪️ Strict halal for one traveller</div>
     </div>
     <div class="pill-warn">⚠️ Book flights NOW — Nov 1 fills fast</div>
@@ -312,7 +321,7 @@ footer .mono{color:var(--orange)}
     <ul class="checklist" data-list="critical">
       <li><span class="box"></span><span class="txt">Book <b>BNE → SYD</b> morning flight Nov 1 (~$49 Jetstar) <small>Land 3–4h before SYD→KUL</small></span></li>
       <li><span class="box"></span><span class="txt">Book <b>SYD → KUL</b> direct AirAsia X, <b>same day Nov 1</b> (~$180) <small>Lands KL early Nov 2</small></span></li>
-      <li><span class="box"></span><span class="txt">Book <b>KUL → NRT</b> direct AirAsia X for Nov 17 (~$120)</span></li>
+      <li><span class="box"></span><span class="txt">Book <b>KUL → KIX (Osaka)</b> direct AirAsia X for Nov 17 (~$110) <small>Cheaper than Tokyo</small></span></li>
       <li><span class="box"></span><span class="txt">Book <b>NRT → BNE</b> Nov 30 (Scoot ~$300 / Jetstar direct ~$380)</span></li>
       <li><span class="box"></span><span class="txt">Check both passports valid <b>6+ months</b> past Nov 30 <small>Renew immediately if not</small></span></li>
       <li><span class="box"></span><span class="txt">Buy travel insurance (covers all 30 days + activities)</span></li>
@@ -367,6 +376,14 @@ footer .mono{color:var(--orange)}
   <div class="sec-tag">Get there cheap</div>
   <h2 class="sec-title">Flights</h2>
   <p class="sec-sub">Four legs, low-cost carriers throughout. Pay only for what you need (skip checked bags — carry-on only). Prices are per person estimates; book early.</p>
+  <div class="ttoggle">
+    <span class="ttlabel">Search links open as:</span>
+    <div class="ttbtns">
+      <button data-tt="oneway">One-way ✈</button>
+      <button data-tt="return">Return ⇄</button>
+    </div>
+    <span class="tthint">Each leg is one-way — leave this on <b>One-way</b> unless you want a round trip.</span>
+  </div>
   <div class="tabs" id="flightTabs"></div>
   <div id="flightPanels"></div>
 
@@ -375,8 +392,8 @@ footer .mono{color:var(--orange)}
     <ul class="checklist cols" data-list="flightcheck">
       <li><span class="box"></span><span class="txt">All 4 legs booked & paid</span></li>
       <li><span class="box"></span><span class="txt">Names match passports exactly</span></li>
-      <li><span class="box"></span><span class="txt">Carry-on allowance confirmed (7kg AirAsia/Scoot)</span></li>
-      <li><span class="box"></span><span class="txt">Travel coat counts as personal item — confirm</span></li>
+      <li><span class="box"></span><span class="txt">Backpack fits FREE carry-on (7kg AirAsia/Scoot/Jetstar) <small>Never add paid checked baggage</small></span></li>
+      <li><span class="box"></span><span class="txt">Travel coat worn through security = extra free capacity</span></li>
       <li><span class="box"></span><span class="txt">Nov 1: BNE→SYD lands 3–4h before SYD→KUL <small>Separate tickets = no protection if you miss it</small></span></li>
       <li><span class="box"></span><span class="txt">Know your SYD T2/T3 → T1 transfer (2-min train / free T-Bus)</span></li>
       <li><span class="box"></span><span class="txt">Web check-in done 48h before each flight</span></li>
@@ -418,7 +435,7 @@ footer .mono{color:var(--orange)}
       <tr class="cat"><td colspan="3">✈️ Flights</td></tr>
       <tr><td>BNE → SYD</td><td>Jetstar, Nov 1 (morning)</td><td class="amt"><span class="price">$49</span></td></tr>
       <tr><td>SYD → KUL</td><td>AirAsia X, Nov 1 (same day, direct)</td><td class="amt"><span class="price">$180</span></td></tr>
-      <tr><td>KUL → NRT</td><td>AirAsia X, Nov 17 (direct)</td><td class="amt"><span class="price">$120</span></td></tr>
+      <tr><td>KUL → KIX (Osaka)</td><td>AirAsia X, Nov 17 (direct)</td><td class="amt"><span class="price">$110</span></td></tr>
       <tr><td>NRT → BNE</td><td>Scoot Nov 30 (1 stop) / Jetstar direct +$80</td><td class="amt"><span class="price">$300</span></td></tr>
       <tr><td>Seat/SYD transfer/buffer</td><td>train T2→T1 + misc fees</td><td class="amt"><span class="price">$31</span></td></tr>
       <tr class="cat"><td colspan="3">🛏️ Accommodation</td></tr>
@@ -483,7 +500,7 @@ footer .mono{color:var(--orange)}
 <section id="japan">
   <div class="sec-tag">🇯🇵 14 nights</div>
   <h2 class="sec-title">Japan Itinerary</h2>
-  <p class="sec-sub">Tokyo → Kyoto → Osaka via overnight buses to save on both transport and beds. Halal options flagged ☪️ throughout.</p>
+  <p class="sec-sub">Fly into <b>Osaka</b> (cheaper than Tokyo), then work east: <b>Osaka → Kyoto → Tokyo</b>, flying home from Tokyo. An overnight bus Kyoto→Tokyo saves a night's transport + bed. Halal options flagged ☪️ throughout.</p>
   <div id="jpDays"></div>
 </section>
 
@@ -507,12 +524,12 @@ footer .mono{color:var(--orange)}
     <div class="icard card">
       <h4>🇯🇵 Japan</h4>
       <ul>
-        <li><b>Suica / Pasmo IC card</b> — tap all trains, buses, conbini</li>
-        <li><b>Overnight highway bus</b> Tokyo → Kyoto ~¥3,000</li>
+        <li><b>ICOCA / Suica IC card</b> — tap all trains, buses, conbini</li>
+        <li><b>Nankai train</b> Kansai (KIX) → Namba, Osaka ~¥930</li>
+        <li><b>Overnight highway bus</b> Kyoto → Tokyo ~¥3,000</li>
         <li><b>Tokyo Metro day pass</b> ~¥600 (24h)</li>
         <li><b>Kyoto city bus day pass</b> ~¥700</li>
-        <li><b>Bicycle rental</b> in Kyoto ~¥1,000/day</li>
-        <li><b>Narita Express (N'EX)</b> airport ↔ Tokyo ~¥3,070</li>
+        <li><b>Narita Express (N'EX)</b> Tokyo → Narita ~¥3,070</li>
       </ul>
     </div>
   </div>
@@ -523,10 +540,10 @@ footer .mono{color:var(--orange)}
       <li><span class="box"></span><span class="txt">Grab app installed + payment added</span></li>
       <li><span class="box"></span><span class="txt">ETS train KL→Penang booked (KTMB site)</span></li>
       <li><span class="box"></span><span class="txt">Langkawi ferry/flight times checked</span></li>
-      <li><span class="box"></span><span class="txt">Suica added to phone wallet (or buy at Narita)</span></li>
-      <li><span class="box"></span><span class="txt">Tokyo→Kyoto night bus booked (Willer)</span></li>
-      <li><span class="box"></span><span class="txt">Osaka→Narita night bus checked for Nov 30</span></li>
-      <li><span class="box"></span><span class="txt">N'EX / airport transfer time planned</span></li>
+      <li><span class="box"></span><span class="txt">ICOCA/Suica added to phone wallet (or buy at KIX)</span></li>
+      <li><span class="box"></span><span class="txt">Kyoto→Tokyo night bus booked (Willer, Nov 23)</span></li>
+      <li><span class="box"></span><span class="txt">Tokyo→Narita N'EX time planned for Nov 30</span></li>
+      <li><span class="box"></span><span class="txt">Nankai KIX→Namba arrival transfer noted</span></li>
     </ul>
   </div>
 </section>
@@ -566,6 +583,52 @@ footer .mono{color:var(--orange)}
       <li><span class="box"></span><span class="txt">Power bank charged (carry-on, not coat pocket at security)</span></li>
       <li><span class="box"></span><span class="txt">Universal travel adapter packed</span></li>
     </ul>
+  </div>
+</section>
+
+<!-- CURRENCY -->
+<section id="currency">
+  <div class="sec-tag">How money works on the road</div>
+  <h2 class="sec-title">Currency — How & When</h2>
+  <p class="sec-sub">You earn and budget in <b>AUD</b>, but you'll spend in <b>Ringgit (MYR)</b> and <b>Yen (JPY)</b>. Here's exactly how to convert, when to do it, and how to dodge the bad-rate traps. Every booking link on this site is already set to show prices in <b>AUD</b>.</p>
+
+  <div class="info green" style="margin-bottom:16px"><div class="h">💡 The golden rule</div>Never exchange cash at home or at airport money-changers — their rates are 5–10% worse. Instead, <b>carry a Wise/Revolut card and withdraw local cash from real bank ATMs as you go.</b> You get the near-perfect mid-market rate automatically.</div>
+
+  <div class="card" style="padding:18px;margin-bottom:16px">
+    <h4 style="margin-bottom:12px">🗓️ When to do what</h4>
+    <ul class="checklist" data-list="currencyflow">
+      <li><span class="box"></span><span class="txt"><b>2–3 weeks before:</b> Order a Wise &/or Revolut card. Load it with AUD in the app. <small>Free, arrives by post; the app converts AUD→MYR/JPY at the real rate when you spend</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>Before you fly:</b> Get ~$100 AUD in a mix as untouched emergency cash. Don't bulk-buy MYR/JPY at home. <small>Notify your bank of travel dates so cards aren't frozen</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>Land in KL (Nov 2):</b> Walk PAST the airport forex. Withdraw ~RM300–400 from a <b>Maybank/CIMB ATM</b> in arrivals. <small>Pay by Wise card where accepted; keep cash for hawkers & Grab</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>Land in Osaka (Nov 17):</b> Withdraw ¥20,000–30,000 from a <b>7-Eleven ATM</b> (they accept foreign cards; most bank ATMs don't). <small>Japan is cash-heavy — always carry yen</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>Throughout:</b> Withdraw smaller amounts a few times rather than one big lump. <small>Less to lose if a wallet goes missing; check the app for each withdrawal fee</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>At every card terminal:</b> If asked "pay in AUD or local currency?" — <b>always choose LOCAL</b> (MYR/JPY). <small>Choosing AUD triggers "dynamic currency conversion" — a hidden ~5% markup</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>Before flying home:</b> Spend down leftover cash (snacks, gifts at 100-yen shops). <small>Coins can't be changed back — only notes</small></span></li>
+    </ul>
+  </div>
+
+  <div class="grid g3">
+    <div class="icard card">
+      <h4>🇦🇺 → 🇲🇾 Ringgit</h4>
+      <div class="kv"><span>Rough rate</span><b>$1 AUD ≈ RM2.9</b></div>
+      <div class="kv"><span>$100 AUD gives</span><b>≈ RM290</b></div>
+      <div class="kv"><span>Get it via</span><b>Maybank/CIMB ATM</b></div>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Card works in malls & chains; cash for hawkers, markets & Grab.</p>
+    </div>
+    <div class="icard card">
+      <h4>🇦🇺 → 🇯🇵 Yen</h4>
+      <div class="kv"><span>Rough rate</span><b>$1 AUD ≈ ¥95–100</b></div>
+      <div class="kv"><span>$100 AUD gives</span><b>≈ ¥9,500</b></div>
+      <div class="kv"><span>Get it via</span><b>7-Eleven ATM</b></div>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Carry cash daily — temples, small shops & buses are often cash-only.</p>
+    </div>
+    <div class="icard card">
+      <h4>🧮 Quick mental maths</h4>
+      <div class="kv"><span>RM10 meal</span><b>≈ $3.50 AUD</b></div>
+      <div class="kv"><span>¥1,000 ramen</span><b>≈ $10 AUD</b></div>
+      <div class="kv"><span>¥100 onigiri</span><b>≈ $1 AUD</b></div>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Halve the yen and knock off two zeros for a fast AUD guess (¥1,000≈$10).</p>
+    </div>
   </div>
 </section>
 
@@ -700,10 +763,10 @@ footer .mono{color:var(--orange)}
 
 <script>
 /* ---------- DATA ---------- */
-/* deep-link builders: land you on LIVE prices, pre-filtered (direct-only where it exists, 2 adults) */
-const sky=(from,to,d)=>`https://www.skyscanner.com.au/transport/flights/${from}/${to}/${d}/?adultsv2=1&preferdirects=true&rtn=0`;
-/* booking links are per-person: 1 adult / 1 guest */
-const gflt=(from,to,iso)=>`https://www.google.com/travel/flights?q=`+encodeURIComponent(`flights from ${from} to ${to} on ${iso} nonstop for 1 adult`);
+/* deep-link builders: LIVE prices, pre-filtered. 1 adult · AUD · direct-only · ONE-WAY (rtn=0).
+   The One-way/Return toggle rewrites rtn= and the Google q at runtime. */
+const sky=(from,to,d)=>`https://www.skyscanner.com.au/transport/flights/${from}/${to}/${d}/?adultsv2=1&preferdirects=true&rtn=0&currency=AUD&market=AU&locale=en-GB`;
+const gflt=(from,to,iso)=>`https://www.google.com/travel/flights?curr=AUD&q=`+encodeURIComponent(`one way flights from ${from} to ${to} on ${iso} nonstop for 1 adult`);
 
 const FLIGHTS=[
  {id:'l1',label:'BNE → SYD · Nov 1',
@@ -717,23 +780,23 @@ const FLIGHTS=[
    {tag:'cheap',type:'Direct',route:'SYD → KUL',airline:'AirAsia X (D7)',time:'Daytime/evening · direct',dur:'~8h 50m',price:'$180',note:'Cheapest direct. Take a later departure to pair with a relaxed morning BNE→SYD. Add nothing — travel light.',sky:sky('syd','kul','261101'),gf:gflt('Sydney','Kuala Lumpur','2026-11-01')},
    {tag:'fast',type:'Direct',route:'SYD → KUL',airline:'Malaysia Airlines (MH250)',time:'Departs ~09:40 · direct',dur:'9h 10m',price:'$420',note:'Full service, meal + 30kg bag included. The 09:40 departure needs an early BNE→SYD — only if you want the early start and a buffer.',sky:sky('syd','kul','261101'),gf:gflt('Sydney','Kuala Lumpur','2026-11-01')},
    {tag:'alt',type:'Direct',route:'SYD → KUL',airline:'Batik Air MY',time:'Direct · check times',dur:'~9h',price:'$210',note:'Often a middle-ground price between AirAsia X and MH. Also flies direct — compare on the live link.',sky:sky('syd','kul','261101'),gf:gflt('Sydney','Kuala Lumpur','2026-11-01')}]},
- {id:'l3',label:'KUL → NRT · Nov 17',
-  conn:'🛫 <b>Direct to Tokyo.</b> AirAsia X flies KUL→Tokyo Narita nonstop (~7h). Pick a daytime departure so you arrive with daylight to find your hostel.',
+ {id:'l3',label:'KUL → KIX · Nov 17',
+  conn:'🛫 <b>Into Osaka (cheaper than Tokyo).</b> AirAsia X flies KUL→Osaka Kansai nonstop (~7h). You then work your way <b>Osaka → Kyoto → Tokyo</b> and fly home from Tokyo — no backtracking. Pick a daytime departure to arrive with daylight.',
   opts:[
-   {tag:'cheap',type:'Direct',route:'KUL → NRT',airline:'AirAsia X (D7)',time:'Daytime · direct',dur:'~7h',price:'$120',note:'Cheapest direct to Tokyo Narita. Book early — best leg of the whole trip for value.',sky:sky('kul','nrt','261117'),gf:gflt('Kuala Lumpur','Tokyo','2026-11-17')},
-   {tag:'alt',type:'Direct',route:'KUL → KIX',airline:'AirAsia X (to Osaka)',time:'Direct · alternative',dur:'~7h',price:'$140',note:'If KUL→NRT is dear, fly into Osaka Kansai and run the Japan loop in reverse (Osaka → Kyoto → Tokyo).',sky:sky('kul','kix','261117'),gf:gflt('Kuala Lumpur','Osaka','2026-11-17')}]},
+   {tag:'cheap',type:'Direct',route:'KUL → KIX',airline:'AirAsia X (D7)',time:'Daytime · direct',dur:'~7h',price:'$110',note:'Cheapest way into Japan — Osaka Kansai usually beats Tokyo on price. Best-value leg of the trip. Book early.',sky:sky('kul','kix','261117'),gf:gflt('Kuala Lumpur','Osaka','2026-11-17')},
+   {tag:'alt',type:'Direct',route:'KUL → NRT',airline:'AirAsia X (to Tokyo)',time:'Direct · alternative',dur:'~7h',price:'$130',note:'If you\'d rather start in Tokyo, this flies direct to Narita — but you\'d then need to reverse the itinerary back to Osaka. Osaka-in is simpler & cheaper.',sky:sky('kul','nrt','261117'),gf:gflt('Kuala Lumpur','Tokyo','2026-11-17')}]},
  {id:'l4',label:'NRT → BNE · Nov 30',
-  conn:'🏠 <b>Going home.</b> Scoot is cheapest but routes via Singapore (1 stop). Jetstar flies NRT→Brisbane direct — pay a bit more to skip a layover after a big trip. Arrive Narita 3h early.',
+  conn:'🏠 <b>Home from Tokyo.</b> You finish the trip in Tokyo, so fly out of Narita — no end-of-trip transfers. Scoot is cheapest but routes via Singapore (1 stop); Jetstar flies direct. Arrive Narita 3h early.',
   opts:[
-   {tag:'cheap',type:'1 stop (SIN)',route:'NRT → BNE',airline:'Scoot',time:'1 stop in Singapore',dur:'~16–20h total',price:'$300',note:'Cheapest way home but NOT direct — layover in Singapore can be long. Check total time on the live link before booking.',sky:`https://www.skyscanner.com.au/transport/flights/nrt/bne/261130/?adultsv2=2&rtn=0`,gf:gflt('Tokyo','Brisbane','2026-11-30')},
+   {tag:'cheap',type:'1 stop (SIN)',route:'NRT → BNE',airline:'Scoot',time:'1 stop in Singapore',dur:'~16–20h total',price:'$300',note:'Cheapest way home but NOT direct — layover in Singapore can be long. Check total time on the live link before booking.',sky:sky('nrt','bne','261130'),gf:gflt('Tokyo','Brisbane','2026-11-30')},
    {tag:'fast',type:'Direct',route:'NRT → BNE',airline:'Jetstar (JQ)',time:'Direct · ~9h',price:'$380',dur:'~9h',note:'Direct Tokyo→Brisbane, no stop. Worth the extra after 30 days on the road. Qantas also flies it (pricier).',sky:sky('nrt','bne','261130'),gf:gflt('Tokyo','Brisbane','2026-11-30')}]}
 ];
 
 /* deep links: bk() lands on the named property for your exact dates, 2 guests, cheapest room shown.
    bkcity() lands on the whole city's hostels for those dates, sorted cheapest-first (ht_id=203 = hostels). */
-const bk=(name,ci,co)=>`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(name)}&checkin=${ci}&checkout=${co}&group_adults=1&no_rooms=1&order=price`;
-const bkcity=(city,ci,co)=>`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city)}&checkin=${ci}&checkout=${co}&group_adults=1&no_rooms=1&order=price&nflt=${encodeURIComponent('ht_id=203')}`;
-const hw=(name,ci,co)=>`https://www.hostelworld.com/search?search_keywords=${encodeURIComponent(name)}&from=${ci}&to=${co}&guests=1`;
+const bk=(name,ci,co)=>`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(name)}&checkin=${ci}&checkout=${co}&group_adults=1&no_rooms=1&order=price&selected_currency=AUD`;
+const bkcity=(city,ci,co)=>`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city)}&checkin=${ci}&checkout=${co}&group_adults=1&no_rooms=1&order=price&selected_currency=AUD&nflt=${encodeURIComponent('ht_id=203')}`;
+const hw=(name,ci,co)=>`https://www.hostelworld.com/search?search_keywords=${encodeURIComponent(name)}&from=${ci}&to=${co}&guests=1&currency=AUD`;
 
 const STAYS=[
  {id:'my',label:'🇲🇾 Malaysia · 15 nights · ~$13/night',
@@ -744,11 +807,11 @@ const STAYS=[
    {name:'Cuckoo Guesthouse Langkawi',area:'Cenang, Langkawi · Nov 10–13',price:'$15',note:'Minutes from the beach & duty-free shops.',link:bk('Cuckoo Guesthouse Langkawi Cenang','2026-11-10','2026-11-13'),alt:hw('Langkawi Cenang','2026-11-10','2026-11-13')},
    {name:'Melaka — if you overnight',area:'Jonker St, Melaka · optional',price:'$12',note:'Only if you choose to overnight on the Melaka day trip instead of returning to KL.',link:bk('Jonker Street Melaka hostel','2026-11-06','2026-11-07'),alt:hw('Melaka','2026-11-06','2026-11-07')}]},
  {id:'jp',label:'🇯🇵 Japan · 14 nights · ~$30/night',
-  cityLink:bkcity('Shinjuku Tokyo','2026-11-17','2026-11-23'),cityLabel:'Browse ALL cheap Tokyo hostels/capsules (Nov 17–23) ↗',
+  cityLink:bkcity('Namba Osaka','2026-11-17','2026-11-20'),cityLabel:'Browse ALL cheap Osaka hostels/capsules (Nov 17–20) ↗',
   picks:[
-   {name:'Nine Hours Shinjuku',area:'Shinjuku, Tokyo · Nov 17–23',price:'$32',note:'Capsule hotel — clean, futuristic, central. Books out FAST in November.',link:bk('Nine Hours Shinjuku Tokyo','2026-11-17','2026-11-23'),alt:hw('Tokyo Shinjuku','2026-11-17','2026-11-23')},
-   {name:'Piece Hostel Sanjo',area:'Central Kyoto · Nov 24–27',price:'$28',note:'Top-rated hostel near Nishiki Market & buses to temples.',link:bk('Piece Hostel Sanjo Kyoto','2026-11-24','2026-11-27'),alt:hw('Piece Hostel Sanjo Kyoto','2026-11-24','2026-11-27')},
-   {name:'J-Hoppers Osaka',area:'Near Namba, Osaka · Nov 27–30',price:'$26',note:'Friendly, cheap, walkable to Dotonbori street food.',link:bk('J-Hoppers Osaka','2026-11-27','2026-11-30'),alt:hw('J-Hoppers Osaka','2026-11-27','2026-11-30')}]}
+   {name:'J-Hoppers Osaka',area:'Near Namba, Osaka · Nov 17–20',price:'$26',note:'Arrival base — friendly, cheap, walkable to Dotonbori street food.',link:bk('J-Hoppers Osaka','2026-11-17','2026-11-20'),alt:hw('J-Hoppers Osaka','2026-11-17','2026-11-20')},
+   {name:'Piece Hostel Sanjo',area:'Central Kyoto · Nov 20–23',price:'$28',note:'Top-rated hostel near Nishiki Market & buses to temples.',link:bk('Piece Hostel Sanjo Kyoto','2026-11-20','2026-11-23'),alt:hw('Piece Hostel Sanjo Kyoto','2026-11-20','2026-11-23')},
+   {name:'Nine Hours Shinjuku',area:'Shinjuku, Tokyo · Nov 24–30',price:'$32',note:'Final-stretch base — clean futuristic capsules, central. Books out FAST in November.',link:bk('Nine Hours Shinjuku Tokyo','2026-11-24','2026-11-30'),alt:hw('Tokyo Shinjuku','2026-11-24','2026-11-30')}]}
 ];
 
 const PACK=[
@@ -825,75 +888,75 @@ const MY=[
  {n:14,date:'Nov 16',flag:'🇲🇾',t:'Final KL Day + Depart',s:'Withdraw yen & fly to Japan',acts:[
    {w:'Morning',d:'Withdraw JPY at KL forex / last halal feast',c:'RM20',halal:true},
    {w:'Midday',d:'KLIA Ekspres to KLIA2',c:'RM55'},
-   {w:'Flight',d:'KUL → NRT (AirAsia X) — onward to Tokyo!',c:'Booked'}]}
+   {w:'Flight',d:'KUL → KIX (AirAsia X) — onward to Osaka!',c:'Booked'}]}
 ];
 
 const JP=[
- {n:1,date:'Nov 17',flag:'🇯🇵',t:'Arrive Tokyo',s:'Land & first taste of the city',acts:[
-   {w:'Arrival',d:'Get Suica IC card + SIM at Narita',c:'¥2000'},
-   {w:'Transfer',d:'N\'EX train Narita → Shinjuku',c:'¥3070'},
-   {w:'Afternoon',d:'Shinjuku Gyoen garden stroll',c:'¥500'},
-   {w:'Evening',d:'Omoide Yokocho lantern alley wander',c:'Free'}]},
- {n:2,date:'Nov 18',flag:'🇯🇵',t:'Asakusa + Akihabara',s:'Old temple & neon tech',acts:[
-   {w:'Morning',d:'Senso-ji Temple & Kaminarimon gate',c:'Free'},
-   {w:'Midday',d:'Nakamise shopping street snacks',c:'¥800'},
-   {w:'Lunch',d:'Halal ramen in Asakusa',c:'¥1100',halal:true},
-   {w:'Afternoon',d:'Akihabara electronics & arcades',c:'Free'}]},
- {n:3,date:'Nov 19',flag:'🇯🇵',t:'Harajuku + Shibuya',s:'Shrine, fashion & the crossing',acts:[
-   {w:'Morning',d:'Meiji Shrine in the forest',c:'Free'},
-   {w:'Midday',d:'Takeshita Street, Harajuku',c:'Free'},
-   {w:'Lunch',d:'Halal Tokyo / CoCo halal curry',c:'¥1200',halal:true},
-   {w:'Evening',d:'Shibuya Scramble Crossing & Hachiko',c:'Free'}]},
- {n:4,date:'Nov 20',flag:'🇯🇵',t:'Ueno + Yanaka',s:'Museums & old-town charm',acts:[
-   {w:'Morning',d:'Ueno Park autumn leaves',c:'Free'},
-   {w:'Midday',d:'Tokyo National Museum',c:'¥1000'},
-   {w:'Afternoon',d:'Yanaka old town & Yanaka Ginza',c:'Free'}]},
- {n:5,date:'Nov 21',flag:'🇯🇵',t:'Day Trip: Nikko or Kamakura',s:'Pick one escape',acts:[
-   {w:'Option A',d:'Nikko — Toshogu shrines & waterfalls',c:'¥2700 rail'},
-   {w:'Option B',d:'Kamakura — Great Buddha & coastal temples',c:'¥1900 rail'},
-   {w:'Lunch',d:'Bring halal snacks / conbini onigiri',c:'¥600',halal:true}]},
- {n:6,date:'Nov 22',flag:'🇯🇵',t:'Odaiba + teamLab',s:'Bayside & digital art',acts:[
-   {w:'Morning',d:'Shimokitazawa vintage district',c:'Free'},
-   {w:'Lunch',d:'Sukiya halal gyudon (beef bowl)',c:'¥600',halal:true},
-   {w:'Afternoon',d:'teamLab digital art museum',c:'¥3200'}]},
- {n:7,date:'Nov 23',flag:'🇯🇵',t:'Tokyo Final + Night Bus',s:'Last bites, then south',acts:[
-   {w:'Day',d:'Free time / revisit a favourite spot',c:'Free'},
-   {w:'Dinner',d:'Ichiran ramen (customisable)',c:'¥1000'},
-   {w:'Night',d:'Willer Express overnight bus → Kyoto',c:'¥3000'}]},
- {n:8,date:'Nov 24',flag:'🇯🇵',t:'Arrive Kyoto',s:'Shrines & old streets',acts:[
-   {w:'Sunrise',d:'Fushimi Inari — torii gates before crowds',c:'Free'},
-   {w:'Midday',d:'Nishiki Market food street',c:'¥1000'},
-   {w:'Afternoon',d:'Kiyomizu-dera temple',c:'¥500'},
+ {n:1,date:'Nov 17',flag:'🇯🇵',t:'Arrive Osaka',s:'Land at Kansai & dive into Dotonbori',acts:[
+   {w:'Arrival',d:'Get ICOCA IC card + SIM at Kansai (KIX)',c:'¥2000'},
+   {w:'Transfer',d:'Nankai train KIX → Namba',c:'¥930'},
+   {w:'Evening',d:'Dotonbori canal, Glico sign & neon',c:'Free'},
+   {w:'Dinner',d:'Takoyaki + Shinsaibashi arcade',c:'¥800'}]},
+ {n:2,date:'Nov 18',flag:'🇯🇵',t:'Osaka Castle + Shinsekai',s:'History & retro Osaka',acts:[
+   {w:'Morning',d:'Osaka Castle & park',c:'¥600'},
+   {w:'Lunch',d:'Halal Indian restaurant',c:'¥1200',halal:true},
+   {w:'Afternoon',d:'Shinsekai retro district & Tsutenkaku',c:'Free'},
+   {w:'Evening',d:'Kuromon Ichiba Market',c:'¥1000'}]},
+ {n:3,date:'Nov 19',flag:'🇯🇵',t:'Osaka Umeda + Day Trip',s:'Skyline & easy Nara hop',acts:[
+   {w:'Morning',d:'Umeda Sky Building floating garden',c:'¥1500'},
+   {w:'Lunch',d:'Halal ramen / gyudon (Sukiya ☪️)',c:'¥1100',halal:true},
+   {w:'Afternoon',d:'Train to Nara — deer park & Todai-ji',c:'¥1240'},
+   {w:'Evening',d:'100-yen store supplies & snacks',c:'¥1500'}]},
+ {n:4,date:'Nov 20',flag:'🇯🇵',t:'Osaka → Kyoto',s:'Shrines & old streets',acts:[
+   {w:'Travel',d:'Local train Osaka → Kyoto (~45min)',c:'¥580'},
+   {w:'Midday',d:'Fushimi Inari — thousand torii gates',c:'Free'},
+   {w:'Afternoon',d:'Nishiki Market food street',c:'¥1000'},
    {w:'Evening',d:'Higashiyama lantern-lit lanes',c:'Free'}]},
- {n:9,date:'Nov 25',flag:'🇯🇵',t:'Arashiyama',s:'Bamboo, temples & monkeys',acts:[
+ {n:5,date:'Nov 21',flag:'🇯🇵',t:'Arashiyama',s:'Bamboo, temples & monkeys',acts:[
    {w:'Morning',d:'Rent a bicycle for the day',c:'¥1000'},
    {w:'Midday',d:'Bamboo Grove walk',c:'Free'},
    {w:'Midday',d:'Tenryu-ji temple & garden',c:'¥500'},
    {w:'Afternoon',d:'Monkey Park Iwatayama',c:'¥550'},
    {w:'Late',d:'Kinkaku-ji Golden Pavilion',c:'¥500'}]},
- {n:10,date:'Nov 26',flag:'🇯🇵',t:'Kyoto Temples + Nara',s:'Castle then deer',acts:[
+ {n:6,date:'Nov 22',flag:'🇯🇵',t:'Kyoto Temples',s:'Castle, Kiyomizu & Gion',acts:[
    {w:'Morning',d:'Nijo Castle & gardens',c:'¥1300'},
-   {w:'Travel',d:'Train Kyoto → Nara (return)',c:'¥720'},
-   {w:'Midday',d:'Nara Park — bow to the deer',c:'Free'},
-   {w:'Afternoon',d:'Todai-ji & the Great Buddha',c:'¥600'}]},
- {n:11,date:'Nov 27',flag:'🇯🇵',t:'Kyoto → Osaka',s:'Neon & street food',acts:[
-   {w:'Travel',d:'Local train Kyoto → Osaka',c:'¥560'},
-   {w:'Afternoon',d:'Dotonbori canal walk & Glico sign',c:'Free'},
-   {w:'Snack',d:'Takoyaki (octopus balls)',c:'¥600'},
-   {w:'Evening',d:'Shinsaibashi shopping arcade',c:'Free'}]},
- {n:12,date:'Nov 28',flag:'🇯🇵',t:'Osaka Castle + Shinsekai',s:'History & retro Osaka',acts:[
-   {w:'Morning',d:'Osaka Castle & park',c:'¥600'},
-   {w:'Lunch',d:'Halal Indian restaurant',c:'¥1200',halal:true},
-   {w:'Afternoon',d:'Shinsekai retro district & Tsutenkaku',c:'Free'},
-   {w:'Evening',d:'Kuromon Ichiba Market',c:'¥1000'}]},
- {n:13,date:'Nov 29',flag:'🇯🇵',t:'Osaka Umeda + Wrap Up',s:'Skyline & last ramen',acts:[
-   {w:'Morning',d:'Umeda Sky Building floating garden',c:'¥1500'},
+   {w:'Midday',d:'Kiyomizu-dera temple',c:'¥500'},
+   {w:'Lunch',d:'Halal-friendly Kyoto eatery (check HalalTrip ☪️)',c:'¥1200',halal:true},
+   {w:'Afternoon',d:'Gion geisha district stroll',c:'Free'}]},
+ {n:7,date:'Nov 23',flag:'🇯🇵',t:'Kyoto Final + Night Bus',s:'Last temples, then east',acts:[
+   {w:'Day',d:'Free time / revisit a favourite spot',c:'Free'},
+   {w:'Dinner',d:'Early conbini dinner (halal-safe onigiri ☪️)',c:'¥600',halal:true},
+   {w:'Night',d:'Willer Express overnight bus → Tokyo',c:'¥3000'}]},
+ {n:8,date:'Nov 24',flag:'🇯🇵',t:'Arrive Tokyo · Asakusa',s:'Old temple & neon tech',acts:[
+   {w:'Arrival',d:'Top up Suica/ICOCA, drop bags Shinjuku',c:'Free'},
+   {w:'Morning',d:'Senso-ji Temple & Kaminarimon gate',c:'Free'},
+   {w:'Lunch',d:'Halal ramen in Asakusa',c:'¥1100',halal:true},
+   {w:'Afternoon',d:'Akihabara electronics & arcades',c:'Free'}]},
+ {n:9,date:'Nov 25',flag:'🇯🇵',t:'Harajuku + Shibuya',s:'Shrine, fashion & the crossing',acts:[
+   {w:'Morning',d:'Meiji Shrine in the forest',c:'Free'},
+   {w:'Midday',d:'Takeshita Street, Harajuku',c:'Free'},
+   {w:'Lunch',d:'Halal Tokyo / CoCo halal curry',c:'¥1200',halal:true},
+   {w:'Evening',d:'Shibuya Scramble Crossing & Hachiko',c:'Free'}]},
+ {n:10,date:'Nov 26',flag:'🇯🇵',t:'Ueno + Yanaka',s:'Museums & old-town charm',acts:[
+   {w:'Morning',d:'Ueno Park autumn leaves',c:'Free'},
+   {w:'Midday',d:'Tokyo National Museum',c:'¥1000'},
+   {w:'Afternoon',d:'Yanaka old town & Yanaka Ginza',c:'Free'}]},
+ {n:11,date:'Nov 27',flag:'🇯🇵',t:'Day Trip: Nikko or Kamakura',s:'Pick one escape',acts:[
+   {w:'Option A',d:'Nikko — Toshogu shrines & waterfalls',c:'¥2700 rail'},
+   {w:'Option B',d:'Kamakura — Great Buddha & coastal temples',c:'¥1900 rail'},
+   {w:'Lunch',d:'Bring halal snacks / conbini onigiri',c:'¥600',halal:true}]},
+ {n:12,date:'Nov 28',flag:'🇯🇵',t:'Odaiba + teamLab',s:'Bayside & digital art',acts:[
+   {w:'Morning',d:'Shimokitazawa vintage district',c:'Free'},
+   {w:'Lunch',d:'Sukiya halal gyudon (beef bowl)',c:'¥600',halal:true},
+   {w:'Afternoon',d:'teamLab digital art museum',c:'¥3200'}]},
+ {n:13,date:'Nov 29',flag:'🇯🇵',t:'Tokyo Final + Wrap Up',s:'Last bites & gifts',acts:[
+   {w:'Morning',d:'Shinjuku Gyoen garden stroll',c:'¥500'},
    {w:'Lunch',d:'Final halal ramen of the trip',c:'¥1100',halal:true},
-   {w:'Afternoon',d:'100-yen store gift shopping',c:'¥2000'}]},
- {n:14,date:'Nov 30',flag:'🇯🇵',t:'Fly Home',s:'Osaka → Narita → Brisbane',acts:[
-   {w:'Option',d:'Overnight bus Osaka → Narita if needed',c:'¥2500'},
+   {w:'Afternoon',d:'Last-minute gifts + Omoide Yokocho wander',c:'Free'}]},
+ {n:14,date:'Nov 30',flag:'🇯🇵',t:'Fly Home',s:'Tokyo → Narita → Brisbane',acts:[
+   {w:'Transfer',d:'N\'EX / Keisei train Tokyo → Narita',c:'¥3070'},
    {w:'Airport',d:'Arrive Narita 3 hours early',c:'—'},
-   {w:'Flight',d:'NRT → BNE (Scoot) — home!',c:'Booked'}]}
+   {w:'Flight',d:'NRT → BNE — home!',c:'Booked'}]}
 ];
 
 /* ---------- BUILD: FLIGHTS ---------- */
@@ -1074,6 +1137,26 @@ function onScroll(){
 window.addEventListener('scroll',onScroll,{passive:true});
 onScroll();
 toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ---------- ONE-WAY / RETURN TOGGLE (default one-way, saved) ---------- */
+function applyTripType(){
+ const ow=(store.getv('tripType')||'oneway')!=='return';
+ document.querySelectorAll('.ttbtns button').forEach(b=>b.classList.toggle('active',(b.dataset.tt==='return')!==ow));
+ document.querySelectorAll('#flightPanels a').forEach(a=>{
+   let h=a.getAttribute('href')||'';
+   if(h.includes('skyscanner')){
+     h=h.replace(/rtn=\d/,'rtn='+(ow?'0':'1'));
+   }else if(h.includes('google.com/travel/flights')){
+     try{const u=new URL(h);let q=(u.searchParams.get('q')||'').replace(/^\s*one way\s*/i,'').trim();
+       if(ow)q='one way '+q;u.searchParams.set('q',q);h=u.toString();}catch(e){}
+   }
+   a.setAttribute('href',h);
+ });
+}
+document.querySelectorAll('.ttbtns button').forEach(b=>{
+ b.addEventListener('click',()=>{store.setv('tripType',b.dataset.tt);applyTripType();});
+});
+applyTripType();
 </script>
 </body>
 </html>
