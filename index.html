@@ -384,7 +384,7 @@ footer .mono{color:var(--orange)}
       <button data-tt="oneway">One-way ✈</button>
       <button data-tt="return">Return ⇄</button>
     </div>
-    <span class="tthint">Each leg is one-way — leave this on <b>One-way</b> unless you want a round trip.</span>
+    <span class="tthint">Each leg is one-way. Links show <b>direct + layover</b> options together (cheapest first) — a stop is fine if it saves money.</span>
   </div>
   <div class="tabs" id="flightTabs"></div>
   <div id="flightPanels"></div>
@@ -815,10 +815,10 @@ footer .mono{color:var(--orange)}
 
 <script>
 /* ---------- DATA ---------- */
-/* deep-link builders: LIVE prices, pre-filtered. 1 adult · AUD · direct-only · ONE-WAY (rtn=0).
+/* deep-link builders: LIVE prices. 1 adult · AUD · ONE-WAY (rtn=0) · layovers ALLOWED (no direct filter).
    The One-way/Return toggle rewrites rtn= and the Google q at runtime. */
-const sky=(from,to,d)=>`https://www.skyscanner.com.au/transport/flights/${from}/${to}/${d}/?adultsv2=1&preferdirects=true&rtn=0&currency=AUD&market=AU&locale=en-GB`;
-const gflt=(from,to,iso)=>`https://www.google.com/travel/flights?curr=AUD&q=`+encodeURIComponent(`one way flights from ${from} to ${to} on ${iso} nonstop for 1 adult`);
+const sky=(from,to,d)=>`https://www.skyscanner.com.au/transport/flights/${from}/${to}/${d}/?adultsv2=1&rtn=0&currency=AUD&market=AU&locale=en-GB`;
+const gflt=(from,to,iso)=>`https://www.google.com/travel/flights?curr=AUD&q=`+encodeURIComponent(`one way flights from ${from} to ${to} on ${iso} for 1 adult`);
 
 const FLIGHTS=[
  {id:'l1',label:'BNE → SYD · Nov 1',
