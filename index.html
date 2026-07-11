@@ -201,6 +201,7 @@ footer .mono { color: var(--orange); }
       <a href="#paperwork">Visas</a>
       <a href="#flights">Flights</a>
       <a href="#stay">Stay</a>
+      <a href="#todo">To-Do</a>
       <a href="#budget">Budget</a>
       <a href="#packing">Packing</a>
       <a href="#transport">Transport</a>
@@ -319,6 +320,44 @@ footer .mono { color: var(--orange); }
   <p class="sec-sub">Hostels and capsules near transit. Prices are per person per night.</p>
   <div class="tabs" id="stayTabs"></div>
   <div id="stayPanels"></div>
+</section>
+
+<!-- THINGS TO DO -->
+<section id="todo">
+  <div class="sec-tag">No schedule, just a hit-list</div>
+  <h2 class="sec-title">Things To Do in KL</h2>
+  <p class="sec-sub">No days, no order, no pressure — tick them off as you go. Best stuff at the top. Everything in the first list is a quick Grab (RM8–25 / $3–8) from your hotel.</p>
+
+  <div class="card" style="padding:20px;margin-bottom:16px">
+    <h4 style="margin-bottom:14px">🏙️ In the City — quick Grab, go whenever</h4>
+    <ul class="checklist" data-list="todocity">
+      <li><span class="box"></span><span class="txt"><b>1 · Petronas Towers + KLCC Park</b> — the icon. Go at night for the free fountain & light show (8pm). Park is free; skip the paid observation deck unless keen <small>Grab ~RM10 · Free</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>2 · Jalan Alor Food Street</b> — KL's best night feed. Satay, grilled stingray, wantan mee. Go hungry, RM15 gets you stuffed <small>Grab ~RM8 · Food money only</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>3 · Chinatown / Petaling Street</b> — markets, street food, old shophouses, hidden bars. Roll it into a Merdeka Square walk next door <small>Grab ~RM8 · Free</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>4 · KL Forest Eco Park canopy walk</b> — rainforest walkway in the middle of the city, under KL Tower. Sneaky good photos <small>Grab ~RM8 · Free</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>5 · Kampung Baru food walk</b> — the real Malay food neighbourhood. Nasi lemak that ruins all other nasi lemak <small>Grab ~RM10 · Food money only</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>6 · Thean Hou Temple</b> — six-tier Chinese temple, best at sunset / when lanterns are up <small>Grab ~RM12 · Free</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>7 · Heli Lounge Bar</b> — rooftop bar on an actual helipad, 360° skyline. Go for sunset, one drink minimum <small>Grab ~RM8 · ~RM40 drink</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>8 · National Mosque + Islamic Arts Museum</b> — stunning architecture, air-conditioned escape on a hot day <small>Grab ~RM10 · Mosque free, museum RM20</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>9 · KL Bird Park + Perdana Botanical Gardens</b> — world's biggest free-flight aviary, gardens next door are free <small>Grab ~RM10 · Bird park ~RM75</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>10 · Little India (Brickfields)</b> — banana leaf lunch, colourful streets, cheap everything <small>Grab ~RM10 · Food money only</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>11 · Central Market + Kasturi Walk</b> — souvenirs and art deco, easy add-on to Chinatown <small>Walk from Chinatown · Free</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>12 · Berjaya Times Square theme park</b> — indoor rollercoaster inside a mall. Rainy-day option <small>Grab ~RM8 · ~RM75</small></span></li>
+    </ul>
+  </div>
+
+  <div class="card" style="padding:20px">
+    <h4 style="margin-bottom:14px">🌿 Further Out — nature & day trips</h4>
+    <ul class="checklist" data-list="todonature">
+      <li><span class="box"></span><span class="txt"><b>1 · Batu Caves</b> — 272 rainbow steps, giant gold statue, cheeky monkeys, huge limestone caves. Go early (before 10am) to beat heat + crowds <small>Grab ~25 min, ~RM25 · Free</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>2 · Genting Highlands</b> — mountain resort at 1,800m, cool air, cable car over rainforest, casino & Chin Swee Temple. Full day <small>Bus from KL Sentral ~RM10 + cable car ~RM10 · cheaper than Grab</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>3 · Kanching Rainforest Waterfall</b> — seven-tier waterfall you can swim in, monkeys everywhere. Bring togs + grippy shoes <small>Grab ~45 min, ~RM35 · RM5 entry</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>4 · Kuala Selangor fireflies + Sky Mirror</b> — evening boat ride through synchronised fireflies. Book a tour with hotel pickup, it's 1.5h out <small>Tour ~RM100–150 pp</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>5 · Sunway Lagoon</b> — massive waterpark + theme park day. Pricey by Malaysia standards but a full day of stuff <small>Grab ~40 min, ~RM30 · ~RM170</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>6 · Melaka day trip</b> — UNESCO old town, river walk, Jonker Street night market (weekends). Take the bus from TBS, not a Grab <small>Bus ~2h, ~RM15 each way · Free to wander</small></span></li>
+      <li><span class="box"></span><span class="txt"><b>7 · Zoo Negara</b> — home of the giant pandas, decent half-day <small>Grab ~30 min, ~RM25 · ~RM50</small></span></li>
+    </ul>
+  </div>
 </section>
 
 <!-- BUDGET -->
@@ -844,8 +883,9 @@ document.querySelectorAll('.pcard ul').forEach(ul => {
 // ── PROGRESS BAR ─────────────────────────────────────────────────────────────
 
 function updateProgress() {
-  const all  = document.querySelectorAll('ul.checklist li, [data-pack]');
-  const done = document.querySelectorAll('ul.checklist li.done, [data-pack].done');
+  // #todo lists are sightseeing, not trip prep — they don't count toward "trip ready"
+  const all  = document.querySelectorAll('section:not(#todo) ul.checklist li, [data-pack]');
+  const done = document.querySelectorAll('section:not(#todo) ul.checklist li.done, [data-pack].done');
   const pct  = all.length ? Math.round(done.length / all.length * 100) : 0;
   document.getElementById('progBar').style.width   = pct + '%';
   document.getElementById('progNum').textContent   = pct + '%';
