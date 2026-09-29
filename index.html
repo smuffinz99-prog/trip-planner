@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Two Carry-Ons · BNE → SYD → KUL → TYO</title>
+<title>KL Hit-List</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -17,70 +17,100 @@
   --green: #2fa86e;
   --line: #e4dccb;
   --muted: #6f675c;
-  --red: #c23b22;
-  --redbg: #fbeae6;
-  --shadow: 0 1px 2px rgba(40,30,20,.05);
+  --shadow: 0 1px 2px rgba(40,30,20,.05), 0 6px 18px rgba(40,30,20,.06);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 70px; }
 body { font-family: 'Space Grotesk', system-ui, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.5; -webkit-font-smoothing: antialiased; }
 .mono { font-family: 'Space Mono', monospace; }
-.price { font-family: 'Space Mono', monospace; color: var(--green); font-weight: 700; }
 a { color: var(--orange); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* NAV */
 header.nav { position: sticky; top: 0; z-index: 100; background: var(--nav); box-shadow: 0 2px 14px rgba(0,0,0,.18); }
 .nav-inner { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 14px; padding: 0 16px; height: 58px; }
-.brand { display: flex; align-items: center; gap: 9px; color: #fff; font-weight: 700; font-size: 15px; white-space: nowrap; }
+.brand { display: flex; align-items: center; gap: 9px; color: #fff; font-weight: 700; font-size: 15px; white-space: nowrap; flex: 1; }
 .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 3px rgba(232,93,47,.25); }
 .brand small { display: block; font-size: 10px; color: #a89e8f; font-weight: 400; letter-spacing: .5px; }
-.nav-links { display: flex; gap: 2px; overflow-x: auto; flex: 1; scrollbar-width: thin; scrollbar-color: #4a443c transparent; }
-.nav-links::-webkit-scrollbar { height: 4px; }
-.nav-links::-webkit-scrollbar-thumb { background: #4a443c; border-radius: 4px; }
-.nav-links a { color: #cfc6b8; font-size: 12.5px; font-weight: 500; padding: 7px 10px; border-radius: 7px; white-space: nowrap; transition: background .15s, color .15s; }
+.nav-links { display: flex; gap: 2px; }
+.nav-links a { color: #cfc6b8; font-size: 13px; font-weight: 500; padding: 7px 11px; border-radius: 7px; white-space: nowrap; }
 .nav-links a:hover { color: #fff; background: rgba(255,255,255,.07); text-decoration: none; }
 .nav-links a.active { color: #fff; background: var(--orange); }
-.burger { display: none; background: none; border: 0; color: #fff; font-size: 22px; cursor: pointer; padding: 4px 8px; }
 
 /* LAYOUT */
 section { max-width: 1080px; margin: 0 auto; padding: 34px 16px 6px; scroll-margin-top: 66px; }
 .sec-tag { display: inline-flex; align-items: center; gap: 7px; font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
 .sec-tag::before { content: ""; width: 18px; height: 2px; background: var(--orange); display: inline-block; }
-h2.sec-title { font-size: 23px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 4px; }
-.sec-sub { color: var(--muted); font-size: 14px; margin-bottom: 18px; max-width: 680px; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 11px; box-shadow: var(--shadow); }
-.grid { display: grid; gap: 12px; }
-.g2 { grid-template-columns: repeat(2, 1fr); }
-.g3 { grid-template-columns: repeat(3, 1fr); }
-.g4 { grid-template-columns: repeat(4, 1fr); }
+h2.sec-title { font-size: 25px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 4px; }
+.sec-sub { color: var(--muted); font-size: 14px; margin-bottom: 18px; max-width: 700px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
 
 /* HERO */
-.hero { background: var(--nav); color: #f7f1e6; max-width: none; padding: 0; margin: 0; scroll-margin-top: 0; }
-.hero-in { max-width: 1080px; margin: 0 auto; padding: 34px 16px 36px; }
-.route { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-family: 'Space Mono', monospace; font-weight: 700; font-size: clamp(24px,5vw,40px); letter-spacing: 1px; margin: 8px 0 4px; }
-.route .arrow { color: var(--orange); font-size: .7em; }
-.route .leg { color: #fff; }
-.hero h1 { font-size: clamp(18px,3vw,24px); font-weight: 600; margin: 10px 0 4px; letter-spacing: -.3px; }
-.hero p.lede { color: #ccc2b3; max-width: 640px; font-size: 14.5px; }
-.hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.hero { background: var(--nav); color: #f7f1e6; max-width: none; padding: 0; }
+.hero-in { max-width: 1080px; margin: 0 auto; padding: 34px 16px 30px; }
+.tagstrip { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #8c8273; text-transform: uppercase; }
+.hero h1 { font-size: clamp(28px,6vw,46px); font-weight: 700; letter-spacing: -1px; margin: 6px 0 6px; line-height: 1.1; }
+.hero h1 span { color: var(--orange); }
+.hero p.lede { color: #ccc2b3; max-width: 660px; font-size: 14.5px; }
+.hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); padding: 7px 12px; border-radius: 30px; font-size: 12.5px; font-weight: 500; }
 .badge b { font-family: 'Space Mono', monospace; color: var(--orange); }
-.badge.carry { background: rgba(47,168,110,.16); border-color: rgba(47,168,110,.4); color: #a9e9c8; }
-.pill-warn { display: inline-flex; align-items: center; gap: 9px; margin-top: 18px; background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 9px 16px; border-radius: 30px; }
-.tagstrip { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #8c8273; text-transform: uppercase; }
 
 /* PROGRESS */
-.progwrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); margin-bottom: 20px; }
-.progbar { flex: 1; min-width: 200px; height: 14px; background: #ece3d3; border-radius: 10px; overflow: hidden; }
-.progbar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--green), #3ec98a); border-radius: 10px; transition: width .4s ease; }
-.prognum { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 22px; color: var(--green); min-width: 64px; text-align: right; }
-.proglabel { font-size: 13px; color: var(--muted); }
+.progwrap { display: flex; align-items: center; gap: 16px; margin-top: 22px; }
+.prognum { font-family: 'Space Mono', monospace; font-size: 30px; font-weight: 700; color: #fff; line-height: 1; }
+.proglabel { font-size: 11.5px; color: #a89e8f; }
+.progbar { flex: 1; height: 12px; background: rgba(255,255,255,.1); border-radius: 20px; overflow: hidden; }
+.progbar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--orange), #f5a04a); border-radius: 20px; transition: width .35s ease; }
 
-/* STAT CARDS */
-.stat { padding: 14px; text-align: center; }
-.stat .big { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 26px; color: var(--orange); }
-.stat .lbl { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+/* FILTERS */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.filters button { font: inherit; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 30px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+.filters button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.filters button .n { font-family: 'Space Mono', monospace; font-size: 11px; opacity: .6; margin-left: 4px; }
+.group-h { font-size: 17px; font-weight: 700; margin: 26px 0 12px; display: flex; align-items: center; gap: 8px; }
+.group-h:first-of-type { margin-top: 4px; }
+
+/* SPOT CARDS */
+.spots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.spot { overflow: hidden; display: flex; flex-direction: column; transition: border-color .15s, opacity .15s; }
+.spot .ph { position: relative; aspect-ratio: 16/9; background: linear-gradient(135deg,#3a332b,#1f1c18); overflow: hidden; }
+.spot .ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter .2s; }
+.spot .ph .fb { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 54px; }
+.spot .ph .num { position: absolute; top: 10px; left: 10px; background: rgba(20,18,15,.78); color: #fff; font-family: 'Space Mono', monospace; font-weight: 700; font-size: 12px; padding: 4px 9px; border-radius: 20px; backdrop-filter: blur(4px); }
+.spot .ph .kind { position: absolute; top: 10px; right: 10px; background: rgba(255,253,248,.92); color: var(--ink); font-size: 11.5px; font-weight: 700; padding: 4px 9px; border-radius: 20px; }
+.spot .body { padding: 16px 16px 14px; display: flex; flex-direction: column; flex: 1; }
+.spot h3 { font-size: 18.5px; letter-spacing: -.3px; line-height: 1.25; }
+.spot .tagline { color: var(--muted); font-size: 13.5px; margin: 3px 0 12px; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+.stat { background: var(--paper); border: 1px solid var(--line); border-radius: 9px; padding: 8px 10px; }
+.stat .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; font-family: 'Space Mono', monospace; }
+.stat .v { font-size: 15px; font-weight: 700; line-height: 1.25; margin-top: 2px; }
+.stat .v .aud { color: var(--green); font-family: 'Space Mono', monospace; }
+.stat .s { font-size: 11.5px; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+.about { font-size: 14px; margin-bottom: 10px; }
+.besttime { font-size: 13px; background: rgba(232,93,47,.08); border-left: 3px solid var(--orange); padding: 7px 10px; border-radius: 0 7px 7px 0; margin-bottom: 10px; }
+details.more { font-size: 13.5px; margin-bottom: 12px; }
+details.more summary { cursor: pointer; font-weight: 700; color: var(--orange); list-style: none; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::before { content: "＋ "; }
+details.more[open] summary::before { content: "－ "; }
+details.more ul { margin: 8px 0 0 18px; }
+details.more li { margin-bottom: 5px; }
+.foot { margin-top: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.tick { font: inherit; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; padding: 9px 14px; border-radius: 9px; border: 2px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; flex: 1; justify-content: center; }
+.tick .box { width: 20px; height: 20px; border: 2px solid #c9bda6; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #fff; }
+.maplink { font-size: 13px; font-weight: 600; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: var(--paper); }
+.maplink:hover { text-decoration: none; border-color: var(--orange); }
+.spot.done { border-color: rgba(47,168,110,.5); }
+.spot.done .ph img { filter: grayscale(.55) brightness(.8); }
+.spot.done .ph::after { content: "✓ DONE"; position: absolute; bottom: 10px; left: 10px; background: var(--green); color: #fff; font-family: 'Space Mono', monospace; font-weight: 700; font-size: 12px; padding: 4px 10px; border-radius: 20px; }
+.spot.done .tick { background: var(--green); border-color: var(--green); color: #fff; }
+.spot.done .tick .box { border-color: #fff; }
+.spot.done .tick .box::after { content: "✓"; }
+.hidden { display: none !important; }
+.note { font-size: 13px; color: var(--muted); background: var(--card); border: 1px dashed var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 18px; }
+.note b { color: var(--ink); }
 
 /* CHECKLIST */
 .checklist { list-style: none; }
@@ -94,500 +124,78 @@ h2.sec-title { font-size: 23px; font-weight: 700; letter-spacing: -.4px; margin-
 .checklist li .txt small { display: block; color: var(--muted); font-size: 12.5px; text-decoration: none; }
 .checklist.cols { column-count: 2; column-gap: 14px; }
 .checklist.cols li { break-inside: avoid; }
+.clcount { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 6px; }
 
-/* INFO BOXES */
-.info { border-radius: 10px; padding: 13px 15px; font-size: 13.5px; }
-.info.green { background: rgba(47,168,110,.1); border: 1px solid rgba(47,168,110,.35); }
-.info.green b { color: var(--green); }
-.info.tip { background: #fff6ea; border: 1px solid #f0d9b4; }
-.info.tip b { color: var(--orange); }
-.info .h { font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-
-/* TABS */
-.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
-.tabs button { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 13.5px; padding: 9px 16px; border-radius: 9px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; transition: .15s; }
-.tabs button:hover { border-color: var(--orange); }
-.tabs button.active { background: var(--nav); color: #fff; border-color: var(--nav); }
-.tabpanel { display: none; }
-.tabpanel.active { display: block; animation: fade .25s; }
-@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-
-/* FLIGHT / STAY CARDS */
-.opt { padding: 14px 16px; margin-bottom: 10px; }
-.opt-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
-.opt-route { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 16px; }
-.opt .tagx { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 3px 9px; border-radius: 20px; }
-.tagx.cheap { background: rgba(47,168,110,.15); color: var(--green); }
-.tagx.alt { background: #f0e8d8; color: var(--muted); }
-.opt-meta { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 12.5px; margin: 8px 0; }
-.opt-meta span b { color: var(--ink); }
-.opt-note { font-size: 12.5px; background: #faf5ec; border-left: 3px solid var(--orange); padding: 7px 11px; border-radius: 0 8px 8px 0; color: #5e564b; }
-.opt-links { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
-.opt-links a { font-size: 12px; font-weight: 600; border: 1px solid var(--line); padding: 6px 11px; border-radius: 8px; background: var(--paper); }
-.opt-links a:hover { border-color: var(--orange); text-decoration: none; }
-.bigprice { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 21px; color: var(--green); white-space: nowrap; }
-
-/* BUDGET */
-.bbanner { background: var(--nav); color: #f7f1e6; border-radius: 12px; padding: 16px; display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; margin-bottom: 16px; }
-.bbanner .b { text-align: center; padding: 6px 4px; }
-.bbanner .b .v { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 18px; color: #7fe0b0; }
-.bbanner .b.total .v { color: var(--orange); font-size: 22px; }
-.bbanner .b .k { font-size: 10.5px; color: #a89e8f; margin-top: 3px; text-transform: uppercase; letter-spacing: .5px; }
-table.budget { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
-table.budget th, table.budget td { padding: 8px 13px; text-align: left; border-bottom: 1px solid var(--line); }
-table.budget th { background: #f0e8d8; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
-table.budget td.amt { text-align: right; }
-table.budget tr.cat td { background: #faf5ec; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: var(--orange); }
-table.budget tr.total td { background: var(--nav); color: #fff; font-weight: 700; font-size: 16px; }
-table.budget tr.total td .price { color: #7fe0b0; font-size: 18px; }
-
-/* PACKING */
-.pcard { padding: 13px 15px; }
-.pcard h4 { font-size: 14px; display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
-.pcard .cnt { font-family: 'Space Mono', monospace; font-size: 10.5px; color: var(--muted); margin-bottom: 7px; display: block; }
-.pcard ul { list-style: none; }
-.pcard li { display: flex; gap: 9px; align-items: flex-start; padding: 5px 0; font-size: 13.5px; cursor: pointer; border-bottom: 1px dashed var(--line); }
-.pcard li:last-child { border-bottom: 0; }
-.pcard li .box { flex: none; width: 18px; height: 18px; border: 2px solid #c9bda6; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; margin-top: 1px; }
-.pcard li.done .box { background: var(--green); border-color: var(--green); }
-.pcard li.done .box::after { content: "✓"; }
-.pcard li.done span { text-decoration: line-through; color: var(--muted); }
-
-/* INFO CARD */
-.icard { padding: 14px 16px; }
-.icard h4 { font-size: 15px; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.icard ul { list-style: none; font-size: 13.5px; }
-.icard ul li { padding: 5px 0; border-bottom: 1px dashed var(--line); display: flex; gap: 8px; }
-.icard ul li:last-child { border-bottom: 0; }
-.icard ul li::before { content: "▸"; color: var(--orange); font-weight: 700; }
-.icard .kv { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 13.5px; }
-.icard .kv b { font-family: 'Space Mono', monospace; color: var(--green); }
-
-/* SCROLL TOP */
-#toTop { position: fixed; right: 20px; bottom: 22px; width: 46px; height: 46px; border-radius: 50%; background: var(--orange); color: #fff; border: 0; font-size: 20px; cursor: pointer; box-shadow: 0 6px 20px rgba(232,93,47,.45); opacity: 0; pointer-events: none; transition: opacity .3s, transform .2s; z-index: 90; }
+footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 36px 16px 50px; }
+#toTop { position: fixed; right: 16px; bottom: 16px; width: 42px; height: 42px; border-radius: 50%; border: 0; background: var(--orange); color: #fff; font-size: 18px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.2); opacity: 0; pointer-events: none; transition: opacity .2s; }
 #toTop.show { opacity: 1; pointer-events: auto; }
-#toTop:hover { transform: translateY(-3px); }
 
-footer { text-align: center; padding: 40px 16px 60px; color: var(--muted); font-size: 13px; }
-footer .mono { color: var(--orange); }
-
-@media (max-width: 880px) {
-  .g4 { grid-template-columns: repeat(2,1fr); }
-  .g3 { grid-template-columns: 1fr; }
-  .g2 { grid-template-columns: 1fr; }
-  .bbanner { grid-template-columns: repeat(2,1fr); }
+@media (max-width: 760px) {
+  .spots { grid-template-columns: 1fr; }
   .checklist.cols { column-count: 1; }
 }
-@media (max-width: 680px) {
-  .nav-links { position: fixed; top: 58px; left: 0; right: 0; background: var(--nav); flex-direction: column; padding: 8px; display: none; max-height: 70vh; overflow-y: auto; }
-  .nav-links.open { display: flex; }
-  .burger { display: block; }
-  .g4 { grid-template-columns: 1fr; }
-  .bbanner { grid-template-columns: 1fr 1fr; }
-  h2.sec-title { font-size: 24px; }
+@media (max-width: 420px) {
+  .brand small { display: none; }
+  .nav-links a { padding: 7px 8px; font-size: 12.5px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <header class="nav">
   <div class="nav-inner">
-    <div class="brand"><span class="dot"></span><div>Two Carry-Ons<small class="mono">OCT 1–29 · 2 PAX</small></div></div>
-    <button class="burger" id="burger" aria-label="menu">☰</button>
+    <div class="brand"><span class="dot"></span><div>Two Carry-Ons<small class="mono">KUALA LUMPUR · 2 PAX</small></div></div>
     <nav class="nav-links" id="navlinks">
-      <a href="#hero">Home</a>
-      <a href="#overview">Overview</a>
-      <a href="#paperwork">Visas</a>
-      <a href="#flights">Flights</a>
-      <a href="#stay">Stay</a>
-      <a href="#todo">To-Do</a>
-      <a href="#budget">Budget</a>
-      <a href="#packing">Packing</a>
-      <a href="#transport">Transport</a>
-      <a href="#sim">SIM</a>
-      <a href="#currency">Money</a>
-      <a href="#emergency">Emergency</a>
+      <a href="#todo">KL Hit-List</a>
       <a href="#checklist">Checklist</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="hero">
+<section class="hero" id="top">
   <div class="hero-in">
-    <div class="tagstrip">Budget Asia Loop · Carry-On Only</div>
-    <div class="route">
-      <span class="leg">BNE</span><span class="arrow">→</span>
-      <span class="leg">SYD</span><span class="arrow">→</span>
-      <span class="leg">KUL</span><span class="arrow">→</span>
-      <span class="leg">TYO</span>
-    </div>
-    <h1>13 nights Malaysia, 14 nights Japan — your biggest trip yet.</h1>
-    <p class="lede">A real plan for two Aussie mates travelling light: one travel coat, one overhead bag, one backpack. Departure <b>October 1st</b>, home <b>October 29th</b>.</p>
+    <div class="tagstrip">Based at Mingle Hostel · Chinatown</div>
+    <h1>Kuala Lumpur <span>hit-list</span></h1>
+    <p class="lede">Everything worth doing in and around KL: what it is, how long the Grab takes, what the Grab costs, how long you'll spend there and what it costs to get in. All prices in AUD. Tick things off as you go.</p>
     <div class="hero-badges">
-      <div class="badge">📅 <b>Oct 1 – Oct 29</b> · 28 days</div>
-      <div class="badge">👥 <b>2</b> travellers</div>
-      <div class="badge">💰 <b>~$2,640</b> AUD pp</div>
-      <div class="badge carry">🎒 Overhead bag + backpack + coat · no checked bags</div>
+      <div class="badge">📍 <b id="spotCount">0</b> spots</div>
+      <div class="badge">💱 <b>$1</b> AUD ≈ <b id="rateBadge">RM2.8</b></div>
+      <div class="badge">🚗 Grab prices are per car, from Chinatown</div>
     </div>
-    <div class="pill-warn">✅ All flights confirmed — 28 days locked in</div>
-  </div>
-</section>
-
-<!-- OVERVIEW -->
-<section id="overview">
-  <div class="sec-tag">Mission control</div>
-  <h2 class="sec-title">Overview</h2>
-  <p class="sec-sub">Everything you tick anywhere on this page rolls up into the progress bar below.</p>
-
-  <div class="progwrap">
-    <div>
-      <div class="prognum" id="progNum">0%</div>
-      <div class="proglabel">trip ready</div>
+    <div class="progwrap">
+      <div><div class="prognum" id="progNum">0/0</div><div class="proglabel">spots done</div></div>
+      <div class="progbar"><i id="progBar"></i></div>
     </div>
-    <div class="progbar"><i id="progBar"></i></div>
-    <div class="proglabel mono" id="progCount" style="min-width:120px;text-align:right">0 / 0 done</div>
-  </div>
-
-  <div class="grid g3" style="margin-bottom:22px">
-    <div class="card stat"><div class="big">28</div><div class="lbl">days on the road</div></div>
-    <div class="card stat"><div class="big">3</div><div class="lbl">countries (AU · MY · JP)</div></div>
-    <div class="card stat"><div class="big">~$2,640</div><div class="lbl">estimated per person</div></div>
   </div>
 </section>
 
-<!-- PAPERWORK -->
-<section id="paperwork">
-  <div class="sec-tag">Don't get stuck at a border</div>
-  <h2 class="sec-title">Paperwork & Visas</h2>
-  <p class="sec-sub">Great news for Australian passport holders — both Malaysia and Japan are visa-free for tourism. No applications, no fees. Still plenty to organise though.</p>
-
-  <div class="card" style="padding:20px">
-    <h4 style="margin-bottom:14px">📋 Pre-Departure Checklist</h4>
-    <ul class="checklist cols" data-list="paperwork">
-      <li><span class="box"></span><span class="txt">Passports valid 6+ months beyond Oct 29</span></li>
-      <li><span class="box"></span><span class="txt">Flight confirmations saved offline (PDF on phone)</span></li>
-      <li><span class="box"></span><span class="txt">Hotel/hostel confirmations saved offline</span></li>
-      <li><span class="box"></span><span class="txt">Photocopies of passport photo page (paper)</span></li>
-      <li><span class="box"></span><span class="txt">Scanned passport emailed to yourself</span></li>
-      <li><span class="box"></span><span class="txt">Emergency contacts written on paper</span></li>
-      <li><span class="box"></span><span class="txt">Notify bank(s) of travel dates & countries</span></li>
-      <li><span class="box"></span><span class="txt">Get Wise / Revolut multi-currency card</span></li>
-      <li><span class="box"></span><span class="txt">Register Visit Japan Web (QR codes ready)</span></li>
-      <li><span class="box"></span><span class="txt">Malaysia MyTravelPass / MDAC submitted</span></li>
-      <li><span class="box"></span><span class="txt">Proof of accommodation printed/saved</span></li>
-      <li><span class="box"></span><span class="txt">Return flight booked & proof on hand</span></li>
-      <li><span class="box"></span><span class="txt">Notify employer / approve leave</span></li>
-      <li><span class="box"></span><span class="txt">Set email out-of-office auto-reply</span></li>
-      <li><span class="box"></span><span class="txt">Pay all bills due during the trip</span></li>
-      <li><span class="box"></span><span class="txt">Download Google Maps offline: KL, Tokyo, Osaka</span></li>
-      <li><span class="box"></span><span class="txt">Download Google Translate offline: Japanese + Malay</span></li>
-      <li><span class="box"></span><span class="txt">Register on SmartTraveller (smartraveller.gov.au)</span></li>
-      <li><span class="box"></span><span class="txt">Share full itinerary with someone at home</span></li>
-      <li><span class="box"></span><span class="txt">Prescription meds — full 30-day supply + scripts</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- FLIGHTS -->
-<section id="flights">
-  <div class="sec-tag">Get there cheap</div>
-  <h2 class="sec-title">Flights</h2>
-  <p class="sec-sub">All four legs confirmed ✅. Carry-on only — overhead bag + backpack + travel coat, all fly free on every leg.</p>
-  <div class="tabs" id="flightTabs"></div>
-  <div id="flightPanels"></div>
-
-  <div class="card" style="padding:20px;margin-top:18px">
-    <h4 style="margin-bottom:14px">✈️ Flight Checklist</h4>
-    <ul class="checklist cols" data-list="flightcheck">
-      <li><span class="box"></span><span class="txt">All 4 legs booked & paid</span></li>
-      <li><span class="box"></span><span class="txt">Names match passports exactly</span></li>
-      <li><span class="box"></span><span class="txt">Overhead bag ≤ 7kg (tightest limit across all legs) <small>Weigh it packed before you leave home</small></span></li>
-      <li><span class="box"></span><span class="txt">Backpack as personal item (under seat) + travel coat worn <small>All three fly free — no checked bag fees</small></span></li>
-      <li><span class="box"></span><span class="txt">Oct 1: BNE→SYD (JQ829) lands 3–4h before Scoot departs <small>Separate tickets = no protection if you miss it</small></span></li>
-      <li><span class="box"></span><span class="txt">Know your SYD T2/T3 → T1 transfer (2-min train / free T-Bus)</span></li>
-      <li><span class="box"></span><span class="txt">Web check-in done 48h before each flight</span></li>
-      <li><span class="box"></span><span class="txt">Boarding passes saved offline</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ACCOMMODATION -->
-<section id="stay">
-  <div class="sec-tag">Sleep cheap, sleep central</div>
-  <h2 class="sec-title">Accommodation</h2>
-  <p class="sec-sub">Hostels and capsules near transit. Prices are per person per night.</p>
-  <div class="tabs" id="stayTabs"></div>
-  <div id="stayPanels"></div>
-</section>
-
-<!-- THINGS TO DO -->
 <section id="todo">
   <div class="sec-tag">No schedule, just a hit-list</div>
   <h2 class="sec-title">Things To Do in KL</h2>
-  <p class="sec-sub">No days, no order, no pressure — tick them off as you go. Best stuff at the top. Everything in the first list is a quick Grab (RM8–25 / $3–8) from your hotel.</p>
+  <p class="sec-sub">Roughly best-first. Tap <b>More details</b> on any card for tips, what to wear and the cheaper way to get there.</p>
 
-  <div class="card" style="padding:20px;margin-bottom:16px">
-    <h4 style="margin-bottom:14px">🏙️ In the City — quick Grab, go whenever</h4>
-    <ul class="checklist" data-list="todocity">
-      <li><span class="box"></span><span class="txt"><b>1 · Petronas Towers + KLCC Park</b> — the icon. Go at night for the free fountain & light show (8pm). Park is free; skip the paid observation deck unless keen <small>Grab ~RM10 · Free</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>2 · Jalan Alor Food Street</b> — KL's best night feed. Satay, grilled stingray, wantan mee. Go hungry, RM15 gets you stuffed <small>Grab ~RM8 · Food money only</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>3 · Chinatown / Petaling Street</b> — markets, street food, old shophouses, hidden bars. Roll it into a Merdeka Square walk next door <small>Grab ~RM8 · Free</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>4 · KL Forest Eco Park canopy walk</b> — rainforest walkway in the middle of the city, under KL Tower. Sneaky good photos <small>Grab ~RM8 · Free</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>5 · Kampung Baru food walk</b> — the real Malay food neighbourhood. Nasi lemak that ruins all other nasi lemak <small>Grab ~RM10 · Food money only</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>6 · Thean Hou Temple</b> — six-tier Chinese temple, best at sunset / when lanterns are up <small>Grab ~RM12 · Free</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>7 · Heli Lounge Bar</b> — rooftop bar on an actual helipad, 360° skyline. Go for sunset, one drink minimum <small>Grab ~RM8 · ~RM40 drink</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>8 · National Mosque + Islamic Arts Museum</b> — stunning architecture, air-conditioned escape on a hot day <small>Grab ~RM10 · Mosque free, museum RM20</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>9 · KL Bird Park + Perdana Botanical Gardens</b> — world's biggest free-flight aviary, gardens next door are free <small>Grab ~RM10 · Bird park ~RM75</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>10 · Little India (Brickfields)</b> — banana leaf lunch, colourful streets, cheap everything <small>Grab ~RM10 · Food money only</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>11 · Central Market + Kasturi Walk</b> — souvenirs and art deco, easy add-on to Chinatown <small>Walk from Chinatown · Free</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>12 · Berjaya Times Square theme park</b> — indoor rollercoaster inside a mall. Rainy-day option <small>Grab ~RM8 · ~RM75</small></span></li>
-    </ul>
+  <div class="note">🚗 <b>How to read the Grab price:</b> it's what the whole car costs one way from your hostel in Chinatown, off-peak. You're splitting it, so it's half that each. Expect ~1.5–2× at rush hour (5–8pm) or when it rains. Prices converted at $1 AUD ≈ RM2.8. They're estimates, so check the app.</div>
+
+  <div class="filters" id="filters">
+    <button data-f="all" class="on">All<span class="n" data-c="all"></span></button>
+    <button data-f="city">🏙️ In the city<span class="n" data-c="city"></span></button>
+    <button data-f="trip">🌿 Day trips<span class="n" data-c="trip"></span></button>
+    <button data-f="todo">⬜ Not done<span class="n" data-c="todo"></span></button>
+    <button data-f="done">✅ Done<span class="n" data-c="done"></span></button>
   </div>
 
-  <div class="card" style="padding:20px">
-    <h4 style="margin-bottom:14px">🌿 Further Out — nature & day trips</h4>
-    <ul class="checklist" data-list="todonature">
-      <li><span class="box"></span><span class="txt"><b>1 · Batu Caves</b> — 272 rainbow steps, giant gold statue, cheeky monkeys, huge limestone caves. Go early (before 10am) to beat heat + crowds <small>Grab ~25 min, ~RM25 · Free</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>2 · Genting Highlands</b> — mountain resort at 1,800m, cool air, cable car over rainforest, casino & Chin Swee Temple. Full day <small>Bus from KL Sentral ~RM10 + cable car ~RM10 · cheaper than Grab</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>3 · Kanching Rainforest Waterfall</b> — seven-tier waterfall you can swim in, monkeys everywhere. Bring togs + grippy shoes <small>Grab ~45 min, ~RM35 · RM5 entry</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>4 · Kuala Selangor fireflies + Sky Mirror</b> — evening boat ride through synchronised fireflies. Book a tour with hotel pickup, it's 1.5h out <small>Tour ~RM100–150 pp</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>5 · Sunway Lagoon</b> — massive waterpark + theme park day. Pricey by Malaysia standards but a full day of stuff <small>Grab ~40 min, ~RM30 · ~RM170</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>6 · Melaka day trip</b> — UNESCO old town, river walk, Jonker Street night market (weekends). Take the bus from TBS, not a Grab <small>Bus ~2h, ~RM15 each way · Free to wander</small></span></li>
-      <li><span class="box"></span><span class="txt"><b>7 · Zoo Negara</b> — home of the giant pandas, decent half-day <small>Grab ~30 min, ~RM25 · ~RM50</small></span></li>
-    </ul>
-  </div>
-</section>
+  <h3 class="group-h" data-g="city">🏙️ In the City <span class="clcount">short Grab, go whenever</span></h3>
+  <div class="spots" id="spotsCity"></div>
 
-<!-- BUDGET -->
-<section id="budget">
-  <div class="sec-tag">Where every dollar goes</div>
-  <h2 class="sec-title">Budget</h2>
-  <p class="sec-sub">All figures per person in AUD.</p>
-
-  <div class="bbanner">
-    <div class="b"><div class="v">$1,414</div><div class="k">Flights</div></div>
-    <div class="b"><div class="v">$589</div><div class="k">Stay</div></div>
-    <div class="b"><div class="v">$340</div><div class="k">Food</div></div>
-    <div class="b"><div class="v">$149</div><div class="k">Transport</div></div>
-    <div class="b"><div class="v">$100</div><div class="k">Activities</div></div>
-    <div class="b"><div class="v">$50</div><div class="k">SIM+Extras</div></div>
-    <div class="b total"><div class="v">~$2,642</div><div class="k">Total pp</div></div>
-  </div>
-  <table class="budget" style="margin-bottom:20px">
-    <thead><tr><th>Item</th><th>Detail</th><th class="amt">AUD (pp)</th></tr></thead>
-    <tbody>
-      <tr class="cat"><td colspan="3">✈️ Flights (all confirmed ✅)</td></tr>
-      <tr><td>BNE → SYD → KUL</td><td>JQ829 + Scoot · Oct 1 <small style="color:var(--muted)">(incl. $35 cabin bag)</small></td><td class="amt"><span class="price">$560</span></td></tr>
-      <tr><td>KUL → KIX</td><td>AirAsia X D7 532 · Oct 15</td><td class="amt"><span class="price">$334</span></td></tr>
-      <tr><td>NRT → CNS → BNE</td><td>Jetstar JQ26 · Oct 29</td><td class="amt"><span class="price">$520</span></td></tr>
-      <tr class="cat"><td colspan="3">🛏️ Accommodation · 27 nights</td></tr>
-      <tr><td>Malaysia</td><td>~13 nights @ $13</td><td class="amt"><span class="price">$169</span></td></tr>
-      <tr><td>Japan</td><td>~14 nights @ $30</td><td class="amt"><span class="price">$420</span></td></tr>
-      <tr class="cat"><td colspan="3">🍜 Food & Transport</td></tr>
-      <tr><td>Malaysia</td><td>$10/day food · $5/day transport · 13 days</td><td class="amt"><span class="price">$195</span></td></tr>
-      <tr><td>Japan</td><td>$15/day food · $6/day transport · 14 days</td><td class="amt"><span class="price">$294</span></td></tr>
-      <tr class="cat"><td colspan="3">🎟️ Extras</td></tr>
-      <tr><td>Activities, SIMs</td><td>temples, day trips, data</td><td class="amt"><span class="price">$150</span></td></tr>
-      <tr class="total"><td colspan="2">TOTAL PER PERSON</td><td class="amt"><span class="price">~$2,642</span></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- PACKING -->
-<section id="packing">
-  <div class="sec-tag">One bag, one coat</div>
-  <h2 class="sec-title">Packing</h2>
-  <p class="sec-sub">Pack ultralight. Malaysia is hot and humid (28–33°C), Japan in October is mild (13–21°C). Layer with the travel coat and buy cheap clothes locally.</p>
-  <div class="info tip" style="margin-bottom:20px">
-    <div class="h">🎒 Your 3-piece carry-on setup</div>
-    <b>1. Travel coat</b> (worn) — pockets carry electronics, docs, snacks. Counts as worn clothing, not a bag.
-    <b>2. Overhead bag</b> — your main bag in the bin, kept under 7kg (tightest limit across all your flights).
-    <b>3. Backpack</b> — personal item under the seat. Keep it packable/compressible so it fits. All three fly for free on every leg.
-  </div>
-  <div class="grid g4" id="packGrid"></div>
-</section>
-
-<!-- TRANSPORT -->
-<section id="transport">
-  <div class="sec-tag">Getting around</div>
-  <h2 class="sec-title">Local Transport</h2>
-  <p class="sec-sub">IC cards and apps do most of the heavy lifting. Overnight buses in Japan save a fortune.</p>
-  <div class="grid g2" style="margin-bottom:18px">
-    <div class="icard card">
-      <h4>🇲🇾 Malaysia</h4>
-      <ul>
-        <li><b>Touch'n'Go card</b> — tap for KL trains, buses, tolls</li>
-        <li><b>Grab app</b> — cheap rides everywhere (RM8–20)</li>
-        <li><b>ETS train</b> KL → Penang (Butterworth) ~RM35</li>
-        <li><b>AirAsia domestic</b> — Langkawi → KL ~RM60</li>
-        <li><b>Ferry</b> to Langkawi from Kuala Perlis/Penang ~RM23</li>
-        <li><b>KLIA Ekspres</b> airport ↔ KL Sentral ~RM55 return</li>
-      </ul>
-    </div>
-    <div class="icard card">
-      <h4>🇯🇵 Japan</h4>
-      <ul>
-        <li><b>ICOCA / Suica IC card</b> — tap all trains, buses, conbini</li>
-        <li><b>Nankai train</b> Kansai (KIX) → Namba, Osaka ~¥930</li>
-        <li><b>Overnight highway bus</b> Kyoto → Tokyo ~¥3,000</li>
-        <li><b>Tokyo Metro day pass</b> ~¥600 (24h)</li>
-        <li><b>Kyoto city bus day pass</b> ~¥700</li>
-        <li><b>Narita Express (N'EX)</b> Tokyo → Narita ~¥3,070</li>
-      </ul>
-    </div>
-  </div>
-  <div class="card" style="padding:20px">
-    <h4 style="margin-bottom:14px">🚉 Transport Checklist</h4>
-    <ul class="checklist cols" data-list="transportcheck">
-      <li><span class="box"></span><span class="txt">Touch'n'Go card loaded on arrival KL</span></li>
-      <li><span class="box"></span><span class="txt">Grab app installed + payment added</span></li>
-      <li><span class="box"></span><span class="txt">ETS train KL→Penang booked (KTMB site)</span></li>
-      <li><span class="box"></span><span class="txt">Langkawi ferry/flight times checked</span></li>
-      <li><span class="box"></span><span class="txt">ICOCA/Suica added to phone wallet (or buy at KIX)</span></li>
-      <li><span class="box"></span><span class="txt">Kyoto→Tokyo night bus booked (Willer, Oct 23)</span></li>
-      <li><span class="box"></span><span class="txt">Tokyo→Narita N'EX time planned for Oct 29</span></li>
-      <li><span class="box"></span><span class="txt">Nankai KIX→Namba arrival transfer noted</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- SIM -->
-<section id="sim">
-  <div class="sec-tag">Stay connected</div>
-  <h2 class="sec-title">Phone & SIM</h2>
-  <p class="sec-sub">Keep your Aussie number alive for bank 2FA, grab a local SIM in each country for data.</p>
-  <div class="grid g4" style="margin-bottom:18px">
-    <div class="icard card">
-      <h4>🇦🇺 Aussie Plan</h4>
-      <ul>
-        <li>Pause or drop to cheapest plan</li>
-        <li>Keep your number active for <b>bank 2FA codes</b></li>
-        <li>Turn off roaming to avoid bill shock</li>
-        <li>Telstra/Optus pause-service options</li>
-      </ul>
-    </div>
-    <div class="icard card">
-      <h4>🇲🇾 Malaysia SIM</h4>
-      <ul>
-        <li><b>Maxis Hotlink tourist SIM</b> at KLIA2</li>
-        <li>~RM30–40 for 14 days data</li>
-        <li>Buy at arrivals SIM kiosks</li>
-        <li>Digi/Celcom also fine</li>
-      </ul>
-    </div>
-    <div class="icard card">
-      <h4>🇯🇵 Japan SIM/eSIM</h4>
-      <ul>
-        <li><b>IIJmio</b> data SIM at Narita ~¥2,000</li>
-        <li><b>OR Airalo eSIM</b> ~$15–20 AUD</li>
-        <li>eSIM only if phone supports it</li>
-        <li>Buy before leaving baggage hall</li>
-      </ul>
-    </div>
-    <div class="icard card">
-      <h4>📱 Essential Apps</h4>
-      <ul>
-        <li>Google Maps (offline)</li>
-        <li>Grab · WhatsApp · Wise</li>
-        <li>Japan Travel by NAVITIME</li>
-        <li>Google Translate (offline)</li>
-        <li>XE Currency</li>
-      </ul>
-    </div>
-  </div>
-  <div class="card" style="padding:20px">
-    <h4 style="margin-bottom:14px">📶 Phone Checklist</h4>
-    <ul class="checklist cols" data-list="phonecheck">
-      <li><span class="box"></span><span class="txt">Aussie plan paused / set to cheapest</span></li>
-      <li><span class="box"></span><span class="txt">Number kept active for bank 2FA</span></li>
-      <li><span class="box"></span><span class="txt">Phone unlocked for foreign SIMs</span></li>
-      <li><span class="box"></span><span class="txt">eSIM compatibility checked</span></li>
-      <li><span class="box"></span><span class="txt">All essential apps installed</span></li>
-      <li><span class="box"></span><span class="txt">Offline maps + translate downloaded</span></li>
-      <li><span class="box"></span><span class="txt">Power bank charged (carry-on, not coat pocket at security)</span></li>
-      <li><span class="box"></span><span class="txt">Universal travel adapter packed</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- MONEY -->
-<section id="currency">
-  <div class="sec-tag">Cash & cards</div>
-  <h2 class="sec-title">Money</h2>
-  <p class="sec-sub">You'll spend in <b>Ringgit (MYR)</b> in Malaysia and <b>Yen (JPY)</b> in Japan. One card handles both at the best rate — here's the setup.</p>
-
-  <div class="info green" style="margin-bottom:16px">
-    <div class="h">💡 The one rule</div>
-    Get a <b>Wise card</b> before you leave. Load AUD, it converts at the real interbank rate (~0.5% fee). Use it to pay directly or withdraw from ATMs. Never exchange cash at home or at airport counters — rates are 5–10% worse.
-  </div>
-
-  <div class="grid g3" style="margin-bottom:16px">
-    <div class="icard card">
-      <h4>🇲🇾 Ringgit (MYR)</h4>
-      <div class="kv"><span>Rate</span><b>$1 AUD ≈ RM2.9</b></div>
-      <div class="kv"><span>Hawker meal</span><b>RM5–12</b></div>
-      <div class="kv"><span>ATM</span><b>Maybank/CIMB in arrivals</b></div>
-      <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Card works at malls & chains. Keep cash for hawkers, markets & Grab rides.</p>
-    </div>
-    <div class="icard card">
-      <h4>🇯🇵 Yen (JPY)</h4>
-      <div class="kv"><span>Rate</span><b>$1 AUD ≈ ¥96</b></div>
-      <div class="kv"><span>Ramen</span><b>¥700–1,200 (~$10)</b></div>
-      <div class="kv"><span>ATM</span><b>7-Eleven ATM (always works)</b></div>
-      <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Japan is cash-heavy — temples, small shops & buses often card-free. Always carry ¥5,000+ on you.</p>
-    </div>
-    <div class="icard card">
-      <h4>🧮 Quick maths</h4>
-      <div class="kv"><span>RM10</span><b>≈ $3.50 AUD</b></div>
-      <div class="kv"><span>¥1,000</span><b>≈ $10 AUD</b></div>
-      <div class="kv"><span>¥100 onigiri</span><b>≈ $1 AUD</b></div>
-      <p style="font-size:12.5px;color:var(--muted);margin-top:8px">Quick yen trick: drop two zeros and halve it. ¥3,200 ≈ $16.</p>
-    </div>
-  </div>
-
-  <div class="card" style="padding:20px">
-    <h4 style="margin-bottom:14px">💳 Money Checklist</h4>
-    <ul class="checklist cols" data-list="moneycheck">
-      <li><span class="box"></span><span class="txt">Wise card ordered & loaded with AUD</span></li>
-      <li><span class="box"></span><span class="txt">2nd backup card packed separately</span></li>
-      <li><span class="box"></span><span class="txt">Bank notified of travel dates</span></li>
-      <li><span class="box"></span><span class="txt">$100 AUD emergency cash in bag</span></li>
-      <li><span class="box"></span><span class="txt">Always pay in LOCAL currency at terminals (not AUD)</span></li>
-      <li><span class="box"></span><span class="txt">All home bills auto-paid before leaving</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- EMERGENCY -->
-<section id="emergency">
-  <div class="sec-tag">If things go wrong</div>
-  <h2 class="sec-title">Emergency Info</h2>
-  <p class="sec-sub">Screenshot this section and save it offline.</p>
-  <div class="grid g2" style="margin-bottom:18px">
-    <div class="icard card" style="border-color:rgba(194,59,34,.4);background:var(--redbg)">
-      <h4>🇲🇾 Malaysia Emergency</h4>
-      <div class="kv"><span>Ambulance</span><b style="color:var(--red)">999</b></div>
-      <div class="kv"><span>Police</span><b style="color:var(--red)">999</b></div>
-      <div class="kv"><span>Australian High Commission KL</span><b style="color:var(--red)">+60 3-2146 5555</b></div>
-      <div class="kv"><span>After-hours consular</span><b style="color:var(--red)">+60 3-2148 5077</b></div>
-    </div>
-    <div class="icard card" style="border-color:rgba(194,59,34,.4);background:var(--redbg)">
-      <h4>🇯🇵 Japan Emergency</h4>
-      <div class="kv"><span>Ambulance / Fire</span><b style="color:var(--red)">119</b></div>
-      <div class="kv"><span>Police</span><b style="color:var(--red)">110</b></div>
-      <div class="kv"><span>Australian Embassy Tokyo</span><b style="color:var(--red)">+81 3-5232 4111</b></div>
-      <div class="kv"><span>Tokyo English Helpline</span><b style="color:var(--red)">03-5285 8181</b></div>
-    </div>
-  </div>
+  <h3 class="group-h" data-g="trip">🌿 Further Out <span class="clcount">nature &amp; day trips</span></h3>
+  <div class="spots" id="spotsTrip"></div>
 </section>
 
 <!-- MASTER CHECKLIST -->
 <section id="checklist">
   <div class="sec-tag">Everything in one place</div>
   <h2 class="sec-title">Master Checklist</h2>
-  <p class="sec-sub">Every item from every section combined. Tick things off here or in the individual sections — they're independent.</p>
+  <p class="sec-sub">Trip prep: paperwork, flights, transport, phone and money.</p>
 
   <div class="card" style="padding:20px;margin-bottom:16px">
     <h4 style="margin-bottom:14px">📋 Paperwork & Visas</h4>
@@ -671,251 +279,524 @@ footer .mono { color: var(--orange); }
 </section>
 
 <footer>
-  Built for two carry-on travellers · <span class="mono">BNE → SYD → KUL → TYO</span> · Oct 1 – Oct 29<br>
-  Works offline · Your ticks are saved on this device · Prices are estimates — always verify before booking.
+  Built for two carry-on travellers · Your ticks are saved on this device<br>
+  Prices and opening hours are estimates. Check on the day. Photos: Wikimedia Commons.
 </footer>
 
 <button id="toTop" aria-label="Scroll to top">↑</button>
 
 <script>
 // ── DATA ──────────────────────────────────────────────────────────────────────
+// All costs stored in ringgit (RM) and converted to AUD at RATE.
+// grab: [min,max] RM for the whole car, one way, from Mingle Hostel (Chinatown), off-peak.
+// cost: [min,max] RM per person to get in (0 = free).
 
-const FLIGHTS = [
+const RATE = 2.8; // RM per 1 AUD
+const WM = f => 'https://thumb.wikimedia.org/wikipedia/commons/thumb/' + f;
+
+const SPOTS = [
+  // ── CITY ──
   {
-    id: 'l1', label: 'BNE → SYD · Oct 1',
-    conn: '✅ <b>CONFIRMED · Jetstar JQ829.</b> <b>Separate tickets</b> — be at SYD T1 early. T2/T3 → T1 is a 2-min train ($8.50) or free T-Bus.',
-    opts: [{
-      tag: 'cheap', type: 'Direct', route: 'BNE → SYD', airline: 'Jetstar JQ829',
-      time: 'Oct 1 · morning departure', dur: '1h 30m', price: '$168',
-      bag: '14kg cabin (7kg base + 7kg add-on · overhead bin included)',
-      note: '✅ Booked & confirmed. $133 fare + $35 cabin bag add-on. Check-in online 48h before.',
-      gf: 'https://www.google.com/travel/flights/booking?tfs=CBwQAhpKEgoyMDI2LTEwLTAxIh8KA0JORRIKMjAyNi0xMC0wMRoDU1lEKgJKUTIDODI5ag0IAhIJL20vMDFiOGpqcgwIAhIIL20vMDZ5NTdAAUgBcAGCAQsI____________AZgBAg&tfu=CmhDalJJYVU5aFRqQm5Wa2hrYVRSQlJWUnhTVkZDUnkwdExTMHRMUzF6YlhWME15MXVNVUZCUVVGQlIyODNOa3BWVGtSS2VFdEJFZ1ZLVVRneU9Sb0tDTlZvRUFJYUEwRlZSRGdjY0psSRIGCAAgAigBIgMKATA&curr=AUD'
-    }]
+    id: 'petronas', g: 'city', emoji: '🏙️', kind: 'Icon',
+    name: 'Petronas Twin Towers + KLCC Park',
+    tagline: 'The 88-floor twin towers, and the park and fountain show at their feet.',
+    img: WM('4/44/Petronas_Towers_at_Night_-_from_the_base_upwards.jpg/960px-Petronas_Towers_at_Night_-_from_the_base_upwards.jpg'),
+    grab: [10, 15], ride: '12–18 min', time: '1.5–3 hrs',
+    cost: [0, 0], costNote: 'Park + fountain free · Skybridge/deck ~RM98 optional',
+    best: 'Around 7:30pm. Watch the sunset, then the towers light up and the Lake Symphony fountain runs at 8, 9 and 10pm.',
+    about: "The tallest twin towers in the world, 452m of steel and glass designed around an Islamic eight-point star. At the base is Suria KLCC mall, and behind it is KLCC Park: 50 acres of gardens, a lake, a free kids' wading pool and a jogging track. At night the whole thing glows, and the fountain show on the lake is set to music.",
+    tips: [
+      'Best photo spot: the lawn on the far side of the lake in KLCC Park. A wide-angle lens or your phone’s 0.5× fits both towers.',
+      'Skybridge (41st floor) + observation deck (86th) is ~RM98 (~$35) pp. Book online the day before, as it sells out. Closed Mondays. Honestly optional: the Heli Lounge Bar view (below) is better and cheaper.',
+      'Cheap feed: the Suria KLCC food court (level 2) or Madam Kwan’s for nasi lemak if you want a sit-down.',
+      'Aquaria KLCC is a 10-min walk away through an air-conditioned walkway if you want to add it on.',
+      'Cheaper than Grab: walk 5 min to Pasar Seni station, then LRT to KLCC (~RM2.50 / $1).'
+    ],
+    map: 'KLCC Park Kuala Lumpur'
   },
   {
-    id: 'l2', label: 'SYD → KUL · Oct 1',
-    conn: '✅ <b>CONFIRMED · Scoot via Singapore.</b> SYD → SIN → KUL. SIN is a transit stop — no visa needed. Lands KLIA2 (not main KLIA) — SIM kiosks in arrivals. Carry-on 10kg (Scoot allowance, the best of all your flights).',
-    opts: [{
-      tag: 'cheap', type: '1 stop (SIN)', route: 'SYD → SIN → KUL', airline: 'Scoot',
-      time: 'Oct 1 · check booking for dep time', dur: '~11–13h total', price: '$392',
-      bag: '10kg cabin (2 bags combined · best allowance of all legs)',
-      note: '✅ Booked & confirmed. Transit through Changi — stay airside, no SIN visa needed. Lands KLIA2; grab a Maxis SIM at arrivals.',
-      gf: 'https://www.google.com/travel/flights/booking?tfs=CBwQAhppEgoyMDI2LTEwLTAxIh4KA1NZRBIKMjAyNi0xMC0wMRoDU0lOKgJUUjICMTUiHwoDU0lOEgoyMDI2LTEwLTAyGgNLVUwqAlRSMgM0NzJqDAgCEggvbS8wNnk1N3IMCAISCC9tLzA0OWQxQAFIAXABggELCP___________wGYAQI&tfu=CnRDalJJU0RSU1psZFFORXBZUzBWQlJXbHliM2RDUnkwdExTMHRMUzB0ZEd4aVkyY3hOMEZCUVVGQlIyODNObGhCUjNWWE5rZEJFZ3BVVWpFMWZGUlNORGN5R2dzSXBySUNFQUlhQTBGVlJEZ2NjS1RUQVE9PRIGCAAgAigBIgMKATA&curr=AUD'
-    }]
+    id: 'alor', g: 'city', emoji: '🍢', kind: 'Food',
+    name: 'Jalan Alor Food Street',
+    tagline: "KL's most famous night food street. Satay smoke, plastic stools, chaos.",
+    img: WM('1/11/Jalan_Alor_Street_View1.jpg/960px-Jalan_Alor_Street_View1.jpg'),
+    grab: [8, 12], ride: '10–15 min', time: '1.5–2 hrs',
+    cost: [30, 50], costNote: 'Food + drinks, eating well',
+    best: '7–11pm. Stalls start around 5pm, but it really comes alive after dark.',
+    about: "A 300m street in Bukit Bintang that turns into one long open-air restaurant every night. Hawker stalls and zi char (Chinese-Malaysian wok) restaurants spill tables onto the road. Grilled stingray, satay, chilli crab, char kway teow, fresh coconuts and durian if you're brave.",
+    tips: [
+      'Must-eat: Wong Ah Wah (W.A.W.) chicken wings, the famous one near the Changkat end.',
+      'Satay is priced per stick (~RM1.50–2), so order 10–20 to share.',
+      'Seafood is priced by weight. Always ask the price before they cook it, as this is where tourists get stung.',
+      "Changkat Bukit Bintang (backpacker bar street) is around the corner if you want a beer after.",
+      'Cheaper than Grab: MRT from Pasar Seni to Bukit Bintang (2 stops, ~RM2 / $0.70).'
+    ],
+    map: 'Jalan Alor Kuala Lumpur'
   },
   {
-    id: 'l3', label: 'KUL → KIX · Oct 15',
-    conn: '✅ <b>CONFIRMED · AirAsia X D7 532.</b> 02:20am redeye from KLIA2 — arrive Kansai 09:50am. Pick up ICOCA card + eSIM at the airport, then Nankai train to Namba (~¥930). First full day in Japan starts mid-morning. No stops — direct flight.',
-    opts: [{
-      tag: 'cheap', type: 'Direct', route: 'KUL → KIX', airline: 'AirAsia X D7 532',
-      time: '02:20 KUL → 09:50 KIX · Oct 15', dur: '6h 30m', price: '$334',
-      bag: '7kg combined (strictly enforced at gate · 1 bag max 56×36×23cm + underseat 40×30×10cm)',
-      note: '✅ Booked & confirmed. Airbus A330. KLIA2 departure — leave your KL hostel around midnight Oct 14.',
-      gf: 'https://www.google.com/travel/flights/booking?tfs=CBwQAhpJEgoyMDI2LTEwLTE1Ih8KA0tVTBIKMjAyNi0xMC0xNRoDS0lYKgJENzIDNTMyagwIAhIIL20vMDQ5ZDFyDAgCEggvbS8wZHF5d0ABSAFwAYIBCwj___________8BmAEC&tfu=CmxDalJJT0hOVE5raERiV3RvVTNkQlJWVDJSa0ZDUnkwdExTMHRMUzB0YzJWaVpHRTBNRUZCUVVGQlIyODNObHB2U0ZaSFIwVkJFZ1ZFTnpVek1ob0xDTmFFQWhBQ0dnTkJWVVE0SEhEb3N3RT0SBggAIAIoASIDCgEw&curr=AUD'
-    }]
+    id: 'chinatown', g: 'city', emoji: '🏮', kind: 'Walk',
+    name: 'Chinatown Loop: Petaling St, Kwai Chai Hong, Central Market, Merdeka Square',
+    tagline: 'Your own neighbourhood. A free walking loop through old KL.',
+    img: WM('0/02/Kuala_Lumpur._Jalan_Petaling._2019-12-07_15-24-49.jpg/960px-Kuala_Lumpur._Jalan_Petaling._2019-12-07_15-24-49.jpg'),
+    grab: [0, 0], ride: 'Walk from hostel', time: '2–4 hrs',
+    cost: [0, 0], costNote: 'Free (just snacks)',
+    best: 'Late afternoon into evening. It’s cooler, the market is buzzing, and Merdeka Square is lit up after dark.',
+    about: "Petaling Street is the covered market (bargain hard, the knock-offs start at 3× the real price). Kwai Chai Hong is a restored laneway with murals from the 1960s. Sri Mahamariamman is KL's oldest Hindu temple, directly across from the Guan Di Chinese temple. Central Market (Pasar Seni) is a 1930s art deco hall full of batik and souvenirs. Then walk 10 min to Merdeka Square, where Malaysia declared independence in 1957, opposite the Moorish-style Sultan Abdul Samad Building.",
+    tips: [
+      'Route: Petaling St → Kwai Chai Hong → Sri Mahamariamman + Guan Di temples → Central Market → Masjid Jamek → Merdeka Square.',
+      'Masjid Jamek sits where the two rivers meet ("Kuala Lumpur" means "muddy confluence"). The River of Life riverfront has a blue mist light show in the evenings.',
+      'Snacks: air mata kucing (monk fruit drink, RM3) on Petaling St, and Ho Kee Chicken Rice.',
+      'Temples: shoulders and knees covered, shoes off at the Hindu temple.',
+      'Bargain at Petaling St. Open at a third of the asking price and walk away if needed.'
+    ],
+    map: 'Petaling Street Kuala Lumpur'
   },
   {
-    id: 'l4', label: 'NRT → BNE · Oct 29',
-    conn: '✅ <b>CONFIRMED · Jetstar JQ26 via Cairns.</b> NRT → CNS → BNE. You clear Australian immigration & customs at <b>Cairns</b> (first port of entry) — have biosecurity card ready. Then a short final leg to Brisbane. Arrive Narita 3h early.',
-    opts: [{
-      tag: 'cheap', type: '1 stop (CNS)', route: 'NRT → CNS → BNE', airline: 'Jetstar JQ26',
-      time: 'Oct 29 · check booking for dep time', dur: '~13h total', price: '$520',
-      bag: '7kg carry-on only (Starter fare · no overhead bin add-on on this leg)',
-      note: '✅ Booked & confirmed. ~7h30 layover in Cairns. Clear Australian customs at CNS — fill biosecurity card in the Jetstar app.',
-      gf: 'https://www.google.com/travel/flights/booking?tfs=CBwQAhpJEgoyMDI2LTEwLTI5Ih4KA05SVBIKMjAyNi0xMC0yORoDQk5FKgJKUTICMTBqDAgDEggvbS8wN2Rma3INCAISCS9tLzAxYjhqakABSAFwAYIBCwj___________8BmAEC&tfu=CmxDalJJTURWUFltRm5NVmN3VEd0QlJWTTRWMmRDUnkwdExTMHRMWE5sZEc0eU5DMXVNVUZCUVVGQlIyODNOMEZaUzBnMFNFbEJFZ1JLVVRFd0dnc0k0cFVERUFJYUEwRlZSRGdjY1A2WEFnPT0SBggAIAIoASIDCgEw&curr=AUD'
-    }]
+    id: 'ecopark', g: 'city', emoji: '🌳', kind: 'Nature',
+    name: 'KL Forest Eco Park Canopy Walk (+ KL Tower)',
+    tagline: 'Rainforest walkway in the middle of the city, under the KL Tower.',
+    img: WM('1/11/KL_Forest_Eco-Park_Canopy_Walk_9.jpg/960px-KL_Forest_Eco-Park_Canopy_Walk_9.jpg'),
+    grab: [8, 11], ride: '8–12 min', time: '1–1.5 hrs',
+    cost: [0, 0], costNote: 'Canopy walk free · KL Tower deck ~RM60–80 optional',
+    best: '8–10am, before the heat and humidity kick in. Open ~7am–6pm.',
+    about: "Bukit Nanas is a protected lowland rainforest reserve that's been there since 1906, right in the middle of the city. A 200m steel canopy bridge runs through the treetops with skyscrapers peeking through, and you might spot monkeys and squirrels. The KL Tower (Menara KL) sits on top of the hill, taller than Petronas in elevation because it's on a hill.",
+    tips: [
+      'Enter via the Jalan Raja Chulan entrance and walk up. It’s a sweaty climb, so bring water.',
+      'KL Tower Sky Deck / Sky Box (glass box hanging over the edge) is ~RM100+ if you want the thrill photo. Pricey, optional.',
+      'Wear runners, not thongs. The trails can be slippery after rain.',
+      'Easy combo: do this in the morning, then walk down to Bukit Bintang for lunch.'
+    ],
+    map: 'KL Forest Eco Park'
+  },
+  {
+    id: 'kgbaru', g: 'city', emoji: '🍛', kind: 'Food',
+    name: 'Kampung Baru Food Walk',
+    tagline: 'A traditional Malay village of wooden houses under the Petronas skyline.',
+    img: WM('1/1f/Kuala_Lumpur_skyline_and_Petronas_Twin_Towers_night_view_from_Kampung_Baru.jpg_02.jpg/960px-Kuala_Lumpur_skyline_and_Petronas_Twin_Towers_night_view_from_Kampung_Baru.jpg_02.jpg'),
+    grab: [9, 13], ride: '10–15 min', time: '1.5–2 hrs',
+    cost: [10, 25], costNote: 'Food only, very cheap',
+    best: 'Breakfast (7–10am) for nasi lemak, or after dark for the skyline view.',
+    about: "Kampung Baru is a Malay village founded in 1899 that refused to be redeveloped. It still has wooden stilt houses and roadside stalls, with glass skyscrapers right behind them. It's the best place in KL for proper Malay food: nasi lemak, satay, roti and teh tarik.",
+    tips: [
+      'Eat: Nasi Lemak Wanjo (the famous one, get the beef rendang or ayam goreng on the side), Nasi Lemak Antarabangsa.',
+      'Walk over the Saloma Link bridge (lit up in rainbow colours at night) straight to KLCC. It’s about 10 min, and you can combine this with Petronas.',
+      'Most places are Muslim-run, so no alcohol here.',
+      'Cheaper than Grab: LRT to Kampung Baru station (~RM2).'
+    ],
+    map: 'Nasi Lemak Wanjo Kampung Baru'
+  },
+  {
+    id: 'theanhou', g: 'city', emoji: '⛩️', kind: 'Temple',
+    name: 'Thean Hou Temple',
+    tagline: 'A six-tier Chinese temple on a hill, strung with red lanterns.',
+    img: WM('3/36/Thean_Hou_Temple%2C_Kuala_Lumpur-1.jpg/960px-Thean_Hou_Temple%2C_Kuala_Lumpur-1.jpg'),
+    grab: [10, 15], ride: '12–18 min', time: '~1 hr',
+    cost: [0, 0], costNote: 'Free',
+    best: 'Around sunset (6:30–7:30pm). You get the golden light plus the lanterns glowing, and a view over the city.',
+    about: "One of the biggest Chinese temples in Southeast Asia, built in 1987 for the sea goddess Mazu (Thean Hou). It's a riot of red pillars, gold roofs and dragons, with rows of red lanterns overhead. There's a Chinese zodiac statue garden on the side where you can find your animal.",
+    tips: [
+      'It’s an active temple, so keep it respectful. Covered shoulders are appreciated.',
+      'Fortune sticks: shake the cup until one falls out, then match the number to a printed fortune (small donation).',
+      "Grabs back can take a few minutes to find you up on the hill. Book before you've finished.",
+      'Open roughly 9am–9pm.'
+    ],
+    map: 'Thean Hou Temple Kuala Lumpur'
+  },
+  {
+    id: 'heli', g: 'city', emoji: '🚁', kind: 'Drinks',
+    name: 'Heli Lounge Bar',
+    tagline: 'Drinks on a working helipad 34 floors up, with a 360° skyline view.',
+    img: WM('5/50/Petronas_Towers_at_night_from_Helipad.jpg/960px-Petronas_Towers_at_night_from_Helipad.jpg'),
+    grab: [8, 12], ride: '10–15 min', time: '1–2 hrs',
+    cost: [45, 70], costNote: 'One drink minimum to go up',
+    best: 'Get there at about 6pm for sunset, and stay for the city lights. The helipad closes if it rains.',
+    about: "Level 34 of Menara KH in Bukit Bintang. By day it's a helipad; from about 5pm you buy a drink downstairs in the lounge, then climb the stairs onto the open helipad, with no rails and no glass, just the city and Petronas right there. One of the best views in KL, for the price of a drink.",
+    tips: [
+      'Dress code: smart casual. No singlets, boardies or thongs, and they will turn you away.',
+      'Buy your drink at the bar below, then take it up to the helipad.',
+      'Check the weather: in rain or storms the helipad is closed and you’re stuck inside.',
+      'Walking distance to Jalan Alor. Do sunset here, then go down to dinner.'
+    ],
+    map: 'Heli Lounge Bar Menara KH'
+  },
+  {
+    id: 'mosque', g: 'city', emoji: '🕌', kind: 'Culture',
+    name: 'National Mosque + Islamic Arts Museum',
+    tagline: 'A striking modernist mosque and one of the best museums in Asia, side by side.',
+    img: WM('1/1f/National_Mosque_of_Malaysia%2C_Kuala_Lumpur_2026.jpg/960px-National_Mosque_of_Malaysia%2C_Kuala_Lumpur_2026.jpg'),
+    grab: [7, 10], ride: '6–10 min', time: '2–2.5 hrs',
+    cost: [20, 20], costNote: 'Mosque free · Museum RM20',
+    best: 'Morning (9am–12pm), when the mosque is open to visitors and before the midday heat. Great air-con escape.',
+    about: "Masjid Negara (1965) has a folded 18-point star roof, a 73m minaret and room for 15,000 people. Just up the road, the Islamic Arts Museum has gorgeous domed ceilings, intricate Qur'ans, scale models of famous mosques from around the world, jewellery, textiles and armour. It's genuinely impressive even if museums aren't your thing.",
+    tips: [
+      'Mosque visitor hours are roughly 9am–12pm, 3–4pm and 5:30–6:30pm, and closed to tourists Friday mornings. Robes and headscarves are provided free at the entrance.',
+      'Museum is open 9:30am–6pm daily. Allow 1.5 hrs, as the top-floor dome rooms are the highlight.',
+      "Combo: it's a 10-min walk to the Bird Park and Perdana Botanical Gardens, so make it a full Lake Gardens day.",
+      'Walkable from Chinatown (~20 min) if it’s not too hot.'
+    ],
+    map: 'Islamic Arts Museum Malaysia'
+  },
+  {
+    id: 'birdpark', g: 'city', emoji: '🦜', kind: 'Nature',
+    name: 'KL Bird Park + Perdana Botanical Gardens',
+    tagline: "One of the world's biggest free-flight walk-in aviaries, inside a huge city park.",
+    img: WM('a/a5/Kuala-Lumpur-Bird-Park-Inside.JPG/960px-Kuala-Lumpur-Bird-Park-Inside.JPG'),
+    grab: [8, 11], ride: '8–12 min', time: '2–3 hrs',
+    cost: [75, 85], costNote: 'Bird Park foreigner ticket · Gardens free',
+    best: 'Open ~9am. Go early for the bird feeding times and to beat the heat.',
+    about: "A 20-acre aviary covered by a giant net, with 3,000+ birds (hornbills, flamingos, peacocks, parrots and eagles) roaming around you, not in cages. There are feeding sessions and a bird show through the day. Next door, Perdana Botanical Gardens (the Lake Gardens) is KL's biggest park, with a lake, orchid garden, hibiscus garden and deer park, all free.",
+    tips: [
+      'Check the feeding and show times at the entrance and plan your loop around them.',
+      "The hornbills are the stars. Malaysia's national bird section is worth a slow walk.",
+      'The Orchid Garden and Hibiscus Garden next door are free and quiet, good for photos.',
+      'Pairs perfectly with the National Mosque + Islamic Arts Museum (10-min walk).'
+    ],
+    map: 'KL Bird Park'
+  },
+  {
+    id: 'littleindia', g: 'city', emoji: '🍌', kind: 'Food',
+    name: 'Little India, Brickfields',
+    tagline: 'Colourful streets and banana-leaf curry for about $5.',
+    img: WM('7/7f/Little_India%2C_Brickfields%2C_Kuala_Lumpur_1.jpg/960px-Little_India%2C_Brickfields%2C_Kuala_Lumpur_1.jpg'),
+    grab: [8, 11], ride: '8–12 min', time: '1–1.5 hrs',
+    cost: [12, 25], costNote: 'Banana leaf lunch',
+    best: 'Lunch (12–2pm), when the banana leaf places are fully stocked.',
+    about: "Brickfields is KL's Little India: colourful arches, a fountain, sari shops, flower-garland stalls and Bollywood music on the street. The main event is banana leaf rice: they slap a leaf down, pile rice and 3–4 vegetable curries on it, and top it up for free while you eat with your hands (right hand only).",
+    tips: [
+      'Eat at Vishal Food & Catering, Sri Paandi or Raj’s Banana Leaf. Add fried chicken or mutton for a few ringgit more.',
+      'Fold the leaf towards you when finished to say it was good.',
+      'Try a mango lassi or teh tarik (pulled milk tea) to cool the spice.',
+      "It's right next to KL Sentral, the main station, so you'll likely pass through anyway. MRT from Pasar Seni is 1 stop."
+    ],
+    map: 'Little India Brickfields Kuala Lumpur'
+  },
+  {
+    id: 'aquaria', g: 'city', emoji: '🦈', kind: 'Rainy day',
+    name: 'Aquaria KLCC',
+    tagline: 'A 90m underwater tunnel with sharks and rays swimming over your head.',
+    img: WM('8/8c/Underwater_tunnel_in_Aquaria_KLCC.jpg/960px-Underwater_tunnel_in_Aquaria_KLCC.jpg'),
+    grab: [10, 15], ride: '12–18 min', time: '1.5–2 hrs',
+    cost: [75, 85], costNote: 'Foreigner adult ticket',
+    best: 'Any afternoon it’s pouring or 35°C. It’s fully indoors and air-conditioned.',
+    about: "A big aquarium under the KL Convention Centre with 5,000+ creatures. The highlight is the long travelator tunnel through the main tank: sand tigers, giant groupers, stingrays and turtles right above you. There's also an electric eel, piranhas, otters and a touch pool.",
+    tips: [
+      'Buy online for a small discount and to skip the ticket queue.',
+      'Check the feeding schedule at the door, as shark and otter feeding are worth timing.',
+      'Walk here from Suria KLCC through the covered walkway. Combine it with Petronas.'
+    ],
+    map: 'Aquaria KLCC'
+  },
+  {
+    id: 'berjaya', g: 'city', emoji: '🎢', kind: 'Rainy day',
+    name: 'Berjaya Times Square Theme Park',
+    tagline: 'A full rollercoaster inside a shopping mall.',
+    img: WM('a/ae/Berjaya_Times_Square_atrium.jpg/960px-Berjaya_Times_Square_atrium.jpg'),
+    grab: [8, 12], ride: '10–15 min', time: '2–3 hrs',
+    cost: [60, 80], costNote: 'Unlimited-ride pass',
+    best: 'A rainy afternoon. Weekdays are much quieter.',
+    about: "Malaysia's biggest indoor theme park, on levels 5 and 7 of the Berjaya Times Square mall. The headline ride is the Supersonic Odyssey, a looping coaster that whips past the mall's roof. There are also drop towers, a pirate ship and a bunch of smaller rides. It's cheesy but fun, and a solid backup when the weather's bad.",
+    tips: [
+      'Check it’s open before going, as individual rides close for maintenance.',
+      'Mall food court downstairs is cheap.',
+      'Walkable to Jalan Alor (~10 min) for dinner after.'
+    ],
+    map: 'Berjaya Times Square Theme Park'
+  },
+
+  // ── DAY TRIPS ──
+  {
+    id: 'batu', g: 'trip', emoji: '🪜', kind: 'Must-do',
+    name: 'Batu Caves',
+    tagline: '272 rainbow steps, a 43m gold statue and a temple inside a limestone cave.',
+    img: WM('8/8f/Batu_Caves_stairs_2022-05.jpg/960px-Batu_Caves_stairs_2022-05.jpg'),
+    grab: [25, 35], ride: '25–35 min', time: '2–3 hrs',
+    cost: [0, 0], costNote: 'Main Temple Cave free · side caves ~RM5–15',
+    best: 'Get there by 8am. It’s cooler, there are no tour buses, and you get the good light on the stairs.',
+    about: "A 400-million-year-old limestone hill with a huge Hindu temple cave at the top. Out front stands the giant golden statue of Lord Murugan, the tallest of its kind in the world. The 272 steps were painted rainbow colours in 2018. Inside, the main cavern is 100m high with shafts of light coming through the roof. Macaque monkeys run the place.",
+    tips: [
+      'DRESS CODE: knees must be covered. Sarongs can be rented at the bottom (~RM5) if you rock up in shorts.',
+      'MONKEYS: they will steal food, drinks, sunnies and plastic bags. Keep everything zipped away.',
+      'Cheaper than Grab: KTM Komuter train from KL Sentral to Batu Caves, ~40 min, ~RM2.60 ($1). Trains run about every 30 min.',
+      'Ramayana Cave at the bottom (~RM5) has colourful dioramas and a waterfall inside. Worth it.',
+      'Grab a fresh coconut and a thosai from the stalls at the base after.'
+    ],
+    map: 'Batu Caves'
+  },
+  {
+    id: 'genting', g: 'trip', emoji: '🚡', kind: 'Full day',
+    name: 'Genting Highlands',
+    tagline: 'A mountain-top resort at 1,800m: cable car, cool air, casino and a cliffside temple.',
+    img: WM('b/b0/Awana_Skyway_Gondola_lift.jpg/960px-Awana_Skyway_Gondola_lift.jpg'),
+    grab: [80, 110], ride: '~1 hr (or bus ~1 hr)', time: 'Full day (6–8 hrs)',
+    cost: [20, 30], costNote: 'Bus + cable car · theme park extra',
+    best: 'A weekday. Weekends get packed with KL day-trippers. Leave by 9am.',
+    about: "A resort city on a mountain peak, where it's 16–23°C, a massive relief from KL heat. The Awana Skyway cable car floats over the rainforest canopy, often through the clouds. Up top: the casino (you need to be 21, with your passport), SkyWorlds theme park, a huge indoor mall, and the Chin Swee Caves Temple, a nine-storey pagoda carved into the mountainside with a giant Buddha statue.",
+    tips: [
+      'BRING YOUR TRAVEL COAT. It can genuinely be cold up there, especially in the fog.',
+      'Cheaper than Grab: bus from KL Sentral or TBS (~RM10–15, ~1 hr) to Awana, then the Skyway cable car up (~RM10–20). Book the bus on busonlineticket.com.',
+      'Get off the Skyway at the Chin Swee Temple mid-station on the way up. It’s free and the best part.',
+      'SkyWorlds theme park is ~RM150+ extra, a big spend. Only do it if you want a full theme park day.',
+      'Casino needs smart casual dress and a passport. No shorts or thongs.'
+    ],
+    map: 'Awana Skyway Genting'
+  },
+  {
+    id: 'kanching', g: 'trip', emoji: '💦', kind: 'Swim',
+    name: 'Kanching Rainforest Waterfall',
+    tagline: 'A seven-tier jungle waterfall you can swim in.',
+    img: WM('0/04/Kanching_Waterfall.jpg/960px-Kanching_Waterfall.jpg'),
+    grab: [35, 50], ride: '35–45 min', time: '2–3 hrs',
+    cost: [5, 10], costNote: 'Entry fee',
+    best: 'Weekday morning. Weekends are packed with local families.',
+    about: "A recreational forest north of KL with a waterfall that cascades down seven levels through thick jungle. The lower pools are easy to reach and great for a cool swim. Each tier up gets quieter and more beautiful, but the path gets steeper and rougher. Expect monkeys, huge trees and cicadas screaming.",
+    tips: [
+      'Bring swimmers, a towel and shoes with grip. Rocks are slippery, and thongs won’t cut it past tier 3.',
+      'GETTING BACK: Grabs are rare out here. Either ask your driver to wait (negotiate ~RM30–40 per hour) or pre-book the return in the app before you lose signal.',
+      'Don’t leave bags unattended on the rocks, as monkeys go straight for them.',
+      'Don’t swim after heavy rain, when flash floods are possible.'
+    ],
+    map: 'Kanching Rainforest Waterfall'
+  },
+  {
+    id: 'fireflies', g: 'trip', emoji: '✨', kind: 'Evening tour',
+    name: 'Kuala Selangor Fireflies + Monkey Hill',
+    tagline: 'A night boat ride past trees blinking with thousands of synchronised fireflies.',
+    img: WM('9/94/Kuala_Selangor_firefly_sanctuary_%28230316%29.jpg/960px-Kuala_Selangor_firefly_sanctuary_%28230316%29.jpg'),
+    grab: [0, 0], ride: 'Tour pickup · ~1.5 hrs each way', time: '6–8 hrs (afternoon–late)',
+    cost: [150, 220], costNote: 'Tour incl. transport, boat + seafood dinner',
+    best: 'A clear night without much moon. Rain or a full moon dulls the show, so check the forecast.',
+    about: "Along the Selangor River, mangrove trees are covered in fireflies that all flash in unison, so the trees look like Christmas lights. You glide past in a silent rowing boat (sampan) in the dark. Tours usually stop first at Bukit Melawati, a hill with an old fort and lighthouse where silvered leaf monkeys (orange babies!) will eat from your hand, then a fresh seafood dinner by the river.",
+    tips: [
+      'Book a tour (GetYourGuide/Klook or through your hostel). A Grab both ways would cost way more (~RM100+ each way) and you’d have to wait around.',
+      'Some tours add the Sky Mirror (a sandbar that reflects the sky like a mirror). It only works on certain low-tide days, so it’s a separate morning trip.',
+      'No flash photos on the boat. Your phone won’t capture the fireflies anyway, so just watch.',
+      'Bring insect repellent.'
+    ],
+    map: 'Kampung Kuantan Firefly Park'
+  },
+  {
+    id: 'melaka', g: 'trip', emoji: '🛺', kind: 'Full day',
+    name: 'Melaka Day Trip',
+    tagline: 'A UNESCO old town with Dutch red buildings, river walks and a night market.',
+    img: WM('c/c0/Jonker_Street_Night_Market_in_Melaka%2C_Malaysia.jpg/960px-Jonker_Street_Night_Market_in_Melaka%2C_Malaysia.jpg'),
+    grab: [12, 16], ride: '15 min to TBS bus station, then ~2–2.5 hr bus', time: 'Full day (10–12 hrs)',
+    cost: [30, 40], costNote: 'Return bus · wandering is free',
+    best: 'Friday or Saturday, so you catch the Jonker Street Night Market (~6pm–midnight).',
+    about: "Melaka was a major spice trading port ruled in turn by the Portuguese, Dutch and British, and it shows. There's the red Dutch Square with Christ Church, the ruins of St Paul's hilltop church, and the Portuguese A Famosa gate. Old Chinese shophouses line Jonker Street, and a riverside walk runs past murals. It's also the home of Nyonya (Peranakan) food.",
+    tips: [
+      'Bus: Grab to TBS (Terminal Bersepadu Selatan) and book on busonlineticket.com. Buses run every 30 min, ~RM13–16 each way.',
+      'Eat: chicken rice balls, Nyonya laksa, cendol (shaved ice dessert) and satay celup (a DIY satay hotpot).',
+      'The trishaws are decked out in flashing lights and Hello Kitty/Pikachu themes, and play loud music. ~RM40–50 per ride. Silly but fun.',
+      'Check the last bus back to KL (usually ~9–10pm), or stay overnight at a Jonker St hostel (~$12).'
+    ],
+    map: 'Jonker Street Melaka'
+  },
+  {
+    id: 'sunway', g: 'trip', emoji: '🌊', kind: 'Full day',
+    name: 'Sunway Lagoon',
+    tagline: 'A huge waterpark + theme park + wildlife park in a former tin mine.',
+    img: WM('9/9e/Sunway_Lagoon_%28220711%29.jpg/960px-Sunway_Lagoon_%28220711%29.jpg'),
+    grab: [30, 45], ride: '30–40 min', time: 'Full day (10am–6pm)',
+    cost: [180, 230], costNote: 'All-park foreigner ticket',
+    best: 'A sunny weekday. School holidays and weekends mean long queues.',
+    about: "Six parks in one: one of the world's biggest surf wave pools, the Vuvuzela (a giant funnel waterslide), a theme park with coasters, a wildlife park, a scream park, and an extreme park with ziplines and ATVs. It's pricey for Malaysia but a full day out.",
+    tips: [
+      'Buy online a few days ahead, as it’s often 10–20% cheaper than at the gate.',
+      'Lockers and towel rental cost extra, so bring your own towel.',
+      "Carry-on travellers: you'll need swimmers and sunscreen. Buy sunscreen in KL, as it's pricey inside.",
+      'Sunway Pyramid mall is attached, with an Egyptian-themed entrance and a huge food court.'
+    ],
+    map: 'Sunway Lagoon'
+  },
+  {
+    id: 'zoo', g: 'trip', emoji: '🐼', kind: 'Half day',
+    name: 'Zoo Negara (National Zoo)',
+    tagline: "Malaysia's national zoo, with tigers, orangutans, elephants and a giant panda centre.",
+    img: WM('a/a9/Giant_Panda_Conservation_Centre_in_Zoo_Negara_Malaysia_2021_%2819%29.jpg/960px-Giant_Panda_Conservation_Centre_in_Zoo_Negara_Malaysia_2021_%2819%29.jpg'),
+    grab: [25, 35], ride: '25–35 min', time: '3–4 hrs',
+    cost: [80, 90], costNote: 'Foreigner adult ticket',
+    best: 'Open at 9am. Animals are most active in the cool morning.',
+    about: "A 110-acre zoo on the edge of KL with 5,000+ animals. The Giant Panda Conservation Centre (air-conditioned, thankfully) has housed pandas on loan from China. There's also an orangutan area, Malayan tigers, elephants, and a tram that loops the grounds.",
+    tips: [
+      'Check online that the pandas are currently in residence before going, as they’re on loan from China and loans end.',
+      'Take the tram (~RM5) to save your legs, as the zoo is hilly.',
+      'Get your Grab back booked early. There aren’t many drivers waiting out there.'
+    ],
+    map: 'Zoo Negara'
   }
 ];
 
-const bk  = (name,ci,co) => `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(name)}&checkin=${ci}&checkout=${co}&group_adults=1&no_rooms=1&order=price&selected_currency=AUD`;
-const bkc = (city,ci,co) => `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city)}&checkin=${ci}&checkout=${co}&group_adults=1&no_rooms=1&order=price&selected_currency=AUD&nflt=${encodeURIComponent('ht_id=203')}`;
-const hw  = (name,ci,co) => `https://www.hostelworld.com/search?search_keywords=${encodeURIComponent(name)}&from=${ci}&to=${co}&guests=1&currency=AUD`;
-
-const STAYS = [
-  {
-    id: 'my', label: '🇲🇾 Malaysia · 13 nights · ~$13/night',
-    cityLink: bkc('Kuala Lumpur','2026-10-02','2026-10-07'),
-    cityLabel: 'Browse ALL cheap KL hostels (Oct 2–7, sorted cheapest) ↗',
-    picks: [
-      { name: 'Mingle Hostel Kuala Lumpur', area: 'Chinatown, KL · Oct 2–7 & 13–16', price: '$11', note: 'Central, walk to Jalan Alor & Petronas via MRT. Your KL base.', link: bk('Mingle Hostel Kuala Lumpur','2026-10-02','2026-10-07'), alt: hw('Mingle Hostel Kuala Lumpur','2026-10-02','2026-10-07') },
-      { name: 'Container Hotel Penang',     area: 'Georgetown, Penang · Oct 7–10',    price: '$14', note: 'Stylish capsule pods inside the UNESCO street-art zone.',         link: bk('Container Hotel Penang','2026-10-07','2026-10-10'),           alt: hw('Container Hotel Penang','2026-10-07','2026-10-10') },
-      { name: 'Cuckoo Guesthouse Langkawi', area: 'Cenang, Langkawi · Oct 10–13',     price: '$15', note: 'Minutes from the beach & duty-free shops.',                       link: bk('Cuckoo Guesthouse Langkawi Cenang','2026-10-10','2026-10-13'), alt: hw('Langkawi Cenang','2026-10-10','2026-10-13') },
-      { name: 'Melaka — if you overnight',  area: 'Jonker St, Melaka · optional',      price: '$12', note: 'Only if you overnight on the Melaka day trip instead of returning to KL.', link: bk('Jonker Street Melaka hostel','2026-10-06','2026-10-07'), alt: hw('Melaka','2026-10-06','2026-10-07') }
-    ]
-  },
-  {
-    id: 'jp', label: '🇯🇵 Japan · 14 nights · ~$30/night',
-    cityLink: bkc('Namba Osaka','2026-10-17','2026-10-20'),
-    cityLabel: 'Browse ALL cheap Osaka hostels/capsules (Oct 17–20) ↗',
-    picks: [
-      { name: 'J-Hoppers Osaka',      area: 'Near Namba, Osaka · Oct 17–20',     price: '$26', note: 'Arrival base — friendly, cheap, walkable to Dotonbori street food.',                                                                                         link: bk('J-Hoppers Osaka','2026-10-17','2026-10-20'),          alt: hw('J-Hoppers Osaka','2026-10-17','2026-10-20') },
-      { name: 'Piece Hostel Sanjo',   area: 'Central Kyoto · Oct 20–23',         price: '$28', note: 'Top-rated hostel near Nishiki Market & buses to temples.',                                                                                                     link: bk('Piece Hostel Sanjo Kyoto','2026-10-20','2026-10-23'), alt: hw('Piece Hostel Sanjo Kyoto','2026-10-20','2026-10-23') },
-      { name: 'Nine Hours Shinjuku',  area: 'Shinjuku, Tokyo · Oct 24–Nov 27',   price: '$32', note: 'Extended Tokyo base. Book in weekly blocks; capsule chain has consistent quality. Reserve the first week immediately, then extend.',                           link: bk('Nine Hours Shinjuku Tokyo','2026-10-24','2026-11-27'), alt: hw('Tokyo Shinjuku','2026-10-24','2026-11-27') }
-    ]
-  }
-];
-
-const PACK = [
-  { h: '📄 Documents & Money', items: ['Passport (valid 6+ months past Oct 29)', 'Wise card + 1 backup card', '$100 AUD emergency cash', 'Passport photocopy (separate from passport)', 'Return ticket confirmation'] },
-  { h: '👕 Clothing',          items: ['Travel coat (worn — not in bag)', '3 t-shirts', '2 shorts', '1 long pants', '5 underwear', '3 socks', 'Light sweater / hoodie', 'Swimwear', 'Quick-dry travel towel'] },
-  { h: '🧴 Toiletries',        items: ['Toothbrush + toothpaste', 'Deodorant', 'Sunscreen', 'Razor', 'Hand sanitiser', 'Any daily meds'] },
-  { h: '🔌 Electronics',       items: ['Phone + charging cable', 'Power bank (in carry-on, not checked)', 'Universal travel adapter', 'Earbuds'] },
-  { h: '🎒 In Your Bag',       items: ['Packing cubes', 'Reusable water bottle', 'Padlock (hostel lockers)', 'Earplugs + eye mask', 'Pen (arrival cards)', 'Snacks for overnight flights'] }
-];
-
-// ── BUILD UI ──────────────────────────────────────────────────────────────────
-
-function switchTab(tabsId, pansId, id) {
-  document.querySelectorAll('#' + tabsId + ' button').forEach(b => b.classList.toggle('active', b._id === id));
-  document.querySelectorAll('#' + pansId + ' .tabpanel').forEach(p => p.classList.toggle('active', p.dataset.p === id));
-}
-
-function buildTabs(data, tabsId, pansId, renderFn) {
-  const tabs = document.getElementById(tabsId);
-  const pans = document.getElementById(pansId);
-  data.forEach((item, i) => {
-    const btn = document.createElement('button');
-    btn.textContent = item.label;
-    btn._id = item.id;
-    if (i === 0) btn.classList.add('active');
-    btn.addEventListener('click', () => switchTab(tabsId, pansId, item.id));
-    tabs.appendChild(btn);
-
-    const panel = document.createElement('div');
-    panel.className = 'tabpanel' + (i === 0 ? ' active' : '');
-    panel.dataset.p = item.id;
-    panel.innerHTML = renderFn(item);
-    pans.appendChild(panel);
-  });
-}
-
-buildTabs(FLIGHTS, 'flightTabs', 'flightPanels', f => {
-  const tagLbl = { cheap: 'Cheapest', fast: 'Fastest / Direct', alt: 'Alternative' };
-  return (f.conn ? `<div class="info tip" style="margin-bottom:14px;padding:12px 14px">${f.conn}</div>` : '') +
-    f.opts.map(o => `
-      <div class="opt card">
-        <div class="opt-head">
-          <div>
-            <div class="opt-route">${o.route}</div>
-            <span class="tagx ${o.tag}">${tagLbl[o.tag] || 'Option'}</span>
-            <span class="tagx ${o.type === 'Direct' ? 'cheap' : 'alt'}" style="margin-left:6px">${o.type === 'Direct' ? '✈ Direct' : '⚠ ' + o.type}</span>
-          </div>
-          <div style="text-align:right;background:var(--green);color:#fff;border-radius:10px;padding:8px 14px;min-width:72px">
-            <div style="font-size:22px;font-weight:800;font-family:'Space Mono',monospace;line-height:1">${o.price}</div>
-            <div style="font-size:10px;opacity:.85;letter-spacing:.5px;margin-top:2px">AUD · pp</div>
-          </div>
-        </div>
-        <div class="opt-meta"><span>✈️ <b>${o.airline}</b></span><span>🕑 ${o.time}</span><span>⏱️ ${o.dur}</span></div>
-        ${o.bag ? `<div style="font-size:12.5px;color:var(--muted);margin:6px 0 4px">🎒 <b style="color:var(--ink)">Baggage:</b> ${o.bag}</div>` : ''}
-        <div class="opt-note">${o.note}</div>
-        <div class="opt-links"><a href="${o.gf}" target="_blank" rel="noopener">✈ View on Google Flights · ${o.price} AUD ↗</a></div>
-      </div>`).join('');
-});
-
-buildTabs(STAYS, 'stayTabs', 'stayPanels', s =>
-  (s.cityLink ? `<div class="info tip" style="margin-bottom:14px;padding:12px 14px"><a href="${s.cityLink}" target="_blank" rel="noopener"><b>${s.cityLabel}</b></a></div>` : '') +
-  s.picks.map(o => `
-    <div class="opt card">
-      <div class="opt-head">
-        <div><div class="opt-route">${o.name}</div><div style="color:var(--muted);font-size:13px;margin-top:2px">📍 ${o.area}</div></div>
-        <div style="text-align:right"><div class="bigprice">${o.price}</div><div style="font-size:11px;color:var(--muted)">pp / night</div></div>
-      </div>
-      <div class="opt-note">${o.note}</div>
-      <div class="opt-links">
-        <a href="${o.link}" target="_blank" rel="noopener">🛏️ See this room (Booking.com, your dates) ↗</a>
-        <a href="${o.alt}" target="_blank" rel="noopener">Hostelworld ↗</a>
-      </div>
-    </div>`).join('')
-);
-
-(function buildPacking() {
-  const grid = document.getElementById('packGrid');
-  PACK.forEach((cat, ci) => {
-    const card = document.createElement('div');
-    card.className = 'pcard card';
-    card.innerHTML = `<h4>${cat.h}</h4><span class="cnt">${cat.items.length} items</span><ul>` +
-      cat.items.map((it, ii) => `<li data-pack="pack_${ci}_${ii}"><span class="box"></span><span>${it}</span></li>`).join('') + `</ul>`;
-    grid.appendChild(card);
-  });
-})();
-
-// ── PERSISTENCE ───────────────────────────────────────────────────────────────
+// ── HELPERS ───────────────────────────────────────────────────────────────────
 
 const store = {
-  get:  k => { try { return localStorage.getItem(k) === '1'; } catch(e) { return false; } },
-  set:  (k,v) => { try { localStorage.setItem(k, v ? '1' : '0'); } catch(e) {} },
-  getv: k => { try { return localStorage.getItem(k) || ''; } catch(e) { return ''; } },
-  setv: (k,v) => { try { localStorage.setItem(k, v); } catch(e) {} }
+  get: k => { try { return localStorage.getItem(k) === '1'; } catch(e) { return false; } },
+  set: (k,v) => { try { localStorage.setItem(k, v ? '1' : '0'); } catch(e) {} }
 };
 
-// assign stable keys to each checklist item
+const aud = rm => Math.max(1, Math.round(rm / RATE));
+const range = ([a,b]) => a === b ? '$' + aud(a) : '$' + aud(a) + '–' + aud(b);
+const rmRange = ([a,b]) => a === b ? 'RM' + a : 'RM' + a + '–' + b;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// carry over ticks from the old to-do list layout
+const OLD = { todocity: ['petronas','alor','chinatown','ecopark','kgbaru','theanhou','heli','mosque','birdpark','littleindia','chinatown','berjaya'],
+              todonature: ['batu','genting','kanching','fireflies','sunway','melaka','zoo'] };
+try {
+  if (!localStorage.getItem('kl_migrated')) {
+    for (const [list, ids] of Object.entries(OLD))
+      ids.forEach((id, i) => { if (store.get('cl_' + list + '_' + i)) store.set('kl_' + id, true); });
+    localStorage.setItem('kl_migrated', '1');
+  }
+} catch(e) {}
+
+// ── RENDER SPOTS ──────────────────────────────────────────────────────────────
+
+function statGrab(s) {
+  if (s.grab[1] === 0) return `<div class="stat"><div class="k">🚗 Getting there</div><div class="v">${esc(s.ride)}</div><div class="s">No Grab needed</div></div>`;
+  const each = [s.grab[0] / 2, s.grab[1] / 2];
+  return `<div class="stat"><div class="k">🚗 Grab (per car)</div><div class="v"><span class="aud">${range(s.grab)}</span> · ${esc(s.ride)}</div><div class="s">${rmRange(s.grab)} · ~${range(each)} each</div></div>`;
+}
+function statCost(s) {
+  const v = s.cost[1] === 0 ? '<span class="aud">Free</span>' : `<span class="aud">${range(s.cost)}</span> pp`;
+  const rm = s.cost[1] === 0 ? '' : rmRange(s.cost) + ' · ';
+  return `<div class="stat"><div class="k">🎟️ Cost</div><div class="v">${v}</div><div class="s">${rm}${esc(s.costNote)}</div></div>`;
+}
+
+function renderSpot(s, n) {
+  const map = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.map);
+  return `
+  <article class="spot card" data-id="${s.id}" data-g="${s.g}">
+    <div class="ph">
+      <div class="fb">${s.emoji}</div>
+      <img src="${s.img}" alt="${esc(s.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+      <span class="num">#${n}</span>
+      <span class="kind">${s.emoji} ${esc(s.kind)}</span>
+    </div>
+    <div class="body">
+      <h3>${esc(s.name)}</h3>
+      <div class="tagline">${esc(s.tagline)}</div>
+      <div class="stats">
+        ${statGrab(s)}
+        <div class="stat"><div class="k">⏱️ Time there</div><div class="v">${esc(s.time)}</div></div>
+        ${statCost(s)}
+        <div class="stat"><div class="k">📍 Map</div><div class="v"><a href="${map}" target="_blank" rel="noopener">Open in Maps ↗</a></div><div class="s">Copy into Grab as the drop-off</div></div>
+      </div>
+      <p class="about">${esc(s.about)}</p>
+      <div class="besttime">🕐 <b>Best time:</b> ${esc(s.best)}</div>
+      <details class="more"><summary>More details &amp; tips</summary><ul>${s.tips.map(t => `<li>${esc(t)}</li>`).join('')}</ul></details>
+      <div class="foot">
+        <button class="tick" type="button"><span class="box"></span><span class="lbl">Mark as done</span></button>
+      </div>
+    </div>
+  </article>`;
+}
+
+const cityEl = document.getElementById('spotsCity');
+const tripEl = document.getElementById('spotsTrip');
+let ci = 0, ti = 0;
+SPOTS.forEach(s => {
+  if (s.g === 'city') cityEl.insertAdjacentHTML('beforeend', renderSpot(s, ++ci));
+  else tripEl.insertAdjacentHTML('beforeend', renderSpot(s, ++ti));
+});
+
+function setDone(card, on) {
+  card.classList.toggle('done', on);
+  card.querySelector('.tick .lbl').textContent = on ? 'Done!' : 'Mark as done';
+}
+document.querySelectorAll('.spot').forEach(card => setDone(card, store.get('kl_' + card.dataset.id)));
+
+document.getElementById('todo').addEventListener('click', e => {
+  const btn = e.target.closest('.tick');
+  if (!btn) return;
+  const card = btn.closest('.spot');
+  const on = !card.classList.contains('done');
+  setDone(card, on);
+  store.set('kl_' + card.dataset.id, on);
+  updateProgress();
+  applyFilter();
+});
+
+// ── FILTERS ───────────────────────────────────────────────────────────────────
+
+let filter = 'all';
+try { filter = localStorage.getItem('kl_filter') || 'all'; } catch(e) {}
+
+function applyFilter() {
+  const cards = [...document.querySelectorAll('.spot')];
+  cards.forEach(c => {
+    const done = c.classList.contains('done');
+    const show = filter === 'all' || filter === c.dataset.g || (filter === 'done' && done) || (filter === 'todo' && !done);
+    c.classList.toggle('hidden', !show);
+  });
+  document.querySelectorAll('.group-h').forEach(h => {
+    const any = cards.some(c => c.dataset.g === h.dataset.g && !c.classList.contains('hidden'));
+    h.classList.toggle('hidden', !any);
+  });
+  document.querySelectorAll('#filters button').forEach(b => b.classList.toggle('on', b.dataset.f === filter));
+  const cnt = { all: cards.length, city: 0, trip: 0, todo: 0, done: 0 };
+  cards.forEach(c => { cnt[c.dataset.g]++; cnt[c.classList.contains('done') ? 'done' : 'todo']++; });
+  document.querySelectorAll('#filters [data-c]').forEach(n => n.textContent = cnt[n.dataset.c]);
+}
+document.getElementById('filters').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  filter = b.dataset.f;
+  try { localStorage.setItem('kl_filter', filter); } catch(e) {}
+  applyFilter();
+});
+
+// ── PROGRESS ──────────────────────────────────────────────────────────────────
+
+function updateProgress() {
+  const all = document.querySelectorAll('.spot').length;
+  const done = document.querySelectorAll('.spot.done').length;
+  document.getElementById('progNum').textContent = done + '/' + all;
+  document.getElementById('progBar').style.width = (all ? done / all * 100 : 0) + '%';
+  document.getElementById('spotCount').textContent = all;
+}
+document.getElementById('rateBadge').textContent = 'RM' + RATE;
+
+// ── MASTER CHECKLIST ──────────────────────────────────────────────────────────
+
+function updateListCounts() {
+  document.querySelectorAll('ul.checklist[data-list]').forEach(ul => {
+    const h = ul.previousElementSibling;
+    let c = h.querySelector('.clcount');
+    if (!c) { c = document.createElement('span'); c.className = 'clcount'; h.appendChild(c); }
+    c.textContent = ul.querySelectorAll('li.done').length + '/' + ul.children.length;
+  });
+}
 document.querySelectorAll('ul.checklist[data-list]').forEach(ul => {
   const name = ul.dataset.list;
   ul.querySelectorAll('li').forEach((li, i) => {
-    const key = 'cl_' + name + '_' + i;
-    li.dataset.key = key;
-    if (store.get(key)) li.classList.add('done');
+    li.dataset.key = 'cl_' + name + '_' + i;
+    if (store.get(li.dataset.key)) li.classList.add('done');
   });
-  // event delegation — one handler per ul, catches clicks on any descendant
   ul.addEventListener('click', e => {
     const li = e.target.closest('li');
     if (!li) return;
     li.classList.toggle('done');
     store.set(li.dataset.key, li.classList.contains('done'));
-    updateProgress();
+    updateListCounts();
   });
 });
 
-// wire up packing ticks via delegation on each pcard ul
-document.querySelectorAll('.pcard ul').forEach(ul => {
-  ul.querySelectorAll('[data-pack]').forEach(li => {
-    if (store.get(li.dataset.pack)) li.classList.add('done');
-  });
-  ul.addEventListener('click', e => {
-    const li = e.target.closest('[data-pack]');
-    if (!li) return;
-    li.classList.toggle('done');
-    store.set(li.dataset.pack, li.classList.contains('done'));
-    updateProgress();
-  });
-});
-
-// ── PROGRESS BAR ─────────────────────────────────────────────────────────────
-
-function updateProgress() {
-  // #todo lists are sightseeing, not trip prep — they don't count toward "trip ready"
-  const all  = document.querySelectorAll('section:not(#todo) ul.checklist li, [data-pack]');
-  const done = document.querySelectorAll('section:not(#todo) ul.checklist li.done, [data-pack].done');
-  const pct  = all.length ? Math.round(done.length / all.length * 100) : 0;
-  document.getElementById('progBar').style.width   = pct + '%';
-  document.getElementById('progNum').textContent   = pct + '%';
-  document.getElementById('progCount').textContent = done.length + ' / ' + all.length + ' done';
-}
 updateProgress();
+applyFilter();
+updateListCounts();
 
-// ── NAV: burger + scroll spy + back-to-top ────────────────────────────────────
+// ── NAV ───────────────────────────────────────────────────────────────────────
 
-const burger   = document.getElementById('burger');
-const navlinks = document.getElementById('navlinks');
-burger.addEventListener('click', () => navlinks.classList.toggle('open'));
-navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
-
-const sections = [...document.querySelectorAll('section[id]')];
-const navAs    = [...navlinks.querySelectorAll('a')];
-
-function scrollSpy() {
-  const y = window.scrollY + 90;
-  let cur = sections[0].id;
-  for (const s of sections) { if (s.offsetTop <= y) cur = s.id; }
-  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
-}
-
+const navAs = [...document.querySelectorAll('#navlinks a')];
 const toTop = document.getElementById('toTop');
-window.addEventListener('scroll', () => {
-  scrollSpy();
+function onScroll() {
+  const y = window.scrollY + 90;
+  let cur = 'todo';
+  if (document.getElementById('checklist').offsetTop <= y) cur = 'checklist';
+  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   toTop.classList.toggle('show', window.scrollY > 500);
-}, { passive: true });
-scrollSpy();
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
 toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
 </body>
