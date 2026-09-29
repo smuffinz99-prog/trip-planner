@@ -1699,6 +1699,12 @@ updateProgress();
 applyFilter();
 updateListCounts();
 
+// cards are rendered by JS, so re-apply a #hash jump once they exist
+if (location.hash.length > 1) {
+  const target = document.getElementById(location.hash.slice(1));
+  if (target) target.scrollIntoView();
+}
+
 // ── NAV ───────────────────────────────────────────────────────────────────────
 
 const navAs = [...document.querySelectorAll('#navlinks a')];
