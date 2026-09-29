@@ -77,7 +77,6 @@ h2.sec-title { font-size: 25px; font-weight: 700; letter-spacing: -.4px; margin-
 .spot .ph { position: relative; aspect-ratio: 16/9; background: linear-gradient(135deg,#3a332b,#1f1c18); overflow: hidden; }
 .spot .ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter .2s; }
 .spot .ph .fb { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 54px; }
-.spot .ph .num { position: absolute; top: 10px; left: 10px; background: rgba(20,18,15,.78); color: #fff; font-family: 'Space Mono', monospace; font-weight: 700; font-size: 12px; padding: 4px 9px; border-radius: 20px; backdrop-filter: blur(4px); }
 .spot .ph .kind { position: absolute; top: 10px; right: 10px; background: rgba(255,253,248,.92); color: var(--ink); font-size: 11.5px; font-weight: 700; padding: 4px 9px; border-radius: 20px; }
 .spot .body { padding: 16px 16px 14px; display: flex; flex-direction: column; flex: 1; }
 .spot h3 { font-size: 18.5px; letter-spacing: -.3px; line-height: 1.25; }
@@ -165,7 +164,6 @@ footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 36
 .cmeta span { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25); padding: 5px 11px; border-radius: 30px; font-size: 12.5px; font-weight: 600; }
 .cmeta b { font-family: 'Space Mono', monospace; }
 .carrive { font-size: 13px; background: rgba(0,0,0,.18); border-radius: 9px; padding: 9px 12px; max-width: 760px; }
-.city .spot .ph .num { background: var(--c); }
 .city .spot:not(.done) { border-top: 3px solid var(--c); }
 .city .besttime { border-left-color: var(--c); background: color-mix(in srgb, var(--c) 9%, transparent); }
 .city details.more summary { color: var(--c); }
@@ -221,7 +219,7 @@ footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 36
 <section id="kl">
   <div class="sec-tag">🇲🇾 Malaysia</div>
   <h2 class="sec-title">Things To Do in KL</h2>
-  <p class="sec-sub">Based at Mingle Hostel, Chinatown. Roughly best-first. Tap <b>More details &amp; tips</b> on any card for what to wear, scams to avoid and the cheaper way to get there.</p>
+  <p class="sec-sub">Based at Mingle Hostel, Chinatown. Ranked best to worst. Tap <b>More details &amp; tips</b> on any card for what to wear, scams to avoid and the cheaper way to get there.</p>
 
   <div class="note">🚗 <b>How to read the Grab price:</b> it's what the whole car costs one way from your hostel in Chinatown, off-peak. You're splitting it, so it's half that each. Expect ~1.5–2× at rush hour (5–8pm) or when it rains. Converted at <b>$1 AUD ≈ RM<span class="rateRM"></span></b>. Estimates only, so check the app.</div>
 
@@ -236,7 +234,7 @@ footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 36
 <section id="japan">
   <div class="sec-tag">🇯🇵 Japan</div>
   <h2 class="sec-title">Japan</h2>
-  <p class="sec-sub">Four stops, in order. Tap a city to jump to it.</p>
+  <p class="sec-sub">Four stops, in order. Tap a city to jump to it. Each city is ranked best to worst.</p>
 
   <div class="jroute" id="jpRoute"></div>
 
@@ -1529,14 +1527,13 @@ function statCost(s, c) {
   return `<div class="stat"><div class="k">🎟️ Cost</div><div class="v">${v}</div><div class="s">${loc}${esc(s.costNote)}</div></div>`;
 }
 
-function renderSpot(s, n, c, key, where) {
+function renderSpot(s, c, key, where) {
   const map = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.map || (s.name + ' ' + where));
   return `
   <article class="spot card" data-key="${key}" data-g="${s.g || s.c}">
     <div class="ph">
       <div class="fb">${s.emoji}</div>
       <img src="${s.img}" alt="${esc(s.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-      <span class="num">#${n}</span>
       <span class="kind">${s.emoji} ${esc(s.kind)}</span>
     </div>
     <div class="body">
@@ -1558,11 +1555,23 @@ function renderSpot(s, n, c, key, where) {
   </article>`;
 }
 
+// Ranking: best → worst within each list (KL city, KL day trips, each Japan city)
+const RANK = [
+  'petronas','alor','heli','chinatown','skybar','kgbaru','theanhou','connaught','ecopark','mosque','littleindia','birdpark','cooking','chowkit','aquaria','berjaya',
+  'batu','fireflies','genting','melaka','putrajaya','kanching','broga','sunway','zoo',
+  'dotonbori','usj','nara','shinsekai','osakacastle','kuromon','umeda','himeji','shinsaibashi','kaiyukan',
+  'inari','arashiyama','kiyomizu','gion','kinkaku','nishiki','philosophers','pontocho','kurama','uji','nijo',
+  'chureito','kawaguchiko','onsen','ropeway','oshino','fujiq','icecave',
+  'shibuya','sensoji','teamlab','goldengai','meiji','akihabara','tsukiji','tmg','shimokita','nikko','kamakura','ghibli','yanaka','odaiba'
+];
+const byRank = (a, b) => RANK.indexOf(a.id) - RANK.indexOf(b.id);
+SPOTS.sort(byRank);
+JP.sort(byRank);
+
 // KL
-let ci = 0, ti = 0;
 SPOTS.forEach(s => {
   const el = document.getElementById(s.g === 'city' ? 'spotsCity' : 'spotsTrip');
-  el.insertAdjacentHTML('beforeend', renderSpot(s, s.g === 'city' ? ++ci : ++ti, 'RM', 'kl_' + s.id, 'Kuala Lumpur'));
+  el.insertAdjacentHTML('beforeend', renderSpot(s, 'RM', 'kl_' + s.id, 'Kuala Lumpur'));
 });
 
 // Japan: route strip + one block per city
@@ -1590,7 +1599,7 @@ JP_CITIES.forEach((city, i) => {
         </div>
         <div class="carrive">🚆 <b>Getting here:</b> ${esc(city.arrive)}</div>
       </div>
-      <div class="spots">${spots.map((s, n) => renderSpot(s, n + 1, 'JPY', 'jp_' + s.id, city.name + ' Japan')).join('')}</div>
+      <div class="spots">${spots.map(s => renderSpot(s, 'JPY', 'jp_' + s.id, city.name + ' Japan')).join('')}</div>
     </div>`);
 });
 
