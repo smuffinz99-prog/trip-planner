@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KL Hit-List</title>
+<title>KL + Japan Hit-List</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -130,7 +130,50 @@ footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 36
 #toTop { position: fixed; right: 16px; bottom: 16px; width: 42px; height: 42px; border-radius: 50%; border: 0; background: var(--orange); color: #fff; font-size: 18px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.2); opacity: 0; pointer-events: none; transition: opacity .2s; }
 #toTop.show { opacity: 1; pointer-events: auto; }
 
+/* STICKY FILTER BAR */
+.fbar { position: sticky; top: 58px; z-index: 90; background: rgba(247,241,230,.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.fbar .filters { max-width: 1080px; margin: 0 auto; padding: 10px 16px; }
+.fbar .filters button { padding: 6px 13px; }
+
+/* REGION CHIPS */
+.regions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.rchip { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #e9e1d4; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); padding: 5px 11px; border-radius: 30px; }
+.rchip:hover { text-decoration: none; border-color: var(--c); }
+.rchip i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.rchip b { font-family: 'Space Mono', monospace; color: #fff; font-size: 11.5px; }
+
+/* JAPAN ROUTE STRIP */
+.jroute { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; counter-reset: s; }
+.jstop { position: relative; display: flex; flex-direction: column; gap: 2px; padding: 12px 14px 12px 50px; background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: 11px; color: var(--ink); box-shadow: var(--shadow); }
+.jstop:hover { text-decoration: none; border-color: var(--c); }
+.jstop .jn { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: var(--c); color: #fff; font-family: 'Space Mono', monospace; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.jstop .jname { font-weight: 700; font-size: 15.5px; }
+.jstop .jjp { color: var(--c); font-size: 13px; margin-left: 2px; }
+.jstop .jdays { font-size: 12px; color: var(--muted); }
+.jstop .jdays b { font-family: 'Space Mono', monospace; color: var(--ink); }
+
+/* JAPAN CITY BLOCKS */
+.city { margin-top: 40px; scroll-margin-top: 120px; }
+.city-banner { position: relative; overflow: hidden; background: var(--c); color: #fff; border-radius: 16px; padding: 22px 22px 18px; margin-bottom: 16px; box-shadow: 0 8px 26px rgba(0,0,0,.12); }
+.city-banner::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.25)); pointer-events: none; }
+.city-banner > * { position: relative; }
+.city-banner .wm { position: absolute; right: -6px; top: -14px; font-size: 120px; font-weight: 700; line-height: 1; opacity: .16; letter-spacing: -6px; pointer-events: none; }
+.city-banner .cstep { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: .85; font-weight: 700; }
+.city-banner h3 { font-size: clamp(30px, 6vw, 42px); letter-spacing: -1px; line-height: 1.05; margin: 2px 0 6px; }
+.city-banner .cvibe { font-size: 14.5px; opacity: .95; max-width: 620px; }
+.cmeta { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 10px; }
+.cmeta span { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25); padding: 5px 11px; border-radius: 30px; font-size: 12.5px; font-weight: 600; }
+.cmeta b { font-family: 'Space Mono', monospace; }
+.carrive { font-size: 13px; background: rgba(0,0,0,.18); border-radius: 9px; padding: 9px 12px; max-width: 760px; }
+.city .spot .ph .num { background: var(--c); }
+.city .spot:not(.done) { border-top: 3px solid var(--c); }
+.city .besttime { border-left-color: var(--c); background: color-mix(in srgb, var(--c) 9%, transparent); }
+.city details.more summary { color: var(--c); }
+.spots.empty::after { content: "Nothing here with this filter."; color: var(--muted); font-size: 13.5px; }
+#kl, #japan { scroll-margin-top: 110px; }
+
 @media (max-width: 760px) {
+  .jroute { grid-template-columns: repeat(2, 1fr); }
   .spots { grid-template-columns: 1fr; }
   .checklist.cols { column-count: 1; }
 }
@@ -144,9 +187,10 @@ footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 36
 
 <header class="nav">
   <div class="nav-inner">
-    <div class="brand"><span class="dot"></span><div>Two Carry-Ons<small class="mono">KUALA LUMPUR · 2 PAX</small></div></div>
+    <div class="brand"><span class="dot"></span><div>Two Carry-Ons<small class="mono">KL + JAPAN · 2 PAX</small></div></div>
     <nav class="nav-links" id="navlinks">
-      <a href="#todo">KL Hit-List</a>
+      <a href="#kl">🇲🇾 KL</a>
+      <a href="#japan">🇯🇵 Japan</a>
       <a href="#checklist">Checklist</a>
     </nav>
   </div>
@@ -154,41 +198,51 @@ footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 36
 
 <section class="hero" id="top">
   <div class="hero-in">
-    <div class="tagstrip">Based at Mingle Hostel · Chinatown</div>
-    <h1>Kuala Lumpur <span>hit-list</span></h1>
-    <p class="lede">Everything worth doing in and around KL: what it is, how long the Grab takes, what the Grab costs, how long you'll spend there and what it costs to get in. All prices in AUD. Tick things off as you go.</p>
-    <div class="hero-badges">
-      <div class="badge">📍 <b id="spotCount">0</b> spots</div>
-      <div class="badge">💱 <b>$1</b> AUD ≈ <b id="rateBadge">RM2.8</b></div>
-      <div class="badge">🚗 Grab prices are per car, from Chinatown</div>
-    </div>
+    <div class="tagstrip">Kuala Lumpur → Osaka → Kyoto → Mt Fuji → Tokyo</div>
+    <h1>The <span>hit-list</span></h1>
+    <p class="lede">Everything worth doing, city by city: what it is, how to get there and what that costs, how long you'll spend there and the entry price. All prices in AUD. Tick things off as you go.</p>
     <div class="progwrap">
       <div><div class="prognum" id="progNum">0/0</div><div class="proglabel">spots done</div></div>
       <div class="progbar"><i id="progBar"></i></div>
     </div>
+    <div class="regions" id="regionChips"></div>
   </div>
 </section>
 
-<section id="todo">
-  <div class="sec-tag">No schedule, just a hit-list</div>
-  <h2 class="sec-title">Things To Do in KL</h2>
-  <p class="sec-sub">Roughly best-first. Tap <b>More details</b> on any card for tips, what to wear and the cheaper way to get there.</p>
-
-  <div class="note">🚗 <b>How to read the Grab price:</b> it's what the whole car costs one way from your hostel in Chinatown, off-peak. You're splitting it, so it's half that each. Expect ~1.5–2× at rush hour (5–8pm) or when it rains. Prices converted at $1 AUD ≈ RM2.8. They're estimates, so check the app.</div>
-
+<div class="fbar">
   <div class="filters" id="filters">
     <button data-f="all" class="on">All<span class="n" data-c="all"></span></button>
-    <button data-f="city">🏙️ In the city<span class="n" data-c="city"></span></button>
-    <button data-f="trip">🌿 Day trips<span class="n" data-c="trip"></span></button>
     <button data-f="todo">⬜ Not done<span class="n" data-c="todo"></span></button>
     <button data-f="done">✅ Done<span class="n" data-c="done"></span></button>
   </div>
+</div>
+
+<!-- KUALA LUMPUR -->
+<section id="kl">
+  <div class="sec-tag">🇲🇾 Malaysia</div>
+  <h2 class="sec-title">Things To Do in KL</h2>
+  <p class="sec-sub">Based at Mingle Hostel, Chinatown. Roughly best-first. Tap <b>More details &amp; tips</b> on any card for what to wear, scams to avoid and the cheaper way to get there.</p>
+
+  <div class="note">🚗 <b>How to read the Grab price:</b> it's what the whole car costs one way from your hostel in Chinatown, off-peak. You're splitting it, so it's half that each. Expect ~1.5–2× at rush hour (5–8pm) or when it rains. Converted at <b>$1 AUD ≈ RM<span class="rateRM"></span></b>. Estimates only, so check the app.</div>
 
   <h3 class="group-h" data-g="city">🏙️ In the City <span class="clcount">short Grab, go whenever</span></h3>
   <div class="spots" id="spotsCity"></div>
 
   <h3 class="group-h" data-g="trip">🌿 Further Out <span class="clcount">nature &amp; day trips</span></h3>
   <div class="spots" id="spotsTrip"></div>
+</section>
+
+<!-- JAPAN -->
+<section id="japan">
+  <div class="sec-tag">🇯🇵 Japan</div>
+  <h2 class="sec-title">Japan</h2>
+  <p class="sec-sub">Four stops, in order. Tap a city to jump to it.</p>
+
+  <div class="jroute" id="jpRoute"></div>
+
+  <div class="note">🚆 <b>How to read Japan prices:</b> "Getting there" is the train/bus fare <b>per person</b>, one way, from the base named on each city. Tap an IC card (ICOCA/Suica on your phone) and you never need a ticket. Converted at <b>$1 AUD ≈ ¥<span class="rateJPY"></span></b>. Prices are estimates and some attractions change prices by date, so check before you go.</div>
+
+  <div id="jpCities"></div>
 </section>
 
 <!-- MASTER CHECKLIST -->
@@ -292,7 +346,7 @@ footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 36
 // cost: [min,max] RM per person to get in (0 = free).
 
 const RATE = 2.8; // RM per 1 AUD
-const WM = f => 'https://thumb.wikimedia.org/wikipedia/commons/thumb/' + f;
+const WM = f => f.startsWith('http') ? f : 'https://thumb.wikimedia.org/wikipedia/commons/thumb/' + f;
 
 const SPOTS = [
   // ── CITY ──
@@ -502,6 +556,75 @@ const SPOTS = [
     map: 'Berjaya Times Square Theme Park'
   },
 
+  {
+    id: 'skybar', g: 'city', emoji: '🍸', kind: 'Drinks',
+    name: 'SkyBar at Traders Hotel',
+    tagline: 'A rooftop pool bar looking straight across at the Petronas Towers.',
+    img: WM('8/85/Petronas_Panorama_II.jpg/960px-Petronas_Panorama_II.jpg'),
+    grab: [10, 15], ride: '12–18 min', time: '1.5–2 hrs',
+    cost: [45, 75], costNote: 'Cocktail/beer · no entry fee',
+    best: 'Arrive when it opens in the late afternoon to grab a window seat before sunset. Stay for the towers lighting up.',
+    about: "On the 33rd floor of Traders Hotel, directly across KLCC Park from the towers. It's the closest head-on view of Petronas in the city: a floor-to-ceiling glass wall around an indoor pool, with the twin towers filling the frame. The Heli Lounge Bar is wilder and open-air; SkyBar is the better photo of the towers themselves.",
+    tips: [
+      'The window booths go first. Get there early or you’ll be standing at the back.',
+      'Smart casual: no singlets, boardies or thongs.',
+      'Some window tables have a minimum spend. Ask before sitting, or stick to the bar.',
+      'Do Petronas + KLCC Park first, then walk across the park to Traders (~10 min) for sunset.'
+    ],
+    map: 'SkyBar Traders Hotel Kuala Lumpur'
+  },
+  {
+    id: 'connaught', g: 'city', emoji: '🌙', kind: 'Wed only',
+    name: 'Taman Connaught Night Market',
+    tagline: 'One of the longest night markets in Malaysia, about 2km of stalls. Wednesdays only.',
+    img: WM('3/3e/Pasar_Malam_Rawasari_11.JPG/960px-Pasar_Malam_Rawasari_11.JPG'),
+    grab: [20, 28], ride: '20–30 min', time: '2–3 hrs',
+    cost: [20, 40], costNote: 'Street food + drinks',
+    best: 'Wednesday, 6–11pm. It doesn’t exist any other night, so plan a Wednesday in KL around it.',
+    about: "A proper local pasar malam (night market) in the suburb of Cheras. Every Wednesday a whole road closes and fills with hundreds of stalls. It's mostly food: ramly burgers, apam balik (peanut pancakes), grilled squid, murtabak, coconut shakes and giant spiral potatoes. There are also cheap clothes and phone accessories, and it's barely touristy.",
+    tips: [
+      'Cheaper than Grab: MRT Kajang line from Pasar Seni straight to Taman Connaught station (~25 min, ~RM3). The market starts right outside.',
+      'Bring cash in small notes. Most stalls don’t take cards.',
+      'Walk the whole length before buying. The best stalls are spread out.',
+      'Must-tries: ramly burger (Malaysia’s cult street burger), apam balik, air balang (jug drinks), and anything on a stick.'
+    ],
+    map: 'Taman Connaught Night Market'
+  },
+  {
+    id: 'chowkit', g: 'city', emoji: '🐟', kind: 'Local',
+    name: 'Chow Kit Market',
+    tagline: "KL's biggest wet market: raw, loud and 100% local.",
+    img: WM('f/fb/Chow_Kit_-_Bananes.JPG/960px-Chow_Kit_-_Bananes.JPG'),
+    grab: [9, 13], ride: '10–15 min', time: '1–1.5 hrs',
+    cost: [10, 20], costNote: 'Snacks + breakfast',
+    best: '7–10am, when the fish, meat and produce stalls are in full swing.',
+    about: "A maze of covered lanes where KL does its grocery shopping: whole fish on ice, chicken being butchered, piles of tropical fruit you've never seen (mangosteen, rambutan, salak/snake fruit, durian), chilli pastes, spices and cheap Malay breakfast stalls. It's not pretty and it's not for tourists, which is exactly the point.",
+    tips: [
+      'Wear closed shoes. The floors are wet and it gets messy.',
+      'Buy a bag of mixed fruit to try. Ask the seller to cut it up for you.',
+      'Walk 10 min to Kampung Baru afterwards for a nasi lemak breakfast.',
+      'Keep your phone and wallet in front pockets in the crowded lanes.'
+    ],
+    map: 'Chow Kit Market Kuala Lumpur'
+  },
+  {
+    id: 'cooking', g: 'city', emoji: '👨‍🍳', kind: 'Experience',
+    name: 'Malaysian Cooking Class',
+    tagline: 'Learn to cook nasi lemak, rendang and roti from a local, then eat it all.',
+    img: WM('5/55/Nasi_Lemak_dengan_Chili_Nasi_Lemak_dan_Sotong_Pedas%2C_di_Penang_Summer_Restaurant.jpg/960px-Nasi_Lemak_dengan_Chili_Nasi_Lemak_dan_Sotong_Pedas%2C_di_Penang_Summer_Restaurant.jpg'),
+    grab: [20, 30], ride: '20–30 min (or hotel pickup)', time: '4–5 hrs',
+    cost: [250, 350], costNote: 'Class incl. market tour + meal',
+    best: 'Morning classes usually start with a trip to a wet market to buy ingredients.',
+    about: "A half-day class, usually in a home kitchen. Most start at a local wet market where the host explains the herbs and spices (pandan, lemongrass, galangal, belacan), then you cook 3–4 classic dishes like nasi lemak with sambal, beef rendang, chicken curry, roti jala and a kuih dessert. Then you eat everything you made. A great way to understand the food you've been eating all trip.",
+    tips: [
+      'Well-reviewed options include LaZat Malaysian Home Cooking and classes on Klook/Airbnb Experiences. Check recent reviews and book a day or two ahead.',
+      'Many include hotel pickup, which saves the Grab.',
+      'Go on an empty stomach. You eat a LOT.',
+      'You usually get the recipes emailed after, so you can make it back home.'
+    ],
+    map: 'LaZat Malaysian Home Cooking Class'
+  },
+
   // ── DAY TRIPS ──
   {
     id: 'batu', g: 'trip', emoji: '🪜', kind: 'Must-do',
@@ -622,6 +745,738 @@ const SPOTS = [
       'Get your Grab back booked early. There aren’t many drivers waiting out there.'
     ],
     map: 'Zoo Negara'
+  },
+  {
+    id: 'putrajaya', g: 'trip', emoji: '🕌', kind: 'Half day',
+    name: 'Putrajaya: the Pink Mosque',
+    tagline: "Malaysia's purpose-built capital, with a rose-pink mosque floating on a lake.",
+    img: WM('1/16/Masjid_Putra%2C_Putrajaya%2C_Malaysia.jpg/960px-Masjid_Putra%2C_Putrajaya%2C_Malaysia.jpg'),
+    grab: [45, 60], ride: '35–45 min', time: '4–5 hrs',
+    cost: [0, 0], costNote: 'Mosque free · lake cruise ~RM50 optional',
+    best: 'Late afternoon into dusk. The pink granite glows at sunset, then the bridges light up.',
+    about: "Putrajaya was built from scratch in the 1990s as the government capital, so it's all grand boulevards, palaces and futuristic bridges around a man-made lake. The star is Putra Mosque, built from rose-tinted granite with a 116m minaret. Next door is the green-domed Prime Minister's office (Perdana Putra), and across the lake is the Iron Mosque (Masjid Tuanku Mizan), made of steel mesh.",
+    tips: [
+      'Cheaper than Grab: KLIA Transit train from KL Sentral to Putrajaya (~20 min, ~RM14 / $5), then a short Grab to the mosque.',
+      'Mosque visiting hours are outside prayer times, and it’s closed to tourists Friday midday. Pink robes are lent free at the entrance.',
+      'Everything is spread out and it’s hot. Use short Grabs between sights rather than walking.',
+      'The Seri Wawasan bridge is the best spot for night photos.'
+    ],
+    map: 'Putra Mosque Putrajaya'
+  },
+  {
+    id: 'broga', g: 'trip', emoji: '🌄', kind: 'Sunrise hike',
+    name: 'Broga Hill Sunrise Hike',
+    tagline: 'A grassy ridge hike above a sea of morning clouds.',
+    img: WM('9/9f/Bukit_Broga_2.JPG/960px-Bukit_Broga_2.JPG'),
+    grab: [55, 80], ride: '50–60 min', time: '3–4 hrs (hike ~45 min up)',
+    cost: [5, 10], costNote: 'Small trail fee, cash',
+    best: 'Leave KL by 5am and reach the first peak before sunrise (~7am). By 9am it’s scorching.',
+    about: "A series of three bare, grassy peaks (400m) south-east of KL. You hike up in the dark with head torches, and at sunrise the valleys below fill with mist and cloud, with palm-oil plantations and hills fading into the distance. It's one of the most popular sunrise hikes in Malaysia and very doable if you're reasonably fit.",
+    tips: [
+      'Bring a head torch or use your phone light. The first 30 min is in the dark.',
+      'GETTING BACK: very few Grabs out here. Pay your driver to wait (~RM30–40/hr) or book the return as soon as you’re down.',
+      'Oct–Nov is rainy season, so it’s muddy and slippery. Wear shoes with grip, not thongs.',
+      'Take water, and snacks for the top. There’s a stall at the base selling coconuts afterwards.'
+    ],
+    map: 'Broga Hill'
+  }
+];
+
+// ── JAPAN ─────────────────────────────────────────────────────────────────────
+// go: [min,max] ¥ per person, one way, from the base named on each city.
+// cost: [min,max] ¥ per person to get in (0 = free).
+
+const JPY = 97; // ¥ per 1 AUD
+
+const JP_CITIES = [
+  {
+    id: 'osaka', name: 'Osaka', jp: '大阪', days: '3–4 days', base: 'Namba', color: '#e0412b',
+    vibe: "Japan's kitchen: neon, street food and loud, friendly locals.",
+    arrive: 'From KIX airport: Nankai line to Namba, ~40–45 min, ~¥970–1,450.'
+  },
+  {
+    id: 'kyoto', name: 'Kyoto', jp: '京都', days: '3–4 days', base: 'central Kyoto (Sanjo)', color: '#7b4bb5',
+    vibe: '1,600 temples, geisha lanes and bamboo forests. Old Japan.',
+    arrive: 'From Osaka: Hankyu line Osaka-Umeda → Kyoto-Kawaramachi, ~45 min, ~¥410. Keihan line from Yodoyabashi is similar.'
+  },
+  {
+    id: 'fuji', name: 'Mt Fuji', jp: '富士山', days: '1–2 days', base: 'Kawaguchiko Station', color: '#2a7bbf',
+    vibe: 'Lakes, pagodas and the mountain itself. Climbing season is over by October, so this is all about the views.',
+    arrive: 'From Kyoto: Shinkansen to Mishima (~2 hrs), then the highway bus to Kawaguchiko (~2 hrs). Book the bus ahead. Afterwards, highway bus Kawaguchiko → Shinjuku (~2 hrs, ~¥2,200–2,600), which sells out, so book on highway-buses.jp.'
+  },
+  {
+    id: 'tokyo', name: 'Tokyo', jp: '東京', days: '7 days', base: 'Shinjuku', color: '#d6336c',
+    vibe: 'The biggest city on earth: every neighbourhood feels like a different city.',
+    arrive: 'From Fuji: highway bus straight into Shinjuku Expressway Bus Terminal (Busta Shinjuku).'
+  }
+];
+
+const JP = [
+  // ── OSAKA ──
+  {
+    id: 'dotonbori', c: 'osaka', emoji: '🦀', kind: 'Must-do',
+    name: 'Dotonbori at Night',
+    tagline: 'The neon canal street with the Glico Running Man and giant moving crabs.',
+    img: WM('f/f4/Osaka_Dotonbori_Ebisu_Bridge.jpg/960px-Osaka_Dotonbori_Ebisu_Bridge.jpg'),
+    go: [0, 0], ride: '5–10 min walk from Namba', time: '2–3 hrs',
+    cost: [2000, 3500], costNote: 'Street food crawl',
+    best: '7–10pm, when every sign is lit and the food stalls are going hard.',
+    about: "Osaka's most famous street runs along a canal covered in giant 3D signs: a mechanical crab, a pufferfish lantern, a dragon, and the Glico Running Man (the classic photo from Ebisu Bridge). Osaka's motto is kuidaore, \"eat until you drop\", and this is where it happens: takoyaki (octopus balls), okonomiyaki (savoury pancake), kushikatsu and gyoza, all from stalls and tiny counters.",
+    tips: [
+      'Takoyaki: Wanaka or Kukuru. Watch them flip the balls. Let them cool or you WILL burn your mouth.',
+      'Walk 2 min to Hozenji Yokocho, a lantern-lit stone alley with a moss-covered Buddha statue. Splash water on it for luck.',
+      'Tombori River Cruise (~¥1,500, 20 min) floats you under the signs.',
+      'Ichiran Ramen (solo booth ramen) is here, but it has a long queue. Go after 10pm.'
+    ]
+  },
+  {
+    id: 'kuromon', c: 'osaka', emoji: '🍣', kind: 'Food',
+    name: 'Kuromon Market',
+    tagline: '"Osaka\'s kitchen": 170 stalls of wagyu skewers, sea urchin and fresh sushi.',
+    img: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Kuromon_Ichiba_Osaka.jpg',
+    go: [0, 0], ride: '10 min walk from Namba', time: '1–1.5 hrs',
+    cost: [2000, 5000], costNote: 'Depends how much wagyu you eat',
+    best: '9–11am. Many stalls close by 4–5pm.',
+    about: "A 580m covered market that has supplied Osaka's restaurants for 190 years. Now it's a grazing trail: grilled wagyu beef skewers, scallops grilled in the shell with butter, fatty tuna (toro) sushi, sea urchin, giant oysters, strawberry mochi and fresh fruit.",
+    tips: [
+      'It’s gotten touristy and prices reflect that. Compare a few stalls before buying the ¥3,000 wagyu stick.',
+      'Eat at the stall or in the seating areas. Walking while eating is frowned on in Japan.',
+      'Bring cash. Plenty of stalls don’t take cards.',
+      'Pairs perfectly with Den Den Town next door.'
+    ]
+  },
+  {
+    id: 'osakacastle', c: 'osaka', emoji: '🏯', kind: 'History',
+    name: 'Osaka Castle',
+    tagline: 'A white-and-gold castle rising above huge stone walls and moats.',
+    img: WM('c/ca/Osaka_Castle_03bs3200.jpg/960px-Osaka_Castle_03bs3200.jpg'),
+    go: [240, 240], ride: '~20 min (subway to Tanimachi 4-chome)', time: '2–3 hrs',
+    cost: [600, 600], costNote: 'Main tower museum · grounds free',
+    best: 'Morning, or late afternoon when the gold detail catches the light.',
+    about: "Originally built in 1583 by Toyotomi Hideyoshi, the warlord who unified Japan. The current tower is a 1931 rebuild (with lifts inside), and it's a museum of samurai history with an 8th-floor lookout. Honestly the outside is the star: massive stone walls, some single stones weighing over 100 tonnes, wide moats and a huge park.",
+    tips: [
+      'If you’re short on time, skip the inside and just walk the grounds, which are free.',
+      'Gozabune boat ride around the moat (~¥1,500, 20 min) is a great angle.',
+      'Nishinomaru Garden (small fee) has the best lawn view of the tower.',
+      'JR Osakajokoen station is also close if you’re coming from Umeda.'
+    ]
+  },
+  {
+    id: 'usj', c: 'osaka', emoji: '🍄', kind: 'Full day',
+    name: 'Universal Studios Japan + Super Nintendo World',
+    tagline: 'Walk into Mario Kart, Hogwarts and Jurassic Park.',
+    img: WM('f/fd/USJ_5years.JPG/960px-USJ_5years.JPG'),
+    go: [300, 400], ride: '~30 min (to Universal City station)', time: 'Full day (8–10 hrs)',
+    cost: [8600, 10900], costNote: '1-day pass (price varies by date) · Express Pass extra',
+    best: 'A weekday. Arrive 45–60 min before opening, as the gates often open early.',
+    about: "One of the best theme parks in the world. Super Nintendo World is a real-life Mushroom Kingdom with a Mario Kart AR ride, Yoshi's Adventure, punchable ? blocks and Donkey Kong Country's mine-cart coaster. There's also the Wizarding World of Harry Potter (Hogsmeade + Hogwarts ride), Jurassic Park's Flying Dinosaur coaster (brutal) and Minion Park.",
+    tips: [
+      'Buy tickets online in advance. Popular dates sell out.',
+      'NINTENDO WORLD ENTRY: open the USJ app as soon as you’re inside the park and grab a free timed-entry ticket. They run out by mid-morning. An Express Pass guarantees entry but costs ¥10,000+.',
+      'A Power-Up Band (~¥4,000) lets you collect coins in Nintendo World. Fun but optional.',
+      'Food inside is pricey. Eat a big breakfast.'
+    ]
+  },
+  {
+    id: 'shinsekai', c: 'osaka', emoji: '🍢', kind: 'Retro',
+    name: 'Shinsekai + Tsutenkaku Tower',
+    tagline: 'A retro 1910s neighbourhood of neon, pufferfish lanterns and deep-fried skewers.',
+    img: WM('9/95/Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg/960px-Shinsekai_and_Tsutenkaku_at_night_2019-04-12.jpg'),
+    go: [190, 190], ride: '~10 min (subway to Ebisucho)', time: '1.5–2 hrs',
+    cost: [1500, 2500], costNote: 'Kushikatsu dinner · tower ~¥1,000–1,200 optional',
+    best: 'Early evening, when the signs switch on and the kushikatsu places fill up.',
+    about: "\"New World\" was built in 1912 modelled on Paris and New York, and it has barely changed since. The streets are wall-to-wall with loud signs, giant pufferfish, and statues of Billiken (the god of things as they ought to be; rub his feet for luck). Under the Tsutenkaku Tower is Osaka's home of kushikatsu: meat, veg and cheese on skewers, battered and deep-fried.",
+    tips: [
+      'THE RULE: no double-dipping in the shared sauce pot. Use a cabbage leaf to scoop more sauce.',
+      'Daruma is the famous kushikatsu chain (look for the angry chef statue).',
+      'Tsutenkaku has the Tower Slider, a 60m tube slide down the outside (~¥1,000 extra).',
+      'You can walk it from Dotonbori in ~20 min via Den Den Town.'
+    ]
+  },
+  {
+    id: 'umeda', c: 'osaka', emoji: '🌇', kind: 'View',
+    name: 'Umeda Sky Building: Floating Garden',
+    tagline: 'An open-air rooftop ring joining two skyscrapers 173m up.',
+    img: WM('f/f9/2018_Umeda_Sky_Building.jpg/960px-2018_Umeda_Sky_Building.jpg'),
+    go: [240, 240], ride: '~15 min (Midosuji line to Umeda + 10 min walk)', time: '1–1.5 hrs',
+    cost: [1500, 2000], costNote: 'Observatory ticket',
+    best: 'Sunset. Get there 45 min before so you see day, golden hour and night.',
+    about: "Two 40-storey towers joined at the top by a circular observatory. You ride a glass-tube escalator across the gap between them (not for anyone scared of heights), then walk out onto an open-air 360° rooftop deck with glowing floor lights at night.",
+    tips: [
+      'In the basement, Takimi Koji is a recreated Showa-era 1950s food street with cheap, cosy restaurants.',
+      'The HEP Five ferris wheel (~¥600) is a 10-min walk away. It’s red and on top of a shopping mall.',
+      'Umeda is also Osaka’s big shopping district. Yodobashi Camera is huge for electronics.'
+    ]
+  },
+  {
+    id: 'kaiyukan', c: 'osaka', emoji: '🦈', kind: 'Rainy day',
+    name: 'Osaka Aquarium Kaiyukan',
+    tagline: 'A whale shark in a 9-storey tank, and you spiral down around it.',
+    img: WM('f/f4/Kaiy%C5%ABkan.jpg/960px-Kaiy%C5%ABkan.jpg'),
+    go: [290, 290], ride: '~25 min (subway to Osakako)', time: '2–3 hrs',
+    cost: [2700, 3500], costNote: 'Varies by date/time',
+    best: 'A rainy day, or weekday late afternoon when the school groups have gone.',
+    about: "One of the world's biggest aquariums. You take an escalator to the top and slowly spiral down 8 floors around the giant central tank representing the Pacific, where a whale shark, manta rays and hammerheads cruise past. Around the edges are tanks from the Ring of Fire: otters, penguins, sea lions, spider crabs and a touch pool with small sharks.",
+    tips: [
+      'Buy date-specific tickets online, which are often cheaper than the gate price.',
+      'The Tempozan Giant Ferris Wheel next door (~¥900) gives a great bay view at night.',
+      'Plan ~2.5 hrs. Everyone rushes at the start, so linger lower down where it’s quieter.'
+    ]
+  },
+  {
+    id: 'shinsaibashi', c: 'osaka', emoji: '🛍️', kind: 'Shop',
+    name: 'Shinsaibashi, Amerikamura + Den Den Town',
+    tagline: 'Arcades, streetwear, vintage and Osaka’s anime and retro-gaming district.',
+    img: WM('e/ee/Amerikamura.jpg/960px-Amerikamura.jpg'),
+    go: [0, 0], ride: 'Walk from Namba', time: '2–4 hrs',
+    cost: [0, 0], costNote: 'Free to wander',
+    best: 'Afternoon. Shops open ~11am and stay open until 8–9pm.',
+    about: "Three areas side by side. Shinsaibashi-suji is a 600m covered shopping arcade (Uniqlo, Muji, drugstores). Amerikamura (\"America Village\") is Osaka's youth hangout, with vintage stores, streetwear and Triangle Park. Den Den Town is Osaka's Akihabara, packed with anime, figures, manga, card shops and retro video games.",
+    tips: [
+      'TAX-FREE: spend over ¥5,000 in one store and show your passport to skip the 10% tax.',
+      'Super Potato (Den Den Town) is a retro gaming temple with a top-floor arcade of old consoles to play.',
+      'Don Quijote Dotonbori is a chaotic 24-hour discount mega-store with a ferris wheel on the side. Great for snacks and souvenirs.',
+      'Drugstores are the best place for Japanese snacks, KitKat flavours and skincare.'
+    ]
+  },
+  {
+    id: 'nara', c: 'osaka', emoji: '🦌', kind: 'Day trip',
+    name: 'Nara: Bowing Deer + Giant Buddha',
+    tagline: '1,200 free-roaming sacred deer, and a 15m Buddha in a vast wooden hall.',
+    img: WM('2/2f/T%C5%8Ddai-ji_Kon-d%C5%8D.jpg/960px-T%C5%8Ddai-ji_Kon-d%C5%8D.jpg'),
+    go: [680, 680], ride: '~40 min (Kintetsu Namba → Kintetsu-Nara)', time: '5–7 hrs',
+    cost: [800, 1000], costNote: 'Todai-ji ¥800 + deer crackers ¥200',
+    best: 'Leave by 8:30am. The deer are calmer and the tour groups arrive around 11am.',
+    about: "Japan's first permanent capital (710 AD). Nara Park's deer are considered messengers of the gods. They'll bow to you for shika senbei (deer crackers). Todai-ji is a massive wooden hall, among the largest wooden buildings in the world, housing a 15m bronze Buddha. Kasuga Taisha shrine nearby has 3,000 stone and bronze lanterns.",
+    tips: [
+      'Bow to a deer and it often bows back. Once the crackers are gone, show your empty hands or they WILL headbutt and nip.',
+      'Inside Todai-ji, squeeze through the hole in a pillar (same size as the Buddha’s nostril) for enlightenment in your next life.',
+      'Nakatanidou does high-speed mochi pounding shows out front, and the yomogi mochi is incredible.',
+      'Everything is walkable from Kintetsu-Nara station.'
+    ]
+  },
+  {
+    id: 'himeji', c: 'osaka', emoji: '🏰', kind: 'Day trip',
+    name: 'Himeji Castle',
+    tagline: "Japan's most beautiful original castle, the \"White Heron\".",
+    img: WM('c/c1/Himeji_castle_in_may_2015.jpg/960px-Himeji_castle_in_may_2015.jpg'),
+    go: [1520, 1520], ride: '~1 hr (JR Special Rapid from Osaka)', time: '5–6 hrs',
+    cost: [2500, 2500], costNote: 'Castle entry (foreign visitor price) · Koko-en garden small extra',
+    best: 'Arrive at opening (9am). Queues for the main keep build fast.',
+    about: "Unlike most Japanese castles (concrete rebuilds), Himeji is the real deal: the original from 1609, never destroyed by war, earthquake or fire, and a UNESCO World Heritage site. Brilliant white plaster walls and layered roofs make it look like a bird taking off. Inside you climb six floors of steep wooden stairs through the original timber keep.",
+    tips: [
+      'Shoes come off inside and the stairs are almost ladders. Wear socks and easy shoes.',
+      'Koko-en, the Japanese gardens right next door, is worth adding. A combo ticket is available.',
+      'The castle is 15 min walk straight up the main street from the station, and it’s in view the whole way.',
+      'Shinkansen gets you there in ~30 min for ~¥3,000+ if you’d rather save time.'
+    ]
+  },
+
+  // ── KYOTO ──
+  {
+    id: 'inari', c: 'kyoto', emoji: '⛩️', kind: 'Must-do',
+    name: 'Fushimi Inari Shrine',
+    tagline: 'Tunnels of 10,000 vermilion torii gates winding up a mountain.',
+    img: WM('0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg'),
+    go: [220, 220], ride: '~10 min (Keihan line to Fushimi-Inari)', time: '2–3 hrs',
+    cost: [0, 0], costNote: 'Free, open 24 hrs',
+    best: 'Before 8am, or after 5pm when the lanterns light up. Midday is shoulder-to-shoulder.',
+    about: "The head shrine of Inari, god of rice and business. Businesses donate the torii gates (each one has the donor's name on the back), and they form tunnels that climb Mount Inari for about 4km. Stone foxes, Inari's messengers, guard the paths, often holding keys to the rice granary in their mouths.",
+    tips: [
+      'Most people turn back early. Push on to the Yotsutsuji intersection (~30–45 min up) for a view over Kyoto and far fewer people.',
+      'The full summit loop is 2–3 hrs. Bring water.',
+      'Buy a fox-face ema (wooden prayer plaque) and draw your own face on it.',
+      'Try kitsune udon or inari sushi (sweet tofu pouches), foods named after the fox, on the street below.'
+    ]
+  },
+  {
+    id: 'arashiyama', c: 'kyoto', emoji: '🎋', kind: 'Must-do',
+    name: 'Arashiyama Bamboo Grove + Monkey Park',
+    tagline: 'Towering bamboo, a zen garden and wild monkeys above the city.',
+    img: WM('c/c2/Arashiyama%2C_Part_II_-_Arashiyama7534.jpg/960px-Arashiyama%2C_Part_II_-_Arashiyama7534.jpg'),
+    go: [240, 260], ride: '30–40 min (Randen tram or JR Sagano line)', time: '4–6 hrs',
+    cost: [500, 1300], costNote: 'Bamboo free · Tenryu-ji ¥500 · Monkey Park ¥800',
+    best: 'Bamboo grove at 7–8am, when it’s empty and misty. By 10am it’s a crowd.',
+    about: "Kyoto's western edge, where the mountains start. The bamboo grove is a path through giant stalks that creak in the wind. Tenryu-ji (UNESCO) has one of Kyoto's best zen gardens, with a pond in front of a borrowed mountain backdrop. Across the Togetsukyo Bridge, a 20-min climb takes you to Iwatayama Monkey Park, where Japanese macaques roam free above a view of the whole city.",
+    tips: [
+      'The famous bamboo path is only ~400m. Keep walking to Okochi Sanso villa (~¥1,000, includes matcha) for quieter bamboo and gardens.',
+      'At the Monkey Park you go INSIDE a hut to feed the monkeys through the wire. Don’t stare them in the eye outside.',
+      'The Sagano Romantic Train (~¥880) along the gorge is a scenic add-on.',
+      'Street snacks: matcha soft-serve and yuba (tofu skin).'
+    ]
+  },
+  {
+    id: 'kiyomizu', c: 'kyoto', emoji: '🏮', kind: 'Must-do',
+    name: 'Kiyomizu-dera + Sannenzaka Old Streets',
+    tagline: 'A wooden temple stage over a forest, reached by stone-paved lanes of old Kyoto.',
+    img: WM('3/3c/Kiyomizu.jpg/960px-Kiyomizu.jpg'),
+    go: [0, 230], ride: '~25 min walk or bus 206/207', time: '2–3 hrs',
+    cost: [500, 500], costNote: 'Temple entry',
+    best: 'Opening time (6am!) or the last hour before close. Midday the lanes are packed.',
+    about: "Founded in 778 on a hillside. The main hall's wooden stage juts out 13m above the trees on 139 pillars, and it was built without a single nail. Below, the Otowa waterfall splits into three streams (longevity, love, success; drink from only one). The walk up goes through Sannenzaka and Ninenzaka, steep lanes of wooden teahouses and shops, with the five-storey Yasaka Pagoda at the bottom.",
+    tips: [
+      'Legend says if you trip on Sannenzaka you’ll have 3 years of bad luck. Watch your step.',
+      'Starbucks Ninenzaka is inside a 100-year-old townhouse with tatami rooms.',
+      'The classic Yasaka Pagoda photo is looking up Yasaka-dori at dusk.',
+      'Walk downhill afterwards straight into Gion.'
+    ]
+  },
+  {
+    id: 'gion', c: 'kyoto', emoji: '👘', kind: 'Evening',
+    name: 'Gion + Shirakawa at Dusk',
+    tagline: "Kyoto's geisha district: wooden teahouses, lanterns and a willow-lined canal.",
+    img: WM('2/23/150124_Gion_Kyoto_Japan01s3.jpg/960px-150124_Gion_Kyoto_Japan01s3.jpg'),
+    go: [0, 0], ride: '10–15 min walk from Sanjo', time: '1.5–2 hrs',
+    cost: [0, 0], costNote: 'Free to wander',
+    best: '5:30–7pm, when lanterns come on and geiko/maiko head to evening appointments.',
+    about: "Gion has been Kyoto's entertainment district for centuries. Hanamikoji Street is lined with ochaya (teahouses) where geiko (Kyoto geisha) and maiko (apprentices) entertain. Shirakawa-minami-dori is the prettiest lane in Kyoto, with a stone-edged canal, weeping willows and lanterns. Yasaka Shrine at the east end glows with hundreds of lanterns every night.",
+    tips: [
+      'If you see a maiko, don’t chase, block or grab photos. Locals are fed up and there are patrol volunteers.',
+      'The private side lanes off Hanamikoji are off-limits, with a ¥10,000 fine for entering. Stick to the main streets.',
+      'Yasaka Shrine is open 24 hrs and free, and it’s beautiful at night.',
+      'Walk across the Shijo bridge to Pontocho for dinner.'
+    ]
+  },
+  {
+    id: 'kinkaku', c: 'kyoto', emoji: '✨', kind: 'Icon',
+    name: 'Kinkaku-ji: the Golden Pavilion',
+    tagline: 'A pavilion covered in gold leaf, reflected in a mirror pond.',
+    img: WM('0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/960px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg'),
+    go: [230, 230], ride: '~40 min (bus 205 or 101)', time: '~1 hr',
+    cost: [500, 500], costNote: 'Entry (the ticket is a paper charm)',
+    best: 'Opening at 9am, or a sunny afternoon when the gold blazes.',
+    about: "Built in 1397 as a shogun's retirement villa, then turned into a Zen temple. The top two floors are covered in real gold leaf. A disturbed young monk burned it down in 1950, and the rebuild (1955) is even more golden. It's one of the most photographed buildings in Japan.",
+    tips: [
+      'It’s a one-way route. The best photo is right at the start across the pond, so take your time there.',
+      'Combine it with Ryoan-ji’s famous rock garden (~¥600, 20-min walk) and Ninna-ji.',
+      'Your entry ticket is a paper talisman for good luck, so keep it.'
+    ]
+  },
+  {
+    id: 'nishiki', c: 'kyoto', emoji: '🐙', kind: 'Food',
+    name: 'Nishiki Market',
+    tagline: '"Kyoto\'s kitchen": a 400m covered lane of 100+ food stalls.',
+    img: WM('c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/960px-Nishiki_Ichiba_by_matsuyuki.jpg'),
+    go: [0, 0], ride: '5–10 min walk', time: '1–1.5 hrs',
+    cost: [1500, 3000], costNote: 'Grazing',
+    best: '10am–1pm. Many stalls close around 5pm, and some close Wednesdays/Sundays.',
+    about: "A narrow covered street that has sold food for 400 years. Pickles, tofu, sweets, knives, tea and grill-on-the-spot snacks. Must-tries include tako tamago (a baby octopus on a stick with a quail egg stuffed in its head), dashimaki tamago (rolled omelette), soy-milk doughnuts, matcha everything and sesame ice cream.",
+    tips: [
+      'Eat at the stall where you bought it. Nishiki has signs asking people not to walk and eat.',
+      'Aritsugu is a 400-year-old knife maker here and makes a legendary souvenir, engraved while you wait.',
+      'The Teramachi and Shinkyogoku arcades cross the east end for more shopping.'
+    ]
+  },
+  {
+    id: 'philosophers', c: 'kyoto', emoji: '🍁', kind: 'Walk',
+    name: "Philosopher's Path: Ginkaku-ji → Nanzen-ji",
+    tagline: 'A 2km canal walk between two great temples.',
+    img: WM('9/92/Japan_Kyoto_philosophers_walk_DSC00297.jpg/960px-Japan_Kyoto_philosophers_walk_DSC00297.jpg'),
+    go: [230, 230], ride: '~25 min (bus to Ginkakuji-michi)', time: '3–4 hrs',
+    cost: [500, 1100], costNote: 'Ginkaku-ji ¥500 · Nanzen-ji gate ¥600 optional',
+    best: 'Morning. Start at Ginkaku-ji at 8:30am and walk south.',
+    about: "A stone path along a small canal lined with cherry and maple trees, named after a philosopher who walked it daily. At the north end, Ginkaku-ji (the \"Silver Pavilion\", which was never actually silvered) has a moss garden and a mysterious raked-sand cone. At the south end, Nanzen-ji has a huge wooden gate you can climb and a red-brick Meiji-era aqueduct running through the temple grounds.",
+    tips: [
+      'Walk north → south. It’s mostly downhill.',
+      'Detour to Honen-in, a free temple with a thatched moss gate that’s barely visited.',
+      'The Nanzen-ji aqueduct (Suirokaku) is free and very photogenic.',
+      'In October the maples are only just starting to turn. Late Nov is peak colour.'
+    ]
+  },
+  {
+    id: 'nijo', c: 'kyoto', emoji: '🐦', kind: 'History',
+    name: 'Nijo Castle',
+    tagline: 'The shogun’s palace, with squeaky “nightingale floors” to catch assassins.',
+    img: WM('d/dd/NinomaruPalace.jpg/960px-NinomaruPalace.jpg'),
+    go: [220, 220], ride: '~10 min (Tozai subway to Nijojo-mae)', time: '1.5–2 hrs',
+    cost: [1300, 1300], costNote: 'Incl. Ninomaru Palace',
+    best: 'Morning, to beat the school groups.',
+    about: "Built in 1603 by Tokugawa Ieyasu, the first Tokugawa shogun, as his Kyoto residence. Inside Ninomaru Palace, the floorboards were designed to chirp like birds when stepped on, so no ninja could sneak up. Room after room of gold-leaf screens painted with tigers and pines. Outside are beautiful gardens and huge stone walls.",
+    tips: [
+      'Shoes off in the palace, and no photos inside. Listen to the floors chirp as you walk.',
+      'The gardens are included, so allow time for the Seiryu-en garden.',
+      'Walkable from central Kyoto (~20 min) if you want to save the fare.'
+    ]
+  },
+  {
+    id: 'pontocho', c: 'kyoto', emoji: '🏮', kind: 'Evening',
+    name: 'Pontocho Alley + Kamo Riverbank',
+    tagline: 'A one-person-wide lantern lane of restaurants beside the river.',
+    img: WM('6/68/Pontocho_by_Wolfiewolf_in_Nabeyacho%2C_Kyoto.jpg/960px-Pontocho_by_Wolfiewolf_in_Nabeyacho%2C_Kyoto.jpg'),
+    go: [0, 0], ride: '5 min walk', time: '1.5–2 hrs',
+    cost: [2000, 5000], costNote: 'Dinner + drinks',
+    best: '7–10pm. The lanterns and the reflections on the river are the whole vibe.',
+    about: "A narrow stone alley running 500m alongside the Kamo River, lined with wooden restaurants, izakayas, yakitori bars and teahouses. Next to it, the Kamo riverbank is where young Kyoto hangs out at night, sitting in spaced-out couples along the water.",
+    tips: [
+      'Some places are expensive or reservation-only. Look for menus posted outside with prices.',
+      'THE budget move: buy a konbini beer and onigiri and sit on the riverbank like the locals. Free, and just as good.',
+      'Yakitori and izakaya spots are the best value in the lane.',
+      'Some restaurants have a table charge (otoshi, ~¥300–500 for a small starter).'
+    ]
+  },
+  {
+    id: 'kurama', c: 'kyoto', emoji: '🌲', kind: 'Half day',
+    name: 'Kurama → Kibune Mountain Hike',
+    tagline: 'A cedar forest hike over a mountain from a hilltop temple to a lantern-lined shrine.',
+    img: WM('c/c4/Kifune-jinja_haiden.jpg/960px-Kifune-jinja_haiden.jpg'),
+    go: [650, 750], ride: '~45 min (Keihan to Demachiyanagi + Eizan line)', time: '4–5 hrs',
+    cost: [500, 500], costNote: 'Kurama-dera entry · Kibune free',
+    best: 'Start by 10am. The forest is dark and cool, and it’s great on a hot or drizzly day.',
+    about: "An escape from the crowds, in the mountains north of Kyoto. Kurama-dera is a mountain temple where legend says a tengu (mountain demon) taught a young samurai swordfighting. The trail from the temple goes over the ridge (~1.5–2 hrs) past giant cedars with roots snaking over the path, then drops into Kibune, a tiny river village with a shrine known for its red-lantern stone staircase.",
+    tips: [
+      'Wear proper shoes, as the root sections are uneven.',
+      'At Kibune Shrine, buy the water fortune (mizu-mikuji). Float the blank paper on the spring and the text appears.',
+      'Check the Eizan railway is running all the way to Kurama before you go (it has had landslide closures).',
+      'Walk from Kibune shrine down to Kibuneguchi station (~30 min) or catch the small bus.'
+    ]
+  },
+  {
+    id: 'uji', c: 'kyoto', emoji: '🍵', kind: 'Half day',
+    name: 'Uji: Matcha Town + Byodo-in',
+    tagline: "Japan's matcha capital, and the temple on the ¥10 coin.",
+    img: WM('5/59/Byodoin_Phoenix_Hall_Uji_2009.jpg/960px-Byodoin_Phoenix_Hall_Uji_2009.jpg'),
+    go: [240, 320], ride: '20–30 min (JR Nara line or Keihan)', time: '3–4 hrs',
+    cost: [700, 1000], costNote: 'Byodo-in ¥700 · inner hall tour ~¥300',
+    best: 'Morning, before the matcha-parfait queues start around lunch.',
+    about: "Uji has grown Japan's best green tea for 800 years. Byodo-in's Phoenix Hall (1053) is a vermilion hall with wings that seems to float on its pond, so iconic it's on the ¥10 coin. The main street is lined with tea houses selling matcha everything: soba, ice cream, dango and giant parfaits.",
+    tips: [
+      'Nakamura Tokichi is the famous matcha parfait spot. Expect a queue.',
+      'Tsuen is one of the oldest tea shops in Japan (since 1160), right by the Uji Bridge.',
+      'The inner Phoenix Hall tour is timed, so buy that ticket as soon as you arrive.',
+      'Buy quality matcha here to take home. It’s cheaper and better than in Tokyo.'
+    ]
+  },
+
+  // ── MT FUJI ──
+  {
+    id: 'chureito', c: 'fuji', emoji: '🗻', kind: 'Must-do',
+    name: 'Chureito Pagoda',
+    tagline: 'The postcard: a red pagoda with Mt Fuji behind it.',
+    img: WM('6/66/Chuurei-tou_Fujiyoshida_17025277650_c59733d6ba_o.jpg/960px-Chuurei-tou_Fujiyoshida_17025277650_c59733d6ba_o.jpg'),
+    go: [300, 400], ride: '~15 min (Fujikyu train to Shimoyoshida)', time: '1.5–2 hrs',
+    cost: [0, 0], costNote: 'Free',
+    best: 'Sunrise to 9am. Fuji is clearest early, and clouds usually swallow it by midday.',
+    about: "A five-storey red pagoda built as a peace memorial, on a hillside in Arakurayama Sengen Park. Climb 398 steps to the viewing deck and you get the most famous view in Japan: the pagoda in the foreground and the perfect cone of Fuji rising behind the town.",
+    tips: [
+      'The 398 steps are steep. There’s a gentler sloped path to the side.',
+      'Check the Fuji cam or forecast the night before. If Fuji is cloudy, swap your days around.',
+      'Honcho-dori (the street with Fuji at the end) is nearby but crowd-controlled now. Be respectful of locals and traffic.',
+      'Early October: Fuji may only have a light snowcap or none. It usually gets its white cap from mid-late October.'
+    ]
+  },
+  {
+    id: 'kawaguchiko', c: 'fuji', emoji: '🌺', kind: 'Scenic',
+    name: 'Lake Kawaguchiko North Shore + Oishi Park',
+    tagline: 'A flower park with Mt Fuji towering over the lake.',
+    img: WM('f/fd/Kawaguchiko%2C_Part_III_-_Kawaguchiko6776.jpg/960px-Kawaguchiko%2C_Part_III_-_Kawaguchiko6776.jpg'),
+    go: [0, 500], ride: '~25 min (sightseeing bus, red line)', time: '1.5–2.5 hrs',
+    cost: [0, 0], costNote: 'Free',
+    best: 'Morning for a clear Fuji. In Oct the kochia bushes turn fluffy crimson.',
+    about: "The north side of Lake Kawaguchi faces Fuji directly across the water. Oishi Park is a lakeside flower garden famous for kochia, round fluffy bushes that turn from green to deep red through late September–October, with Fuji behind. There's also a lakeside path and the Momiji (maple) Corridor, which turns red in early November.",
+    tips: [
+      'Get the 2-day sightseeing bus pass (red/green/blue lines, ~¥1,500–2,000). It covers most spots here.',
+      'Or rent a bike (~¥1,500/day) and loop the lake. It’s flat and gorgeous.',
+      'Try Fuji-shaped melon pan or a blueberry soft-serve at the park café.',
+      'On a still morning you can get "Sakasa Fuji", Fuji reflected upside-down in the lake.'
+    ]
+  },
+  {
+    id: 'ropeway', c: 'fuji', emoji: '🚠', kind: 'View',
+    name: 'Mt Kachi Kachi Ropeway',
+    tagline: 'A 3-minute cable car up to a lookout over the lake and Fuji.',
+    img: 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Mt_Kachi_Kachi_Ropeway.jpg',
+    go: [0, 0], ride: '15 min walk from Kawaguchiko Station', time: '1–1.5 hrs',
+    cost: [900, 1000], costNote: 'Return ticket',
+    best: 'First thing in the morning. Queues build from 10am and Fuji clouds over.',
+    about: "A short ropeway up Mt Tenjo (1,075m) to an observation deck with a panoramic view of Mt Fuji and Lake Kawaguchi. It's themed on a Japanese folk tale about a rabbit and a tanuki (raccoon dog), so there's a little rabbit shrine, a bell to ring and tanuki dango to eat at the top.",
+    tips: [
+      'You can buy one-way and hike down (~30–40 min through forest).',
+      'Ring the bell at the top for luck.',
+      'It’s the easiest Fuji view from the station, so good for arrival day.'
+    ]
+  },
+  {
+    id: 'oshino', c: 'fuji', emoji: '💧', kind: 'Village',
+    name: 'Oshino Hakkai Springs',
+    tagline: 'Eight crystal-clear spring ponds fed by Fuji snowmelt in a thatched-roof village.',
+    img: WM('f/fd/Oshino-Hakkai-Nakaike.jpg/960px-Oshino-Hakkai-Nakaike.jpg'),
+    go: [500, 700], ride: '25–30 min (Fujikyu bus)', time: '1–1.5 hrs',
+    cost: [0, 300], costNote: 'Mostly free · one pond area ~¥300',
+    best: 'Before 10:30am, before the tour buses arrive.',
+    about: "Snowmelt from Mt Fuji filters through volcanic rock for about 80 years, then bubbles up here into eight ponds so clear you can see every stone at 8m deep. It's a small village with thatched farmhouses, a watermill, koi, and Fuji looming behind on a clear day.",
+    tips: [
+      'Drink the spring water from the public taps. It’s ice cold and delicious.',
+      'Snacks: grilled kusa mochi (mugwort rice cake) and fresh tofu.',
+      'It gets very crowded and touristy by midday. Go early or late.'
+    ]
+  },
+  {
+    id: 'icecave', c: 'fuji', emoji: '🧊', kind: 'Nature',
+    name: 'Narusawa Ice Cave + Aokigahara Forest',
+    tagline: "Lava-tube caves that stay frozen all year, under a mossy volcanic forest.",
+    img: WM('5/58/Narusawa_Hyoketsu_Entrance_20161025.jpg/960px-Narusawa_Hyoketsu_Entrance_20161025.jpg'),
+    go: [0, 500], ride: '~30 min (sightseeing bus, green line)', time: '1.5–2 hrs',
+    cost: [350, 500], costNote: 'Per cave (Ice Cave + Wind Cave)',
+    best: 'Any time. It’s a good cloudy-day option when Fuji is hidden anyway.',
+    about: "Fuji's 864 AD eruption left lava tubes that stay around 0°C year-round. The Narusawa Ice Cave has walls of ice and huge icicles, and the Fugaku Wind Cave next door is a longer tunnel. The two are linked by a 20-min trail through Aokigahara, an eerie, silent forest of moss-covered lava rock and twisted roots.",
+    tips: [
+      'Bring your coat. It’s near freezing inside.',
+      'The ceilings are very low in places, so crouch.',
+      'Aokigahara has a sad reputation. Stay on the marked trail and be respectful.'
+    ]
+  },
+  {
+    id: 'fujiq', c: 'fuji', emoji: '🎢', kind: 'Thrill',
+    name: 'Fuji-Q Highland',
+    tagline: 'World-record rollercoasters with Mt Fuji in the background.',
+    img: WM('a/af/FujiQ_Highland_MainGate.JPG/960px-FujiQ_Highland_MainGate.JPG'),
+    go: [200, 300], ride: '~5 min (Fujikyu train, 1 stop)', time: '4–8 hrs',
+    cost: [6000, 7900], costNote: 'Free-pass (unlimited rides) · pay-per-ride also possible',
+    best: 'A weekday with no wind. Coasters close in strong wind or rain.',
+    about: "Home of some of the wildest coasters on earth. Fujiyama (the \"King of Coasters\", 79m tall with Fuji views on the way up), Eejanaika (a 4th-dimension coaster where your seat spins 14 times), and Takabisha (a 121° beyond-vertical drop). There's also a famous walk-through haunted hospital.",
+    tips: [
+      'Park entry is free, and you can buy single-ride tickets (~¥1,500–2,000) if you only want 2–3 coasters.',
+      'On busy days, fast passes are worth it for Fujiyama and Eejanaika.',
+      'Check that the rides you want are running that day on the website.',
+      'The haunted hospital is walk-through and genuinely scary. You can quit through the exit doors.'
+    ]
+  },
+  {
+    id: 'onsen', c: 'fuji', emoji: '♨️', kind: 'Relax',
+    name: 'Onsen with a Fuji View',
+    tagline: 'Soak in an outdoor hot spring bath looking at Mt Fuji.',
+    img: WM('f/f8/View_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg/960px-View_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg'),
+    go: [0, 500], ride: '~25 min (bus to Yurari, Narusawa)', time: '1.5–2 hrs',
+    cost: [1500, 2000], costNote: 'Day-bath entry · towel rental extra',
+    best: 'Late afternoon, then soak through sunset.',
+    about: "Natural volcanic hot springs are the whole point of this region. Fuji-yama Onsen (Fujiyoshida) and Yurari (Narusawa) both have outdoor rotenburo baths where, on a clear day, Mt Fuji is right in front of you. Perfect after a day of walking in the cold.",
+    tips: [
+      'Etiquette: wash and rinse fully at the shower stools BEFORE getting in. It’s naked, gender-separated, and the small towel never goes in the water.',
+      'TATTOOS: many onsen refuse visible tattoos. Some allow cover stickers, and private (kashikiri) baths are fine. Check first.',
+      'Don’t soak straight after drinking or for too long. The water is hot (40–42°C).'
+    ]
+  },
+
+  // ── TOKYO ──
+  {
+    id: 'shibuya', c: 'tokyo', emoji: '🚦', kind: 'Must-do',
+    name: 'Shibuya Crossing + Shibuya Sky',
+    tagline: "The world's busiest crossing, then an open-air rooftop 229m above it.",
+    img: WM('8/88/Shibuya_Crossing%2C_Aerial.jpg/960px-Shibuya_Crossing%2C_Aerial.jpg'),
+    go: [170, 170], ride: '~7 min (JR Yamanote line)', time: '2–3 hrs',
+    cost: [2500, 3400], costNote: 'Shibuya Sky ticket · crossing free',
+    best: 'Shibuya Sky at sunset (book 2–3 weeks ahead, as sunset slots sell out). The crossing is best 6–9pm.',
+    about: "Up to 3,000 people cross from every direction at once when the lights change. Say hi to the Hachiko statue (the loyal dog who waited 10 years for his dead owner) by the station exit. Shibuya Sky, on top of Scramble Square, is an open-air rooftop with glass edges, lounge nets to lie on and a 360° view to Tokyo Tower, Skytree and, on clear days, Fuji.",
+    tips: [
+      'Best overhead view of the crossing: MAG’s Park rooftop on top of Magnet by Shibuya109 (small fee).',
+      'Nintendo Tokyo, the Pokémon Center and Capcom Store are all on floor 6 of Shibuya PARCO.',
+      'Shibuya Yokocho under the train tracks is a fun food hall of regional Japanese food.',
+      'Hats and loose items are locked away before the Shibuya Sky rooftop (wind).'
+    ]
+  },
+  {
+    id: 'sensoji', c: 'tokyo', emoji: '🏮', kind: 'Must-do',
+    name: 'Senso-ji Temple + Asakusa',
+    tagline: "Tokyo's oldest temple, a giant red lantern and a street of snacks.",
+    img: WM('4/43/Sensoji_2023.jpg/960px-Sensoji_2023.jpg'),
+    go: [210, 300], ride: '~35 min (Marunouchi + Ginza lines)', time: '2–3 hrs',
+    cost: [0, 0], costNote: 'Free',
+    best: 'Before 8am for calm, or after dark when it’s lit up and empty. Grounds are open 24 hrs.',
+    about: "Founded in 645 AD, making it Tokyo's oldest temple. You enter through Kaminarimon (Thunder Gate) with its famous 700kg red lantern, then walk Nakamise-dori, a 250m street of stalls selling senbei crackers, ningyo-yaki cakes and souvenirs, to the main hall and a five-storey pagoda. Asakusa has the most old-Tokyo feel left in the city.",
+    tips: [
+      'Omikuji fortunes (¥100): shake the box, get your number. If it’s bad luck, tie it to the rack and leave it behind.',
+      'Kimono rental (~¥3,000–5,000) in Asakusa is great for photos here.',
+      'Tokyo Skytree is a 20-min walk across the Sumida River. Its deck is optional (~¥2,100–3,500).',
+      'Giant melon pan at Kagetsudo and fresh senbei on Nakamise.'
+    ]
+  },
+  {
+    id: 'goldengai', c: 'tokyo', emoji: '🍶', kind: 'Nightlife',
+    name: 'Golden Gai + Omoide Yokocho',
+    tagline: '200 tiny bars packed into six alleys, plus a smoky yakitori lane.',
+    img: WM('8/8d/G2_Street_20090626_2.jpg/960px-G2_Street_20090626_2.jpg'),
+    go: [0, 0], ride: '5–10 min walk from Shinjuku Station', time: '2–4 hrs',
+    cost: [3000, 6000], costNote: 'Yakitori + a few bars (cover charges add up)',
+    best: 'Start at Omoide Yokocho for dinner at 7pm, then hit Golden Gai from 9pm.',
+    about: "Omoide Yokocho (\"Memory Lane\") is a post-war alley by Shinjuku Station of smoky yakitori counters seating 6–10 people. Golden Gai is a few blocks away: over 200 bars, each the size of a lounge room, 5–8 seats, and each with its own theme (punk, horror films, jazz, anime). It's the best bar crawl in Tokyo.",
+    tips: [
+      'Most bars have a cover charge (¥500–1,500), usually posted on the door. Look for "No cover charge" signs if you’re hopping a lot.',
+      'Some bars are regulars-only. Pick ones with English signs or open doors, and don’t take it personally.',
+      'Many alleys have "no photo" signs. Respect them.',
+      'Kabukicho is next door too. Avoid touts offering bars or clubs, as they’re a known scam.'
+    ]
+  },
+  {
+    id: 'meiji', c: 'tokyo', emoji: '🌳', kind: 'Culture',
+    name: 'Meiji Shrine + Harajuku',
+    tagline: 'A shrine in a deep forest, then straight into the craziest fashion street in Tokyo.',
+    img: WM('8/8b/Meiji_Jingu_2023-3.jpg/960px-Meiji_Jingu_2023-3.jpg'),
+    go: [150, 170], ride: '~5 min (JR Yamanote to Harajuku)', time: '2.5–3.5 hrs',
+    cost: [0, 0], costNote: 'Free (just shopping + crepes)',
+    best: 'Shrine in the morning, then Harajuku from ~11am. Weekends are busiest and most colourful.',
+    about: "Meiji Jingu honours Emperor Meiji and is surrounded by a 70-hectare forest of 100,000 trees donated from all over Japan. You walk under giant wooden torii past a wall of decorated sake barrels. Exit the forest and you're at Takeshita Street: rainbow candy floss, giant crepes, kawaii fashion and chaos. Then walk down Omotesando, Tokyo's high-fashion avenue.",
+    tips: [
+      'On weekends you might see a traditional Shinto wedding procession at the shrine.',
+      'Takeshita St snacks: Marion Crepes, Totti Candy Factory giant rainbow floss.',
+      'Cat Street (off Omotesando) is great for sneakers and streetwear.',
+      'Yoyogi Park next door is where locals hang out, with buskers and dancers on Sundays.'
+    ]
+  },
+  {
+    id: 'teamlab', c: 'tokyo', emoji: '🌸', kind: 'Must-do',
+    name: 'teamLab Planets',
+    tagline: 'Walk barefoot through knee-deep water full of glowing digital koi.',
+    img: WM('8/80/At_teamLab_Planets_%2848277798316%29.jpg/960px-At_teamLab_Planets_%2848277798316%29.jpg'),
+    go: [450, 600], ride: '~40 min (to Shin-Toyosu station)', time: '1.5–2 hrs',
+    cost: [3600, 4800], costNote: 'Timed ticket (price varies by date)',
+    best: 'Any time. It’s indoors. Evening slots are nice combined with Odaiba at night.',
+    about: "A huge immersive digital art museum you walk through barefoot. Wade through knee-high water while projected koi swim around your legs and turn into flowers when they touch you. There's an infinite mirrored room of floating light orbs, a room of hanging live orchids that rise and fall, and giant soft floors you sink into.",
+    tips: [
+      'Book a date/time online in advance, as it sells out.',
+      'Wear shorts or pants that roll above the knee. Mirrored floors mean skirts aren’t ideal.',
+      'Lockers are free for your shoes and bags.',
+      'teamLab Borderless (Azabudai Hills) is the other one. It’s different (you wander rooms freely), so do both if you love it.'
+    ]
+  },
+  {
+    id: 'akihabara', c: 'tokyo', emoji: '🎮', kind: 'Nerd heaven',
+    name: 'Akihabara',
+    tagline: 'Electric Town: anime, manga, arcades, retro games and maid cafés.',
+    img: WM('6/60/Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png/960px-Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png'),
+    go: [170, 210], ride: '~20 min (JR Chuo + Sobu lines)', time: '2–4 hrs',
+    cost: [0, 0], costNote: 'Free to wander · games/merch extra',
+    best: 'Afternoon into evening, when the signs light up. On Sunday afternoons the main street closes to cars.',
+    about: "Once Tokyo's electronics district, now the world capital of otaku culture. Towers of anime figures, manga, card games and cosplay, multi-storey SEGA/GiGO arcades with claw machines and rhythm games, retro game shops stacked floor to ceiling, and maid cafés where staff in costume serve \"moe moe\" omurice.",
+    tips: [
+      'Super Potato is a retro game heaven with a playable arcade upstairs.',
+      'Akihabara Gachapon Kaikan has hundreds of capsule toy machines (¥100–500 each).',
+      'Maid cafés cost ~¥2,000–3,000 all-in with cover charge. Cheesy but a genuine Tokyo experience.',
+      'Radio Kaikan is a whole building of figures, cards and collectibles.'
+    ]
+  },
+  {
+    id: 'tsukiji', c: 'tokyo', emoji: '🍣', kind: 'Food',
+    name: 'Tsukiji Outer Market',
+    tagline: 'A breakfast crawl of tuna, tamagoyaki and grilled seafood.',
+    img: WM('f/fd/2018_Tsukiji_fish_market.jpg/960px-2018_Tsukiji_fish_market.jpg'),
+    go: [280, 280], ride: '~20 min (Oedo line to Tsukijishijo)', time: '1.5–2 hrs',
+    cost: [2000, 4000], costNote: 'Breakfast grazing',
+    best: '7–10am. Most stalls close by 2pm, and some close Sundays/Wednesdays.',
+    about: "The famous wholesale tuna market moved to Toyosu in 2018, but the outer market with 400+ shops and stalls stayed. It's the best food breakfast in Tokyo: fatty tuna sushi, tamagoyaki (sweet omelette) on a stick, grilled scallops and giant oysters, uni (sea urchin) bowls and strawberry daifuku.",
+    tips: [
+      'Tamagoyaki on a stick at Yamacho, ~¥200. Hot and sweet.',
+      'Eat at or near the stall. There are standing counters and no walking and eating.',
+      'For the tuna auction, go to Toyosu Market (early morning, viewing deck; lower deck needs a reservation).',
+      'Ginza is a 10-min walk if you want to continue to shopping.'
+    ]
+  },
+  {
+    id: 'shimokita', c: 'tokyo', emoji: '👕', kind: 'Vintage',
+    name: 'Shimokitazawa',
+    tagline: "Tokyo's vintage and thrift clothing capital, with indie cafés and live music.",
+    img: WM('5/59/Shimokitazawa_Street_2015.jpg/960px-Shimokitazawa_Street_2015.jpg'),
+    go: [170, 200], ride: '~10 min (Odakyu line)', time: '2–3 hrs',
+    cost: [0, 0], costNote: 'Free to wander · clothes extra',
+    best: 'Afternoon. Most shops open ~12pm.',
+    about: "A laid-back neighbourhood of narrow streets packed with over 100 second-hand clothing stores, from ¥1,000 bargain bins to rare vintage. It's also full of record stores, small live-music venues, curry shops and coffee. Newer spots like Reload and Mikan Shimokita along the old railway line add design shops and food stalls.",
+    tips: [
+      'Flamingo and New York Joe Exchange are classics for cheap vintage.',
+      'Soup curry is the local speciality. Try Rojiura Curry Samurai.',
+      'Carry-on travellers: buy light and wear it home.'
+    ]
+  },
+  {
+    id: 'tmg', c: 'tokyo', emoji: '🏙️', kind: 'Free view',
+    name: 'Tokyo Metropolitan Government Building',
+    tagline: 'A free observation deck 202m up, just 10 min from your base.',
+    img: WM('9/96/Tokyo_Metropolitan_Government_Building_2024.jpg/960px-Tokyo_Metropolitan_Government_Building_2024.jpg'),
+    go: [0, 0], ride: '10 min walk (Shinjuku West Exit)', time: '~1 hr',
+    cost: [0, 0], costNote: 'Free',
+    best: 'Clear mornings for a chance to see Fuji, or after dark, when there’s also a projection-mapping light show on the building facade.',
+    about: "Tokyo's city hall has two 45th-floor observation decks that are totally free. You get the same sprawling skyline you'd pay ¥3,000 for elsewhere, with Tokyo Skytree, Tokyo Tower and on clear days Mount Fuji. In the evenings the building's outside becomes a giant screen for a projection-mapping show.",
+    tips: [
+      'Security check at the entrance takes a few minutes.',
+      'There’s a piano on the deck anyone can play, so expect random concerts.',
+      'Check the projection-mapping show times on the TMG website.'
+    ]
+  },
+  {
+    id: 'ghibli', c: 'tokyo', emoji: '🐈', kind: 'Book ahead',
+    name: 'Ghibli Museum, Mitaka',
+    tagline: "Miyazaki's own museum: Totoro, the Laputa robot and an exclusive short film.",
+    img: WM('4/45/Ghibli_Museum_2024.JPG/960px-Ghibli_Museum_2024.JPG'),
+    go: [230, 440], ride: '~20 min (JR Chuo to Mitaka + bus or park walk)', time: '2–3 hrs',
+    cost: [1000, 1000], costNote: 'Advance ticket only',
+    best: 'Your booked timeslot. Arrive via a walk through Inokashira Park.',
+    about: "Designed by Hayao Miyazaki himself as a whimsical house full of hidden stairs, stained glass and animation workshops showing how Ghibli films are made. There's a giant Robot Soldier from Castle in the Sky on the rooftop garden, a Catbus room and a small cinema showing a Ghibli short film you can only see here.",
+    tips: [
+      'TICKETS: only sold in advance, released on the 10th of the month before at 10am Japan time (Lawson Ticket site). They sell out fast, so set a reminder.',
+      'No photos inside (the rooftop and garden are OK).',
+      'Walk there through Inokashira Park (~15 min), which has swan pedal boats on the lake.'
+    ]
+  },
+  {
+    id: 'yanaka', c: 'tokyo', emoji: '🐱', kind: 'Old Tokyo',
+    name: 'Yanaka + Nezu Shrine',
+    tagline: 'An old Tokyo neighbourhood that survived the war: temples, cats and a mini Inari.',
+    img: WM('6/64/Yanaka_Ginza_2.jpg/960px-Yanaka_Ginza_2.jpg'),
+    go: [210, 210], ride: '~25 min (JR Yamanote to Nippori)', time: '2–3 hrs',
+    cost: [0, 0], costNote: 'Free',
+    best: 'Late afternoon, ending at the Yuyake Dandan steps at sunset.',
+    about: "Yanaka is shitamachi, the old downtown, spared by WWII bombing. Low wooden houses, dozens of small temples, a huge leafy cemetery and Yanaka Ginza, a charming shopping street of croquette stands and craft shops with lots of neighbourhood cats. Nezu Shrine nearby has its own tunnel of red torii gates, without the Kyoto crowds.",
+    tips: [
+      'Start at Nippori Station, walk through Yanaka Cemetery, then down to Yanaka Ginza.',
+      '"Yuyake Dandan" (sunset steps) at the top of Yanaka Ginza is the classic sunset spot.',
+      'Try menchi-katsu (fried minced meat croquette) from the street stalls.',
+      'Ueno Park and Ameyoko market are a short walk away.'
+    ]
+  },
+  {
+    id: 'odaiba', c: 'tokyo', emoji: '🤖', kind: 'Bay',
+    name: 'Odaiba: Life-Size Gundam + Rainbow Bridge',
+    tagline: 'A 20m transforming robot, bay views and a walk over the Rainbow Bridge.',
+    img: WM('6/66/Life-Sized_Unicorn_Gundam_Statue.jpg/960px-Life-Sized_Unicorn_Gundam_Statue.jpg'),
+    go: [400, 550], ride: '~25 min (Rinkai line to Tokyo Teleport)', time: '2–4 hrs',
+    cost: [0, 0], costNote: 'Free',
+    best: 'Late afternoon into night, for the skyline and the lit-up Rainbow Bridge.',
+    about: "A man-made island in Tokyo Bay. Outside DiverCity mall stands a life-size 19.7m Unicorn Gundam that transforms and lights up several times a day. There's a (mini) Statue of Liberty, a beach boardwalk, and the Rainbow Bridge back to the city with a free pedestrian walkway and killer night views.",
+    tips: [
+      'Check the Gundam transformation show times posted at the statue.',
+      'Walk the Rainbow Bridge promenade (~30 min, free) at sunset.',
+      'Combine it with teamLab Planets, which is on the same Yurikamome line.'
+    ]
+  },
+  {
+    id: 'kamakura', c: 'tokyo', emoji: '🧘', kind: 'Day trip',
+    name: 'Kamakura: the Great Buddha',
+    tagline: 'A 13m bronze Buddha, clifftop temples and the beach.',
+    img: WM('c/cf/230128_Kamakura_Daibutsu_Japan04s3.jpg/960px-230128_Kamakura_Daibutsu_Japan04s3.jpg'),
+    go: [950, 950], ride: '~1 hr (JR Shonan-Shinjuku line)', time: '6–8 hrs',
+    cost: [700, 1000], costNote: 'Great Buddha ¥300 + Hase-dera ¥400',
+    best: 'A weekday. Leave Shinjuku by 8:30am.',
+    about: "Japan's samurai capital in the 1100s–1300s, now a seaside town an hour from Tokyo. The Kotoku-in Great Buddha is a 13m bronze statue that has sat outdoors since a tsunami washed its hall away in 1498 (you can go inside it for ¥50). Hase-dera temple has a sea view and caves, and Tsurugaoka Hachimangu is the grand main shrine at the end of Komachi-dori snack street.",
+    tips: [
+      'The Enoden tram (old-school, along the coast) connects Kamakura, Hase and Enoshima island.',
+      'Enoshima is a small island with shrines, caves and sunset views. Add it on if you have energy.',
+      'Komachi-dori snacks: purple sweet potato soft-serve, shirasu (baby sardine) everything.',
+      'The Daibutsu hiking course is a short forest trail linking the temples.'
+    ]
+  },
+  {
+    id: 'nikko', c: 'tokyo', emoji: '🐒', kind: 'Day trip',
+    name: 'Nikko: Toshogu Shrine + Kegon Falls',
+    tagline: 'A dazzling gold shrine in a cedar forest, and a 97m waterfall. Peak autumn colour in October.',
+    img: WM('2/26/200801_Nikko_Tosho-gu_Nikko_Japan03s3.jpg/960px-200801_Nikko_Tosho-gu_Nikko_Japan03s3.jpg'),
+    go: [1400, 3000], ride: '~2 hrs (Tobu line from Asakusa)', time: 'Full day (10–12 hrs)',
+    cost: [1600, 2000], costNote: 'Toshogu entry + extras',
+    best: 'October is prime time. The higher areas (Lake Chuzenji) peak with autumn leaves in mid-late Oct. Leave early.',
+    about: "The mausoleum of Tokugawa Ieyasu, Japan's greatest shogun, and the most lavishly decorated shrine in Japan: gold leaf, painted carvings, the original \"See no evil, hear no evil, speak no evil\" monkeys and the famous Sleeping Cat. The red Shinkyo Bridge crosses the river at the entrance. Up the hairpin Irohazaka road is Kegon Falls, a 97m waterfall, and Lake Chuzenji.",
+    tips: [
+      'Get the NIKKO PASS World Heritage Area (~¥2,100) from Tobu Asakusa. It covers the return train + local buses.',
+      'The paid Limited Express (Spacia/Revaty) is faster and comfier, about ¥1,500 extra each way.',
+      'The bus up to Kegon Falls takes ~50 min. In peak leaf season, traffic jams are real, so go early.',
+      'Try yuba (tofu skin), Nikko’s local speciality.'
+    ]
   }
 ];
 
@@ -632,10 +1487,16 @@ const store = {
   set: (k,v) => { try { localStorage.setItem(k, v ? '1' : '0'); } catch(e) {} }
 };
 
-const aud = rm => Math.max(1, Math.round(rm / RATE));
-const range = ([a,b]) => a === b ? '$' + aud(a) : '$' + aud(a) + '–' + aud(b);
-const rmRange = ([a,b]) => a === b ? 'RM' + a : 'RM' + a + '–' + b;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// money: RM for KL, ¥ for Japan → AUD
+const CCY = {
+  RM:  { rate: RATE, fmt: n => 'RM' + n },
+  JPY: { rate: JPY,  fmt: n => '¥' + n.toLocaleString('en-AU') }
+};
+const aud = (n, c) => Math.max(1, Math.round(n / CCY[c].rate));
+const audRange = ([a,b], c) => a === b ? '$' + aud(a, c) : '$' + aud(a, c) + '–' + aud(b, c);
+const locRange = ([a,b], c) => a === b ? CCY[c].fmt(a) : CCY[c].fmt(a) + '–' + (c === 'JPY' ? b.toLocaleString('en-AU') : b);
 
 // carry over ticks from the old to-do list layout
 const OLD = { todocity: ['petronas','alor','chinatown','ecopark','kgbaru','theanhou','heli','mosque','birdpark','littleindia','chinatown','berjaya'],
@@ -650,21 +1511,28 @@ try {
 
 // ── RENDER SPOTS ──────────────────────────────────────────────────────────────
 
-function statGrab(s) {
-  if (s.grab[1] === 0) return `<div class="stat"><div class="k">🚗 Getting there</div><div class="v">${esc(s.ride)}</div><div class="s">No Grab needed</div></div>`;
-  const each = [s.grab[0] / 2, s.grab[1] / 2];
-  return `<div class="stat"><div class="k">🚗 Grab (per car)</div><div class="v"><span class="aud">${range(s.grab)}</span> · ${esc(s.ride)}</div><div class="s">${rmRange(s.grab)} · ~${range(each)} each</div></div>`;
+function statGo(s, c) {
+  if (c === 'RM') {
+    if (s.grab[1] === 0) return `<div class="stat"><div class="k">🚗 Getting there</div><div class="v">${esc(s.ride)}</div><div class="s">No Grab needed</div></div>`;
+    const each = [s.grab[0] / 2, s.grab[1] / 2];
+    return `<div class="stat"><div class="k">🚗 Grab (per car)</div><div class="v"><span class="aud">${audRange(s.grab, c)}</span> · ${esc(s.ride)}</div><div class="s">${locRange(s.grab, c)} · ~${audRange(each, c)} each</div></div>`;
+  }
+  if (s.go[1] === 0) return `<div class="stat"><div class="k">🚶 Getting there</div><div class="v"><span class="aud">Free</span></div><div class="s">${esc(s.ride)}</div></div>`;
+  const loc = s.go[0] === 0 ? 'Walk or ' + CCY[c].fmt(s.go[1]) : locRange(s.go, c);
+  const au  = s.go[0] === 0 ? '$0–' + aud(s.go[1], c) : audRange(s.go, c);
+  return `<div class="stat"><div class="k">🚆 Getting there (pp)</div><div class="v"><span class="aud">${au}</span></div><div class="s">${loc} · ${esc(s.ride)}</div></div>`;
 }
-function statCost(s) {
-  const v = s.cost[1] === 0 ? '<span class="aud">Free</span>' : `<span class="aud">${range(s.cost)}</span> pp`;
-  const rm = s.cost[1] === 0 ? '' : rmRange(s.cost) + ' · ';
-  return `<div class="stat"><div class="k">🎟️ Cost</div><div class="v">${v}</div><div class="s">${rm}${esc(s.costNote)}</div></div>`;
+function statCost(s, c) {
+  const free = s.cost[1] === 0;
+  const v = free ? '<span class="aud">Free</span>' : `<span class="aud">${audRange(s.cost, c)}</span> pp`;
+  const loc = free ? '' : locRange(s.cost, c) + ' · ';
+  return `<div class="stat"><div class="k">🎟️ Cost</div><div class="v">${v}</div><div class="s">${loc}${esc(s.costNote)}</div></div>`;
 }
 
-function renderSpot(s, n) {
-  const map = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.map);
+function renderSpot(s, n, c, key, where) {
+  const map = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.map || (s.name + ' ' + where));
   return `
-  <article class="spot card" data-id="${s.id}" data-g="${s.g}">
+  <article class="spot card" data-key="${key}" data-g="${s.g || s.c}">
     <div class="ph">
       <div class="fb">${s.emoji}</div>
       <img src="${s.img}" alt="${esc(s.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
@@ -675,10 +1543,10 @@ function renderSpot(s, n) {
       <h3>${esc(s.name)}</h3>
       <div class="tagline">${esc(s.tagline)}</div>
       <div class="stats">
-        ${statGrab(s)}
+        ${statGo(s, c)}
         <div class="stat"><div class="k">⏱️ Time there</div><div class="v">${esc(s.time)}</div></div>
-        ${statCost(s)}
-        <div class="stat"><div class="k">📍 Map</div><div class="v"><a href="${map}" target="_blank" rel="noopener">Open in Maps ↗</a></div><div class="s">Copy into Grab as the drop-off</div></div>
+        ${statCost(s, c)}
+        <div class="stat"><div class="k">📍 Map</div><div class="v"><a href="${map}" target="_blank" rel="noopener">Open in Maps ↗</a></div><div class="s">${c === 'RM' ? 'Copy into Grab as the drop-off' : 'Google Maps gives exact train times'}</div></div>
       </div>
       <p class="about">${esc(s.about)}</p>
       <div class="besttime">🕐 <b>Best time:</b> ${esc(s.best)}</div>
@@ -690,27 +1558,60 @@ function renderSpot(s, n) {
   </article>`;
 }
 
-const cityEl = document.getElementById('spotsCity');
-const tripEl = document.getElementById('spotsTrip');
+// KL
 let ci = 0, ti = 0;
 SPOTS.forEach(s => {
-  if (s.g === 'city') cityEl.insertAdjacentHTML('beforeend', renderSpot(s, ++ci));
-  else tripEl.insertAdjacentHTML('beforeend', renderSpot(s, ++ti));
+  const el = document.getElementById(s.g === 'city' ? 'spotsCity' : 'spotsTrip');
+  el.insertAdjacentHTML('beforeend', renderSpot(s, s.g === 'city' ? ++ci : ++ti, 'RM', 'kl_' + s.id, 'Kuala Lumpur'));
 });
+
+// Japan: route strip + one block per city
+const route = document.getElementById('jpRoute');
+const citiesEl = document.getElementById('jpCities');
+JP_CITIES.forEach((city, i) => {
+  const spots = JP.filter(s => s.c === city.id);
+  route.insertAdjacentHTML('beforeend', `
+    <a class="jstop" href="#city-${city.id}" style="--c:${city.color}">
+      <span class="jn">${i + 1}</span>
+      <span class="jname">${esc(city.name)} <span class="jjp">${city.jp}</span></span>
+      <span class="jdays">${esc(city.days)} · <b data-cc="${city.id}">0/${spots.length}</b></span>
+    </a>`);
+  citiesEl.insertAdjacentHTML('beforeend', `
+    <div class="city" id="city-${city.id}" style="--c:${city.color}">
+      <div class="city-banner">
+        <div class="wm">${city.jp}</div>
+        <div class="cstep">Stop ${i + 1} of ${JP_CITIES.length}</div>
+        <h3>${esc(city.name)}</h3>
+        <p class="cvibe">${esc(city.vibe)}</p>
+        <div class="cmeta">
+          <span>📅 ${esc(city.days)}</span>
+          <span>📍 Prices from ${esc(city.base)}</span>
+          <span>✅ <b data-cc="${city.id}">0/${spots.length}</b> done</span>
+        </div>
+        <div class="carrive">🚆 <b>Getting here:</b> ${esc(city.arrive)}</div>
+      </div>
+      <div class="spots">${spots.map((s, n) => renderSpot(s, n + 1, 'JPY', 'jp_' + s.id, city.name + ' Japan')).join('')}</div>
+    </div>`);
+});
+
+document.querySelectorAll('.rateRM').forEach(e => e.textContent = RATE);
+document.querySelectorAll('.rateJPY').forEach(e => e.textContent = JPY);
+
+// ── TICKS ─────────────────────────────────────────────────────────────────────
 
 function setDone(card, on) {
   card.classList.toggle('done', on);
   card.querySelector('.tick .lbl').textContent = on ? 'Done!' : 'Mark as done';
 }
-document.querySelectorAll('.spot').forEach(card => setDone(card, store.get('kl_' + card.dataset.id)));
+document.querySelectorAll('.spot').forEach(card => setDone(card, store.get(card.dataset.key)));
 
-document.getElementById('todo').addEventListener('click', e => {
-  const btn = e.target.closest('.tick');
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.spot .tick');
   if (!btn) return;
   const card = btn.closest('.spot');
   const on = !card.classList.contains('done');
   setDone(card, on);
-  store.set('kl_' + card.dataset.id, on);
+  store.set(card.dataset.key, on);
   updateProgress();
   applyFilter();
 });
@@ -719,21 +1620,24 @@ document.getElementById('todo').addEventListener('click', e => {
 
 let filter = 'all';
 try { filter = localStorage.getItem('kl_filter') || 'all'; } catch(e) {}
+if (!['all', 'todo', 'done'].includes(filter)) filter = 'all';
 
 function applyFilter() {
   const cards = [...document.querySelectorAll('.spot')];
   cards.forEach(c => {
     const done = c.classList.contains('done');
-    const show = filter === 'all' || filter === c.dataset.g || (filter === 'done' && done) || (filter === 'todo' && !done);
-    c.classList.toggle('hidden', !show);
+    c.classList.toggle('hidden', (filter === 'done' && !done) || (filter === 'todo' && done));
   });
   document.querySelectorAll('.group-h').forEach(h => {
     const any = cards.some(c => c.dataset.g === h.dataset.g && !c.classList.contains('hidden'));
     h.classList.toggle('hidden', !any);
   });
+  document.querySelectorAll('.city').forEach(city => {
+    city.querySelector('.spots').classList.toggle('empty', !city.querySelector('.spot:not(.hidden)'));
+  });
   document.querySelectorAll('#filters button').forEach(b => b.classList.toggle('on', b.dataset.f === filter));
-  const cnt = { all: cards.length, city: 0, trip: 0, todo: 0, done: 0 };
-  cards.forEach(c => { cnt[c.dataset.g]++; cnt[c.classList.contains('done') ? 'done' : 'todo']++; });
+  const done = cards.filter(c => c.classList.contains('done')).length;
+  const cnt = { all: cards.length, todo: cards.length - done, done };
   document.querySelectorAll('#filters [data-c]').forEach(n => n.textContent = cnt[n.dataset.c]);
 }
 document.getElementById('filters').addEventListener('click', e => {
@@ -746,14 +1650,25 @@ document.getElementById('filters').addEventListener('click', e => {
 
 // ── PROGRESS ──────────────────────────────────────────────────────────────────
 
-function updateProgress() {
-  const all = document.querySelectorAll('.spot').length;
-  const done = document.querySelectorAll('.spot.done').length;
-  document.getElementById('progNum').textContent = done + '/' + all;
-  document.getElementById('progBar').style.width = (all ? done / all * 100 : 0) + '%';
-  document.getElementById('spotCount').textContent = all;
+function countIn(sel) {
+  const all = document.querySelectorAll(sel + ' .spot').length;
+  const done = document.querySelectorAll(sel + ' .spot.done').length;
+  return [done, all];
 }
-document.getElementById('rateBadge').textContent = 'RM' + RATE;
+function updateProgress() {
+  const [d, a] = countIn('body');
+  document.getElementById('progNum').textContent = d + '/' + a;
+  document.getElementById('progBar').style.width = (a ? d / a * 100 : 0) + '%';
+  const chips = [['kl', '🇲🇾 KL', '#e85d2f'], ...JP_CITIES.map(c => ['city-' + c.id, c.name, c.color])];
+  document.getElementById('regionChips').innerHTML = chips.map(([id, name, col]) => {
+    const [dd, aa] = countIn('#' + id);
+    return `<a class="rchip" href="#${id}" style="--c:${col}"><i></i>${esc(name)} <b>${dd}/${aa}</b></a>`;
+  }).join('');
+  JP_CITIES.forEach(c => {
+    const [dd, aa] = countIn('#city-' + c.id);
+    document.querySelectorAll(`[data-cc="${c.id}"]`).forEach(e => e.textContent = dd + '/' + aa);
+  });
+}
 
 // ── MASTER CHECKLIST ──────────────────────────────────────────────────────────
 
@@ -789,9 +1704,9 @@ updateListCounts();
 const navAs = [...document.querySelectorAll('#navlinks a')];
 const toTop = document.getElementById('toTop');
 function onScroll() {
-  const y = window.scrollY + 90;
-  let cur = 'todo';
-  if (document.getElementById('checklist').offsetTop <= y) cur = 'checklist';
+  const y = window.scrollY + 130;
+  let cur = 'kl';
+  for (const id of ['kl', 'japan', 'checklist']) if (document.getElementById(id).offsetTop <= y) cur = id;
   navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   toTop.classList.toggle('show', window.scrollY > 500);
 }
